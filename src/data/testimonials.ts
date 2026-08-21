@@ -1,0 +1,58 @@
+import { TestimonialItem } from "@/types";
+
+export const testimonialsData: TestimonialItem[] = [
+  {
+    id: "testimonial-1",
+    name: "David Sterling",
+    role: "Chief Marketing Officer",
+    company: "Apex Global FinTech",
+    quote: "GrowlinX completely overhauled our customer acquisition architecture. Within 90 days, our cost per acquisition dropped significantly while our monthly funded account volume doubled. Their performance marketing team operates like an elite in-house unit.",
+    rating: 5,
+    metric: { value: "3.2X", label: "ROAS Increase" },
+  },
+  {
+    id: "testimonial-2",
+    name: "Elena Rostova",
+    role: "VP of Growth",
+    company: "CloudStack SaaS Solutions",
+    quote: "Our organic search rankings were stagnant for over a year before partnering with GrowlinX. Their technical SEO restructuring and content strategy took us to top 3 rankings for our highest-value commercial keywords, generating qualified inbound enterprise demos daily.",
+    rating: 5,
+    metric: { value: "+180%", label: "Organic Traffic" },
+  },
+  {
+    id: "testimonial-3",
+    name: "Marcus Vance",
+    role: "Co-Founder & CEO",
+    company: "PulseFit Mobile App",
+    quote: "Scaling mobile app downloads while maintaining user retention is tough. GrowlinX integrated App Store Optimization with creative video campaigns that propelled us into the top category charts and lowered our CPI by 35%.",
+    rating: 5,
+    metric: { value: "500K+", label: "App Installs" },
+  },
+  {
+    id: "testimonial-4",
+    name: "Sophia Chen",
+    role: "Brand Director",
+    company: "LuxeVibe DTC E-Commerce",
+    quote: "The influencer partnerships and social media campaigns orchestrated by GrowlinX gave our brand the viral boost we needed. Our Instagram engagement exploded and our seasonal collection sold out two weeks ahead of schedule.",
+    rating: 5,
+    metric: { value: "+240%", label: "Engagement Boost" },
+  },
+  {
+    id: "testimonial-5",
+    name: "Julian Wright",
+    role: "Managing Director",
+    company: "Horizon Capital Real Estate",
+    quote: "In high-ticket luxury real estate, generic lead gen fails. GrowlinX built ultra-targeted local campaigns and video tours that delivered genuine, qualified investor inquiries within the first 30 days.",
+    rating: 5,
+    metric: { value: "12X", label: "Qualified Inquiries" },
+  },
+  {
+    id: "testimonial-6",
+    name: "Rachel Thorne",
+    role: "Head of Digital Operations",
+    company: "EduSphere Learning Tech",
+    quote: "Their YouTube monetization and video optimization strategy turned our stagnant educational channel into an active revenue engine. Watch hours increased dramatically and our subscriber base multiplied rapidly.",
+    rating: 5,
+    metric: { value: "+350%", label: "Watch Time Growth" },
+  },
+];

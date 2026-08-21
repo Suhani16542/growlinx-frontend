@@ -1,0 +1,161 @@
+import { BlogPostItem } from "@/types";
+
+export const blogCategories = [
+  "All",
+  "SEO Strategy",
+  "Performance Marketing",
+  "Social Media",
+  "App Growth",
+  "YouTube Strategy",
+  "Agency Insights",
+];
+
+export const blogData: BlogPostItem[] = [
+  {
+    id: "seo-playbook-2026",
+    slug: "seo-playbook-for-high-growth-brands",
+    title: "The 2026 SEO Playbook: How Search is Shifting with AI & LLMs",
+    excerpt: "Learn how forward-thinking brands are capturing high-intent search share in the evolving search engine landscape.",
+    category: "SEO Strategy",
+    readTime: "6 min read",
+    publishedAt: "Jan 15, 2026",
+    author: {
+      name: "Alex Vance",
+      role: "Head of SEO & Growth",
+    },
+    content: [
+      "The search landscape has entered an era where traditional keyword stuffing is completely obsolete. Search engines now evaluate content using semantic entity graphs, direct answer readiness, and true topical authority.",
+      "To succeed in 2026, brands must structure content not just for traditional crawler bots, but for generative answer engines. This means focusing on bottom-of-funnel intent, schema-rich technical structures, and verifiable original data.",
+      "Our agency's proprietary framework breaks SEO down into three pillars: Technical Precision (sub-second Core Web Vitals), Semantic Architecture (topic clusters that leave no user question unanswered), and Real Brand Authority (digital PR and tier-1 citations).",
+      "When you combine technical hygiene with deep problem-solving content, organic traffic ceases to be a volatile experiment and becomes your most reliable revenue engine.",
+    ],
+    takeaways: [
+      "Prioritize semantic depth over raw keyword density.",
+      "Ensure your website passes all Core Web Vitals with green scores.",
+      "Create proprietary data studies to attract natural editorial backlinks.",
+      "Optimize for answer engines with structured schema markup.",
+    ],
+  },
+  {
+    id: "roas-scaling-tactics",
+    slug: "scaling-paid-ads-without-fatigue",
+    title: "How We Scale Meta & Google Ads to $100k+/mo Without Ad Fatigue",
+    excerpt: "A tactical guide to creative iteration frameworks, dynamic audience modeling, and server-side attribution tracking.",
+    category: "Performance Marketing",
+    readTime: "8 min read",
+    publishedAt: "Feb 02, 2026",
+    author: {
+      name: "Marcus Reed",
+      role: "Director of Paid Media",
+    },
+    content: [
+      "Most performance marketing campaigns hit a hard ceiling when ad fatigue sets in. Audiences get saturated with the same hook, cost per click skyrockets, and blended ROAS degrades.",
+      "The secret to breaking through is building a continuous creative testing pipeline. Rather than guessing one 'winning' ad, we launch 5-10 distinct angle variations weekly, varying the first 3-second hook, visual pacing, and direct call-to-action.",
+      "Pairing creative volume with modern broad targeting algorithms allows Meta and Google AI to route specific visual formats to the exact micro-audiences most likely to convert.",
+      "Additionally, server-side Conversions API (CAPI) implementation ensures your ad platform receives full signal fidelity despite browser privacy restrictions.",
+    ],
+    takeaways: [
+      "Test at least 5 new visual hooks every single week.",
+      "Leverage broad targeting and let creative define the audience.",
+      "Implement server-side Conversions API for accurate data signals.",
+      "Scale budget on winning ad creatives incrementally (15-20% every 48 hours).",
+    ],
+  },
+  {
+    id: "viral-influencer-campaigns",
+    slug: "executing-roi-first-influencer-campaigns",
+    title: "Why Most Influencer Campaigns Fail (And How to Guarantee Positive ROI)",
+    excerpt: "Stop burning budget on vanity metrics. Here is our 4-step framework for creator whitelisting and direct conversions.",
+    category: "Social Media",
+    readTime: "7 min read",
+    publishedAt: "Feb 18, 2026",
+    author: {
+      name: "Elena Rostova",
+      role: "Head of Creator Partnerships",
+    },
+    content: [
+      "For years, brands treated influencer marketing like digital billboards—paying exorbitant fees for static feed posts that generated plenty of likes but zero measurable revenue.",
+      "Modern influencer marketing is a performance channel. By partnering with vetted micro and mid-tier creators who have genuine audience trust, brands can produce authentic UGC at scale.",
+      "The highest ROI is achieved through creator whitelisting (dark posting), where you gain ad account permissions to run targeted paid media directly through the creator's profile handle.",
+      "This approach combines authentic creator trust with precision demographic targeting and clear attribution tracking.",
+    ],
+    takeaways: [
+      "Audit creator audiences for bot contamination and geo-alignment.",
+      "Prioritize creator whitelisting and spark ads over one-off sponsored posts.",
+      "Give creators creative freedom while enforcing rigid call-to-action guidelines.",
+      "Track every partnership with custom landing pages and postbacks.",
+    ],
+  },
+  {
+    id: "app-store-optimization-guide",
+    slug: "mastering-app-store-optimization-2026",
+    title: "App Store Optimization (ASO): The Complete Guide to Organic App Downloads",
+    excerpt: "Discover how to optimize your app metadata, screenshot conversions, and category ranking to drive continuous organic installs.",
+    category: "App Growth",
+    readTime: "5 min read",
+    publishedAt: "Mar 01, 2026",
+    author: {
+      name: "David Sterling",
+      role: "Mobile Growth Strategist",
+    },
+    content: [
+      "Over 65% of mobile app downloads originate directly from searches within the iOS App Store and Google Play Store. If your app is not indexed for relevant high-volume terms, you are losing users to competitors.",
+      "Effective ASO requires a dual approach: Search Visibility (keyword optimization in titles, subtitles, and hidden keyword fields) and Conversion Rate Optimization (designing screenshots and preview videos that compel users to tap 'Get').",
+      "Running routine A/B tests on your primary icon and first three screenshots frequently yields 15% to 30% increases in organic install conversion rates.",
+    ],
+    takeaways: [
+      "Update your app's keyword fields based on seasonal search volume trends.",
+      "A/B test screenshot value propositions every quarter.",
+      "Maintain an average rating above 4.5 stars to protect category ranking.",
+      "Use localized metadata for international store storefronts.",
+    ],
+  },
+  {
+    id: "youtube-monetization-playbook",
+    slug: "youtube-monetization-and-watch-time-acceleration",
+    title: "How to Build a YouTube Growth Engine That Generates 6-Figure Revenue",
+    excerpt: "Proven strategies for optimizing click-through rates, retaining viewer attention, and diversifying video monetization channels.",
+    category: "YouTube Strategy",
+    readTime: "8 min read",
+    publishedAt: "Mar 10, 2026",
+    author: {
+      name: "Sophia Chen",
+      role: "Video Strategy Lead",
+    },
+    content: [
+      "YouTube is the world's second-largest search engine and the premier platform for building deep audience affinity. However, most channels stall because they neglect packaging.",
+      "A video's success is determined in the first 30 seconds and the click-through rate of its thumbnail. We design thumbnails with high visual contrast and psychological curiosity loops.",
+      "Beyond AdSense revenue, high-performing YouTube channels leverage backend sales funnels, corporate sponsorships, and digital memberships to maximize earnings per viewer.",
+    ],
+    takeaways: [
+      "Spend equal time packaging your video (title/thumbnail) as producing it.",
+      "Hook viewers within the first 5 seconds by teasing the core payoff.",
+      "Leverage YouTube Shorts to funnel new subscribers into long-form content.",
+      "Diversify revenue beyond AdSense with direct lead magnets.",
+    ],
+  },
+  {
+    id: "conversion-rate-optimization-secrets",
+    slug: "turning-traffic-into-revenue-cro-guide",
+    title: "Why More Traffic Won't Save a Leaky Funnel: The CRO Blueprint",
+    excerpt: "Stop wasting marketing dollars driving traffic to low-converting pages. Learn the psychology of high-converting agency landing pages.",
+    category: "Agency Insights",
+    readTime: "6 min read",
+    publishedAt: "Mar 18, 2026",
+    author: {
+      name: "Alex Vance",
+      role: "Head of SEO & Growth",
+    },
+    content: [
+      "Doubling your website conversion rate from 2% to 4% has the exact same economic impact as doubling your marketing budget—without spending an extra dollar on ads.",
+      "High-converting landing pages follow a clear psychological sequence: immediate clarity in the hero section, instant social proof, clear benefit breakdowns, and zero friction forms.",
+      "By removing unnecessary form fields, adding live verification badges, and optimizing mobile load speed, businesses can dramatically improve their lead pipeline.",
+    ],
+    takeaways: [
+      "Ensure your hero headline passes the 5-second clarity test.",
+      "Place social proof and metrics directly above the fold.",
+      "Keep lead forms concise (reduce non-essential fields).",
+      "Ensure your page loads in under 1.5 seconds on mobile devices.",
+    ],
+  },
+];
