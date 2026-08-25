@@ -39,88 +39,88 @@ export function LeadContactPreview() {
   };
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden bg-[#060a15] border-t border-slate-800/60">
+    <section className="py-24 lg:py-32 relative overflow-hidden bg-[#050811] border-t border-white/[0.06]">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-r from-blue-600/15 via-indigo-600/15 to-cyan-400/15 blur-3xl rounded-full pointer-events-none" />
 
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10 items-center">
-          {/* Left Column: Heading & Value Proposition */}
-          <div className="lg:col-span-5 space-y-6">
-            <ScrollReveal animation="fade-up" duration={600}>
-              <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-semibold glow-badge">
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                Let's Talk Growth
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-14 items-center">
+          {/* Left Column: Heading & Contact Info */}
+          <div className="lg:col-span-5 space-y-7">
+            <ScrollReveal animation="fade-up" duration={500}>
+              <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold glow-badge">
+                <Sparkles className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
+                <span>Let's Talk Growth</span>
               </div>
 
-              <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                Kickstart Your <span className="glow-accent-gradient">Digital Growth</span> Today
+              <h2 className="mt-4 text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.08]">
+                Ready to Scale Your <span className="glow-accent-gradient">Inbound Growth?</span>
               </h2>
 
-              <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-                Connect with our senior growth strategists to evaluate your acquisition channels, audit conversion bottlenecks, and receive a customized marketing plan.
+              <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+                Partner with an elite digital growth unit. Claim a complimentary strategic audit to identify conversion leaks and unlock scalable inbound revenue.
               </p>
             </ScrollReveal>
 
-            <ScrollReveal animation="fade-up" duration={600} delay={150}>
+            <ScrollReveal animation="fade-up" duration={500} delay={100}>
               <div className="space-y-4 pt-2">
-                <div className="flex items-center gap-3 text-sm text-slate-300">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-cyan-400 border border-blue-500/20">
-                    <Mail className="h-4 w-4" />
+                <div className="flex items-center gap-4 text-sm">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-500/10 text-cyan-400 border border-blue-500/20 shrink-0">
+                    <Mail className="h-5 w-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] text-slate-400 block">Email Us</span>
-                    <a href={`mailto:${siteConfig.contact.email}`} className="font-semibold text-white hover:text-cyan-300">
+                    <span className="text-xs text-slate-400 block font-medium">Direct Inquiries</span>
+                    <a href={`mailto:${siteConfig.contact.email}`} className="font-bold text-white hover:text-cyan-300 transition-colors">
                       {siteConfig.contact.email}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 text-sm text-slate-300">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-cyan-400 border border-blue-500/20">
-                    <Phone className="h-4 w-4" />
+                <div className="flex items-center gap-4 text-sm">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-500/10 text-cyan-400 border border-blue-500/20 shrink-0">
+                    <Phone className="h-5 w-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] text-slate-400 block">Call Directly</span>
-                    <a href={`tel:${siteConfig.contact.phone}`} className="font-semibold text-white hover:text-cyan-300">
+                    <span className="text-xs text-slate-400 block font-medium">Call Our Strategists</span>
+                    <a href={`tel:${siteConfig.contact.phone}`} className="font-bold text-white hover:text-cyan-300 transition-colors">
                       {siteConfig.contact.phone}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 text-sm text-slate-300">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-cyan-400 border border-blue-500/20">
-                    <MapPin className="h-4 w-4" />
+                <div className="flex items-center gap-4 text-sm">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-500/10 text-cyan-400 border border-blue-500/20 shrink-0">
+                    <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] text-slate-400 block">Headquarters</span>
-                    <span className="font-semibold text-white">{siteConfig.contact.address}</span>
+                    <span className="text-xs text-slate-400 block font-medium">Headquarters</span>
+                    <span className="font-bold text-white">{siteConfig.contact.address}</span>
                   </div>
                 </div>
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Lead Form Card */}
+          {/* Right Column: Dark Translucent Form Card */}
           <div className="lg:col-span-7">
-            <ScrollReveal animation="fade-left" duration={700}>
-              <div className="glow-card rounded-3xl p-6 sm:p-10 border border-slate-800 relative">
+            <ScrollReveal animation="fade-left" duration={600}>
+              <div className="glass-panel rounded-3xl p-8 sm:p-10 relative overflow-hidden border border-white/10 shadow-2xl">
                 {submitted ? (
                   <div className="text-center py-12 space-y-4">
-                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 animate-pulse">
+                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                       <CheckCircle2 className="h-8 w-8" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white">
-                      Message Received!
+                    <h3 className="text-2xl font-black text-white">
+                      Request Received!
                     </h3>
-                    <p className="text-sm text-slate-300 max-w-md mx-auto">
-                      Thank you for contacting GrowlinX. One of our growth strategists will review your request and reach out within 24 hours.
+                    <p className="text-base text-slate-300 max-w-md mx-auto">
+                      Thank you for reaching out. A senior growth strategist will review your requirements and follow up within 24 hours.
                     </p>
-                    <div className="pt-4">
+                    <div className="pt-3">
                       <button
                         type="button"
                         onClick={() => setSubmitted(false)}
-                        className="text-xs font-semibold text-cyan-400 hover:underline cursor-pointer"
+                        className="text-xs font-bold text-cyan-400 hover:text-cyan-300 underline cursor-pointer"
                       >
                         Submit another inquiry
                       </button>
@@ -128,18 +128,19 @@ export function LeadContactPreview() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-2">
-                      <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                    <div className="flex items-center justify-between border-b border-white/[0.08] pb-4 mb-2">
+                      <h3 className="text-base font-bold text-white flex items-center gap-2">
                         <Sparkles className="h-4 w-4 text-cyan-400" />
-                        Get Your Custom Growth Blueprint
+                        Claim Custom Strategy Plan
                       </h3>
-                      <span className="text-xs text-slate-400">Response within 24h</span>
+                      <span className="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-cyan-500/20">
+                        Response &lt; 24h
+                      </span>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Name */}
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+                        <label className="block text-xs font-semibold text-slate-300 mb-1.5">
                           Full Name *
                         </label>
                         <input
@@ -147,14 +148,13 @@ export function LeadContactPreview() {
                           required
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          placeholder="e.g. Sarah Jenkins"
-                          className="w-full rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          placeholder="Sarah Jenkins"
+                          className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-cyan-400 focus:bg-white/[0.08] focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all"
                         />
                       </div>
 
-                      {/* Email */}
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+                        <label className="block text-xs font-semibold text-slate-300 mb-1.5">
                           Email Address *
                         </label>
                         <input
@@ -163,15 +163,14 @@ export function LeadContactPreview() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="sarah@company.com"
-                          className="w-full rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-cyan-400 focus:bg-white/[0.08] focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Phone */}
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+                        <label className="block text-xs font-semibold text-slate-300 mb-1.5">
                           Phone Number
                         </label>
                         <input
@@ -179,13 +178,12 @@ export function LeadContactPreview() {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="+1 (555) 000-0000"
-                          className="w-full rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-cyan-400 focus:bg-white/[0.08] focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all"
                         />
                       </div>
 
-                      {/* Company */}
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+                        <label className="block text-xs font-semibold text-slate-300 mb-1.5">
                           Company / Brand
                         </label>
                         <input
@@ -193,60 +191,57 @@ export function LeadContactPreview() {
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                           placeholder="Acme Corp"
-                          className="w-full rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-cyan-400 focus:bg-white/[0.08] focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all"
                         />
                       </div>
                     </div>
 
-                    {/* Interested Service Selection */}
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
-                        Interested Growth Service
+                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                        Primary Growth Objective
                       </label>
                       <select
                         value={formData.service}
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                        className="w-full rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="w-full rounded-xl border border-white/10 bg-[#090f20] px-4 py-3 text-sm text-white focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all"
                       >
                         {servicesData.map((s) => (
-                          <option key={s.id} value={s.title} className="bg-slate-900 text-white">
+                          <option key={s.id} value={s.title} className="bg-[#090f20] text-white">
                             {s.title}
                           </option>
                         ))}
                       </select>
                     </div>
 
-                    {/* Message */}
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
-                        Message / Business Goals
+                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                        Message / Goals
                       </label>
                       <textarea
                         rows={3}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Tell us about your current marketing goals, challenges, or timeline..."
-                        className="w-full rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 resize-none"
+                        placeholder="Tell us about your current marketing challenges, target ARR, or timeline..."
+                        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-cyan-400 focus:bg-white/[0.08] focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all resize-none"
                       />
                     </div>
 
-                    {/* Submit CTA */}
-                    <div className="pt-2">
+                    <div className="pt-3">
                       <Button
                         type="submit"
                         variant="gradient"
                         size="lg"
                         disabled={isSubmitting}
-                        className="w-full justify-center text-sm font-bold gap-2 cursor-pointer shadow-lg shadow-blue-600/40"
+                        className="w-full justify-center text-sm font-bold gap-2 py-4 shadow-xl shadow-blue-600/40"
                       >
                         <Send className="h-4 w-4" />
-                        <span>{isSubmitting ? "Submitting..." : "Start Your Growth Journey"}</span>
+                        <span>{isSubmitting ? "Generating Strategy..." : "Start Inbound Growth"}</span>
                       </Button>
                     </div>
 
-                    <div className="flex items-center justify-center gap-2 pt-2 text-[11px] text-slate-400">
-                      <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-                      <span>We respect your privacy. Zero spam, guaranteed.</span>
+                    <div className="flex items-center justify-center gap-1.5 pt-2 text-xs text-slate-400">
+                      <ShieldCheck className="h-4 w-4 text-cyan-400" />
+                      <span>Enterprise NDA protected. Zero spam guaranteed.</span>
                     </div>
                   </form>
                 )}

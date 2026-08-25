@@ -1,185 +1,140 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
 import { Container } from "@/components/common/Container";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import {
-  Eye,
-  TrendingUp,
-  Sparkles,
-  Target,
-  ArrowRight,
-  DollarSign,
-  CheckCircle2,
-  BarChart2,
-  Zap,
-} from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { ArrowRight, Sparkles, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 export function WhatGrowlinxDoes() {
-  const growthPillars = [
+  const [activeService, setActiveService] = useState<number>(0);
+
+  const pillars = [
     {
-      title: "Visibility",
-      description: "Capture dominant market attention across search engines, social feeds, and video platforms.",
-      icon: Eye,
-      color: "text-blue-400",
-      borderGlow: "group-hover:border-blue-500/50",
+      num: "01",
+      title: "Search Engine Dominance (SEO)",
+      category: "Organic Visibility",
+      desc: "Technical SEO, high-intent keyword mapping, and authority link-building engineered for sustainable organic pipeline.",
+      link: "/services/seo",
     },
     {
-      title: "Traffic",
-      description: "Attract high-intent prospective buyers through sustainable SEO and precision advertising.",
-      icon: TrendingUp,
-      color: "text-cyan-400",
-      borderGlow: "group-hover:border-cyan-500/50",
+      num: "02",
+      title: "Performance Paid Media",
+      category: "Customer Acquisition",
+      desc: "Precision Google, Meta & LinkedIn campaigns scaling spend with aggressive ROAS attribution and low blended CAC.",
+      link: "/services/paid-advertising",
     },
     {
-      title: "Engagement",
-      description: "Create compelling creative formats, reels, and stories that nurture consumer connection.",
-      icon: Sparkles,
-      color: "text-purple-400",
-      borderGlow: "group-hover:border-purple-500/50",
+      num: "03",
+      title: "Conversion Architecture (CRO)",
+      category: "Funnel Acceleration",
+      desc: "Frictionless landing experiences and behavioral A/B testing designed to maximize inbound conversion rates.",
+      link: "/services/web-development",
     },
     {
-      title: "Leads",
-      description: "Filter and capture qualified inbound sales inquiries and verified customer leads.",
-      icon: Target,
-      color: "text-rose-400",
-      borderGlow: "group-hover:border-rose-500/50",
+      num: "04",
+      title: "Social & Creative Media",
+      category: "Brand Authority",
+      desc: "Direct-response video assets, influencer management, and social narratives that turn attention into buyers.",
+      link: "/services/social-media",
     },
     {
-      title: "Conversions",
-      description: "Optimize funnels and landing experiences to turn passive visitors into paying clients.",
-      icon: Zap,
-      color: "text-amber-400",
-      borderGlow: "group-hover:border-amber-500/50",
-    },
-    {
-      title: "Revenue",
-      description: "Scale business profit predictably with compounding organic rank and high-ROAS paid media.",
-      icon: DollarSign,
-      color: "text-emerald-400",
-      borderGlow: "group-hover:border-emerald-500/50",
+      num: "05",
+      title: "Revenue & Multi-Touch Attribution",
+      category: "Telemetry Analytics",
+      desc: "24/7 client telemetry dashboards delivering transparent attribution across every single dollar spent.",
+      link: "/services/app-marketing",
     },
   ];
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden bg-[#070b14]">
-      {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-
+    <section className="py-24 lg:py-32 relative overflow-hidden bg-[#050811]">
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
-          {/* Left Column: Heading & 6 Growth Pillars */}
-          <div className="lg:col-span-7 space-y-6">
-            <ScrollReveal animation="fade-up" duration={600}>
-              <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-semibold glow-badge">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
-                About GrowlinX
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-14 items-start">
+          {/* Left Column: Bold Editorial Statement */}
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
+            <ScrollReveal animation="fade-up" duration={500}>
+              <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold glow-badge">
+                <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+                <span>About Growlinx Methodology</span>
               </div>
 
-              <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-[1.12]">
                 Digital Marketing Built for <br />
-                <span className="glow-accent-gradient">Real Business Growth</span>
+                <span className="glow-accent-gradient">Real Commercial Scale</span>
               </h2>
 
               <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-                GrowlinX is a full-service digital marketing partner engineered to help ambitious brands transform attention into sustainable revenue. We align creative storytelling with rigorous data analytics to scale your commercial pipeline.
+                Most agencies obsess over vanity impressions. At Growlinx, we engineer full-funnel acquisition infrastructure designed specifically for qualified revenue and predictable unit economics.
               </p>
-            </ScrollReveal>
 
-            {/* 6 Growth Pillars Grid */}
-            <ScrollReveal animation="fade-up" duration={600} delay={150}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                {growthPillars.map((pillar, i) => {
-                  const Icon = pillar.icon;
-                  return (
-                    <div
-                      key={i}
-                      className={`group flex items-start gap-3 rounded-xl border border-slate-800/80 bg-slate-900/60 p-3.5 transition-all duration-300 hover:bg-slate-900/90 ${pillar.borderGlow}`}
-                    >
-                      <div className={`flex h-8 w-8 items-center justify-center rounded-lg bg-slate-800/80 ${pillar.color} shrink-0 group-hover:scale-110 transition-transform`}>
-                        <Icon className="h-4 w-4" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">
-                          {pillar.title}
-                        </h3>
-                        <p className="text-xs text-slate-400 leading-normal mt-0.5">
-                          {pillar.description}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </ScrollReveal>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                From organic search dominance to multi-channel paid scale, our growth strategists operate as an elite extension of your commercial team.
+              </p>
 
-            <ScrollReveal animation="fade-up" duration={600} delay={250}>
-              <div className="pt-4 flex items-center gap-4">
-                <Link
+              <div className="pt-4">
+                <Button
                   href="/about-us"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors group"
+                  variant="secondary"
+                  size="lg"
+                  className="border border-white/10 bg-white/[0.04] text-white hover:bg-white/[0.08] hover:border-white/20 gap-2"
                 >
-                  <span>Learn More About Our Methodology</span>
-                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
+                  <span>Discover Our Agency Model</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Visual Architecture Card */}
-          <div className="lg:col-span-5">
-            <ScrollReveal animation="fade-left" duration={700}>
-              <div className="glow-card rounded-3xl p-6 sm:p-8 border border-slate-800 relative overflow-hidden">
-                <div className="flex items-center justify-between border-b border-slate-800/80 pb-4 mb-6">
-                  <div>
-                    <h3 className="text-sm font-bold text-white">
-                      The GrowlinX Growth Engine
-                    </h3>
-                    <p className="text-xs text-slate-400">Full-funnel commercial acceleration</p>
-                  </div>
-                  <span className="rounded-full bg-blue-500/10 px-2.5 py-1 text-[10px] font-bold text-blue-400 border border-blue-500/20">
-                    Systemized ROI
-                  </span>
-                </div>
+          {/* Right Column: Numbered Editorial Rows */}
+          <div className="lg:col-span-7">
+            <ScrollReveal animation="fade-left" duration={600}>
+              <div className="divide-y divide-white/[0.08] border-t border-b border-white/[0.08]">
+                {pillars.map((pillar, index) => {
+                  const isHovered = activeService === index;
+                  return (
+                    <div
+                      key={pillar.num}
+                      onMouseEnter={() => setActiveService(index)}
+                      className={`py-8 px-4 sm:px-6 transition-all duration-300 group cursor-pointer ${
+                        isHovered ? "bg-white/[0.03]" : "hover:bg-white/[0.02]"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-6">
+                        <div className="flex items-start gap-5 sm:gap-7">
+                          {/* Large Mono Step Number */}
+                          <span
+                            className={`text-2xl sm:text-3xl font-mono font-black transition-colors ${
+                              isHovered ? "text-cyan-400" : "text-slate-600"
+                            }`}
+                          >
+                            {pillar.num}
+                          </span>
 
-                {/* Growth Stage Visual Pipeline */}
-                <div className="space-y-3">
-                  <div className="rounded-xl border border-blue-500/30 bg-blue-950/20 p-3.5 flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <div className="h-2 w-2 rounded-full bg-blue-400" />
-                      <span className="text-xs font-bold text-slate-200">1. Top-Funnel Attraction</span>
+                          <div>
+                            <span className="text-xs font-bold uppercase tracking-wider text-cyan-400/90 block mb-1">
+                              {pillar.category}
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                              {pillar.title}
+                            </h3>
+                            <p className="mt-2 text-sm sm:text-base text-slate-400 leading-relaxed max-w-lg">
+                              {pillar.desc}
+                            </p>
+                          </div>
+                        </div>
+
+                        <Link
+                          href={pillar.link}
+                          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 group-hover:text-cyan-400 group-hover:border-cyan-500/40 group-hover:bg-cyan-500/10 transition-all shrink-0 mt-1"
+                        >
+                          <ArrowUpRight className="h-5 w-5" />
+                        </Link>
+                      </div>
                     </div>
-                    <span className="text-[11px] font-semibold text-blue-400">SEO + Paid Ads</span>
-                  </div>
-
-                  <div className="rounded-xl border border-purple-500/30 bg-purple-950/20 p-3.5 flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <div className="h-2 w-2 rounded-full bg-purple-400" />
-                      <span className="text-xs font-bold text-slate-200">2. Mid-Funnel Nurturing</span>
-                    </div>
-                    <span className="text-[11px] font-semibold text-purple-400">Social + Video Content</span>
-                  </div>
-
-                  <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-3.5 flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <div className="h-2 w-2 rounded-full bg-emerald-400" />
-                      <span className="text-xs font-bold text-slate-200">3. Bottom-Funnel Conversion</span>
-                    </div>
-                    <span className="text-[11px] font-semibold text-emerald-400">CRO + High-Intent Leads</span>
-                  </div>
-                </div>
-
-                {/* Highlights Strip */}
-                <div className="mt-6 pt-5 border-t border-slate-800/80 grid grid-cols-2 gap-3 text-center">
-                  <div className="rounded-lg bg-slate-900/80 p-2.5 border border-slate-800">
-                    <span className="text-[10px] text-slate-400 block font-medium">Blended CAC</span>
-                    <span className="text-base font-extrabold text-cyan-400">-35% to -42%</span>
-                  </div>
-                  <div className="rounded-lg bg-slate-900/80 p-2.5 border border-slate-800">
-                    <span className="text-[10px] text-slate-400 block font-medium">Pipeline Growth</span>
-                    <span className="text-base font-extrabold text-emerald-400">3.2X - 5X</span>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </ScrollReveal>
           </div>

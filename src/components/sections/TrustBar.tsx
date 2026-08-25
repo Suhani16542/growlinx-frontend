@@ -2,89 +2,75 @@
 
 import { Container } from "@/components/common/Container";
 import { Counter } from "@/components/common/Counter";
-import { Users, Sparkles, TrendingUp, Headphones, Award } from "lucide-react";
+import { Users, Sparkles, TrendingUp, Headphones } from "lucide-react";
 
 export function TrustBar() {
   const stats = [
     {
-      icon: Users,
       value: 15,
       suffix: "M+",
-      label: "More Reach",
-      subtext: "Audience impressions generated",
-      glowColor: "text-cyan-400",
-      bgGlow: "bg-cyan-500/10",
+      label: "Audience Impressions",
+      caption: "High-intent market reach",
+      accent: "from-cyan-400 to-blue-500",
     },
     {
-      icon: Sparkles,
       value: 240,
-      prefix: "+",
-      suffix: "%",
-      label: "Higher Engagement",
-      subtext: "Average interaction uplift",
-      glowColor: "text-purple-400",
-      bgGlow: "bg-purple-500/10",
+      suffix: "%+",
+      label: "Average Pipeline Growth",
+      caption: "Inbound revenue acceleration",
+      accent: "from-emerald-400 to-cyan-400",
     },
     {
-      icon: TrendingUp,
       value: 380,
       prefix: "$",
       suffix: "M+",
-      label: "Real Results",
-      subtext: "Client revenue & pipeline generated",
-      glowColor: "text-emerald-400",
-      bgGlow: "bg-emerald-500/10",
+      label: "Client Revenue Generated",
+      caption: "Direct commercial attribution",
+      accent: "from-blue-400 to-indigo-400",
     },
     {
-      icon: Headphones,
       value: 100,
       suffix: "%",
-      label: "Dedicated Support",
-      subtext: "Proactive growth strategists",
-      glowColor: "text-blue-400",
-      bgGlow: "bg-blue-500/10",
+      label: "Transparent Attribution",
+      caption: "Real-time telemetry tracking",
+      accent: "from-purple-400 to-cyan-400",
     },
   ];
 
   return (
-    <section className="relative border-y border-slate-800/80 bg-[#070d1c]/90 py-10 backdrop-blur-xl">
-      <Container>
-        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4 lg:gap-8">
-          {stats.map((stat, i) => {
-            const Icon = stat.icon;
-            return (
-              <div
-                key={i}
-                className="group relative flex flex-col items-center text-center p-4 rounded-2xl transition-all duration-300 hover:bg-slate-900/60"
-              >
-                {/* Icon Wrapper */}
-                <div
-                  className={`flex h-12 w-12 items-center justify-center rounded-2xl ${stat.bgGlow} border border-slate-800 ${stat.glowColor} mb-3 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <Icon className="h-5 w-5" />
-                </div>
+    <section id="results" className="relative border-y border-white/[0.07] bg-[#060a15] py-14 lg:py-20 overflow-hidden">
+      {/* Subtle ambient light */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[200px] bg-blue-600/10 blur-3xl pointer-events-none rounded-full" />
 
-                {/* Animated Count / Value */}
-                <div className="flex items-center text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+      <Container className="relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-y divide-white/[0.06] lg:divide-y-0 lg:divide-x divide-white/[0.08]">
+          {stats.map((stat, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center text-center p-6 lg:px-8 group transition-all duration-300 hover:bg-white/[0.02]"
+            >
+              {/* Giant Typography Number */}
+              <div className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight group-hover:scale-105 transition-transform duration-300">
+                <span className={`text-transparent bg-clip-text bg-gradient-to-r ${stat.accent}`}>
                   <Counter
                     value={stat.value}
                     prefix={stat.prefix}
                     suffix={stat.suffix}
                   />
-                </div>
-
-                {/* Main Label */}
-                <span className="mt-1 text-sm sm:text-base font-bold text-slate-200 group-hover:text-cyan-300 transition-colors">
-                  {stat.label}
-                </span>
-
-                {/* Subtext */}
-                <span className="mt-0.5 text-xs text-slate-400">
-                  {stat.subtext}
                 </span>
               </div>
-            );
-          })}
+
+              {/* Minimal Label */}
+              <span className="mt-3 text-sm sm:text-base font-bold text-slate-200 group-hover:text-white transition-colors">
+                {stat.label}
+              </span>
+
+              {/* Tiny Caption */}
+              <span className="mt-1 text-xs text-slate-400 font-medium max-w-[200px]">
+                {stat.caption}
+              </span>
+            </div>
+          ))}
         </div>
       </Container>
     </section>

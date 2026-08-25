@@ -5,71 +5,81 @@ import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { faqData } from "@/data/faq";
-import { ChevronDown, HelpCircle, MessageSquare } from "lucide-react";
-import Link from "next/link";
+import { ChevronDown, HelpCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleFAQ = (index: number) => {
-    setOpenIndex((prev) => (prev === index ? null : index));
+  const toggle = (idx: number) => {
+    setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
   return (
-    <section id="faq" className="py-20 lg:py-28 relative overflow-hidden bg-[#070b14]">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
-
-      <Container className="relative z-10">
-        <ScrollReveal animation="fade-up" duration={600}>
+    <section className="py-24 lg:py-32 relative overflow-hidden bg-[#060a15] border-t border-white/[0.06]">
+      <Container className="relative z-10 max-w-4xl">
+        <ScrollReveal animation="fade-up" duration={500}>
           <SectionHeading
-            badge="Frequently Asked Questions"
-            title="Everything You Need to Know"
-            description="Clear answers about our digital marketing services, onboarding process, expected timelines, and commercial strategy."
+            badge="Frequently Asked"
+            title="Common Questions"
+            description="Clear answers about our engagement models, multi-touch attribution, and strategic methodology."
             align="center"
           />
         </ScrollReveal>
 
-        {/* 8 FAQs Accordion List */}
-        <div className="mt-14 max-w-3xl mx-auto space-y-4">
+        {/* Minimalist Dark Numbered Accordion */}
+        <div className="mt-16 divide-y divide-white/[0.08] border-t border-b border-white/[0.08]">
           {faqData.map((faq, index) => {
             const isOpen = openIndex === index;
+            const num = index + 1 < 10 ? `0${index + 1}` : `${index + 1}`;
             return (
               <ScrollReveal
                 key={faq.id}
                 animation="fade-up"
-                duration={500}
-                delay={index * 50}
+                duration={400}
+                delay={index * 40}
               >
-                <div
-                  className={`glow-card rounded-2xl border transition-all duration-300 overflow-hidden ${
-                    isOpen
-                      ? "border-blue-500/60 shadow-[0_0_25px_rgba(0,102,255,0.15)] bg-slate-900/90"
-                      : "border-slate-800/80 bg-slate-900/50 hover:border-slate-700"
-                  }`}
-                >
+                <div className="py-6 sm:py-7 group transition-colors">
                   <button
                     type="button"
-                    onClick={() => toggleFAQ(index)}
+                    onClick={() => toggle(index)}
+                    className="flex w-full items-center justify-between text-left transition-colors cursor-pointer"
                     aria-expanded={isOpen}
-                    className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer transition-colors"
                   >
-                    <span className="flex items-center gap-3 text-base sm:text-lg font-bold text-white">
-                      <HelpCircle className={`h-5 w-5 shrink-0 ${isOpen ? "text-cyan-400" : "text-slate-500"}`} />
-                      {faq.question}
-                    </span>
+                    <div className="flex items-center gap-5 sm:gap-7 pr-4">
+                      <span
+                        className={`text-sm sm:text-base font-mono font-bold transition-colors ${
+                          isOpen ? "text-cyan-400" : "text-slate-600 group-hover:text-slate-400"
+                        }`}
+                      >
+                        {num}
+                      </span>
+                      <span
+                        className={`text-lg sm:text-xl font-bold transition-colors ${
+                          isOpen ? "text-white glow-accent-gradient" : "text-slate-200 group-hover:text-white"
+                        }`}
+                      >
+                        {faq.question}
+                      </span>
+                    </div>
+
                     <div
-                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-800 bg-slate-800/60 transition-transform duration-300 ${
-                        isOpen ? "rotate-180 bg-blue-500/20 text-cyan-300 border-blue-500/30" : "text-slate-400"
+                      className={`flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 transition-all shrink-0 ${
+                        isOpen ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400" : ""
                       }`}
                     >
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown
+                        className={cn(
+                          "h-4 w-4 transition-transform duration-300",
+                          isOpen && "rotate-180 text-cyan-400"
+                        )}
+                      />
                     </div>
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm leading-relaxed text-slate-300 border-t border-slate-800/60 pt-4 animate-in fade-in duration-200">
-                      <p>{faq.answer}</p>
+                    <div className="mt-4 pl-9 sm:pl-12 text-sm sm:text-base leading-relaxed text-slate-400 max-w-3xl animate-in fade-in slide-in-from-top-1 duration-200">
+                      {faq.answer}
                     </div>
                   )}
                 </div>
@@ -77,19 +87,6 @@ export function FAQSection() {
             );
           })}
         </div>
-
-        {/* Support Callout */}
-        <ScrollReveal animation="fade-up" duration={600} delay={400}>
-          <div className="mt-12 text-center">
-            <p className="text-xs sm:text-sm text-slate-400">
-              Have a specific question not listed here?{" "}
-              <Link href="/contact" className="text-cyan-400 hover:underline font-bold inline-flex items-center gap-1">
-                <MessageSquare className="h-3.5 w-3.5" />
-                <span>Contact our growth team directly</span>
-              </Link>
-            </p>
-          </div>
-        </ScrollReveal>
       </Container>
     </section>
   );

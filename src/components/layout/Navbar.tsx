@@ -26,11 +26,13 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+    <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
       {navigationData.map((item) => {
         const isActive =
           item.href === "/"
             ? pathname === "/"
+            : item.href.startsWith("/#")
+            ? false
             : pathname.startsWith(item.href);
 
         if (item.children) {
@@ -46,9 +48,9 @@ export function Navbar() {
                 type="button"
                 onClick={() => setServicesOpen(!servicesOpen)}
                 className={cn(
-                  "group relative flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer",
-                  isActive
-                    ? "text-blue-400 font-semibold"
+                  "group relative flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer",
+                  isActive || servicesOpen
+                    ? "text-cyan-400 font-semibold"
                     : "text-slate-300 hover:text-white"
                 )}
                 aria-expanded={servicesOpen}
@@ -56,26 +58,22 @@ export function Navbar() {
                 <span>{item.title}</span>
                 <ChevronDown
                   className={cn(
-                    "h-4 w-4 transition-transform duration-300",
-                    servicesOpen && "rotate-180 text-blue-400"
+                    "h-4 w-4 transition-transform duration-200 text-slate-400 group-hover:text-cyan-400",
+                    servicesOpen && "rotate-180 text-cyan-400"
                   )}
                 />
-                {/* Animated Bottom Hover Underline */}
-                <span
-                  className={cn(
-                    "absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-blue-500 transition-all duration-300",
-                    isActive || servicesOpen
-                      ? "opacity-100 scale-x-100 shadow-[0_0_8px_#3b82f6]"
-                      : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
-                  )}
-                />
+                {/* Subtle expanding underline on hover */}
+                <span className={cn(
+                  "absolute bottom-0 left-3 right-3 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full transition-transform duration-200 origin-left",
+                  isActive || servicesOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                )} />
               </button>
 
-              {/* Smooth Animated Dropdown Menu */}
+              {/* Dark Translucent Glass Dropdown Menu */}
               {servicesOpen && (
-                <div className="absolute left-0 top-full pt-2 w-80 xl:w-96 z-50 transition-all duration-200">
-                  <div className="rounded-2xl border border-slate-700/80 bg-[#090f1e]/98 p-3 shadow-2xl backdrop-blur-2xl ring-1 ring-blue-500/20">
-                    <div className="mb-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <div className="absolute left-0 top-full pt-2 w-80 xl:w-96 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="rounded-2xl border border-white/10 bg-[#090f20]/98 backdrop-blur-2xl p-3.5 shadow-2xl ring-1 ring-white/10">
+                    <div className="mb-2 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
                       <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
                       Growth Solutions
                     </div>
@@ -85,9 +83,9 @@ export function Navbar() {
                           key={child.title}
                           href={child.href}
                           onClick={() => setServicesOpen(false)}
-                          className="group/item flex flex-col rounded-xl px-3 py-2.5 transition-all duration-200 hover:bg-slate-800/80 hover:translate-x-1"
+                          className="group/item flex flex-col rounded-xl px-3 py-2.5 transition-all duration-200 hover:bg-white/[0.06]"
                         >
-                          <span className="text-sm font-medium text-slate-200 transition-colors group-hover/item:text-cyan-300">
+                          <span className="text-sm font-semibold text-white transition-colors group-hover/item:text-cyan-300">
                             {child.title}
                           </span>
                           {child.description && (
@@ -98,13 +96,13 @@ export function Navbar() {
                         </Link>
                       ))}
                     </div>
-                    <div className="mt-2 border-t border-slate-800/80 pt-2 px-3">
+                    <div className="mt-2 border-t border-white/[0.08] pt-2 px-3">
                       <Link
                         href="/services"
                         onClick={() => setServicesOpen(false)}
-                        className="text-xs font-semibold text-blue-400 hover:text-cyan-300 flex items-center justify-between py-1 transition-colors"
+                        className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center justify-between py-1 transition-colors"
                       >
-                        <span>View All 6 Growth Services</span>
+                        <span>View All Growth Solutions</span>
                         <span>→</span>
                       </Link>
                     </div>
@@ -120,22 +118,18 @@ export function Navbar() {
             key={item.title}
             href={item.href}
             className={cn(
-              "group relative px-3.5 py-2 text-sm font-medium rounded-lg transition-colors",
+              "group relative px-3.5 py-2 text-sm font-medium rounded-xl transition-all duration-200",
               isActive
-                ? "text-blue-400 font-semibold"
+                ? "text-cyan-400 font-semibold"
                 : "text-slate-300 hover:text-white"
             )}
           >
             <span>{item.title}</span>
-            {/* Animated Bottom Hover Underline */}
-            <span
-              className={cn(
-                "absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-blue-500 transition-all duration-300",
-                isActive
-                  ? "opacity-100 scale-x-100 shadow-[0_0_8px_#3b82f6]"
-                  : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
-              )}
-            />
+            {/* Subtle expanding underline on hover */}
+            <span className={cn(
+              "absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full transition-transform duration-200 origin-left",
+              isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+            )} />
           </Link>
         );
       })}

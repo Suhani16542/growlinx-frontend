@@ -3,13 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
-import { SectionHeading } from "@/components/common/SectionHeading";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { blogData, blogCategories } from "@/data/blog";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { BackgroundBeams } from "@/components/common/BackgroundBeams";
 import { CTASection } from "@/components/sections/CTASection";
-import { Search, Clock, ArrowRight, BookOpen, Sparkles, User } from "lucide-react";
+import { Search, Clock, ArrowRight, BookOpen, User } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function BlogPage() {
@@ -30,12 +29,12 @@ export default function BlogPage() {
   });
 
   return (
-    <div className="flex flex-col w-full overflow-hidden">
+    <div className="flex flex-col w-full overflow-hidden bg-[#070b14]">
       {/* 1. Blog Hero */}
       <section className="py-20 lg:py-28 relative overflow-hidden bg-grid-pattern">
         <BackgroundBeams intensity="high" showDots={true} />
         <Container className="relative z-10 text-center">
-          <ScrollReveal animation="fade-up" duration={600}>
+          <ScrollReveal animation="fade-up" duration={500}>
             <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold glow-badge mb-4">
               <BookOpen className="h-3.5 w-3.5 text-cyan-400" />
               <span>Agency Insights & Growth Guides</span>
@@ -46,8 +45,8 @@ export default function BlogPage() {
               <span className="glow-accent-gradient">Modern Businesses Grow</span>
             </h1>
 
-            <p className="mt-6 text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Explore tactical guides, algorithm analysis, performance marketing frameworks, and SEO case breakdowns written by practicing practitioners.
+            <p className="mt-5 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              Explore tactical guides, algorithm analysis, performance marketing frameworks, and SEO case breakdowns.
             </p>
 
             {/* Search Input Bar */}
@@ -57,27 +56,27 @@ export default function BlogPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search growth tactics, SEO, paid ads..."
-                className="w-full rounded-2xl border border-slate-700 bg-slate-900/90 py-3.5 pl-11 pr-4 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-xl"
+                className="w-full rounded-2xl border border-slate-700 bg-slate-900/90 py-3 pl-10 pr-4 text-sm text-white placeholder-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 shadow-xl"
               />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             </div>
           </ScrollReveal>
         </Container>
       </section>
 
-      {/* 2. Featured Article Banner (if no active search) */}
+      {/* 2. Featured Article Banner */}
       {!searchQuery && selectedCategory === "All" && (
-        <section className="py-8 bg-[#070b14]">
+        <section className="py-6 bg-[#070b14] border-t border-slate-800/80">
           <Container className="relative z-10">
-            <ScrollReveal animation="fade-up" duration={600}>
-              <div className="glow-card rounded-3xl p-6 sm:p-10 border border-slate-800 relative overflow-hidden">
+            <ScrollReveal animation="fade-up" duration={500}>
+              <div className="glow-card rounded-3xl p-6 sm:p-8 border border-slate-800 bg-[#090f20]">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  <div className="lg:col-span-8 space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-bold text-cyan-400 border border-cyan-500/20">
-                        Featured Strategy Guide
+                  <div className="lg:col-span-8 space-y-3">
+                    <div className="flex items-center gap-3 text-xs">
+                      <span className="rounded-full bg-blue-500/10 px-2.5 py-0.5 font-semibold text-cyan-400 border border-blue-500/20">
+                        Featured Guide
                       </span>
-                      <span className="text-xs text-slate-400 flex items-center gap-1">
+                      <span className="text-slate-400 flex items-center gap-1">
                         <Clock className="h-3.5 w-3.5" />
                         {featuredPost.readTime}
                       </span>
@@ -89,23 +88,18 @@ export default function BlogPage() {
                       </h2>
                     </Link>
 
-                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                    <p className="text-sm text-slate-300 leading-relaxed">
                       {featuredPost.excerpt}
                     </p>
 
                     <div className="pt-2 flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className="h-8 w-8 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
-                          <User className="h-4 w-4" />
+                      <div className="flex items-center gap-2">
+                        <div className="h-7 w-7 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xs">
+                          <User className="h-3.5 w-3.5" />
                         </div>
-                        <div>
-                          <span className="text-xs font-bold text-white block">
-                            {featuredPost.author.name}
-                          </span>
-                          <span className="text-[10px] text-slate-400">
-                            {featuredPost.author.role} • {featuredPost.publishedAt}
-                          </span>
-                        </div>
+                        <span className="text-xs font-semibold text-slate-200">
+                          {featuredPost.author.name} • {featuredPost.publishedAt}
+                        </span>
                       </div>
 
                       <Button href={`/blog/${featuredPost.slug}`} variant="gradient" size="sm" className="gap-1.5">
@@ -115,11 +109,13 @@ export default function BlogPage() {
                     </div>
                   </div>
 
-                  <div className="lg:col-span-4 rounded-2xl bg-gradient-to-br from-blue-950/40 to-slate-900 border border-slate-800 p-6 text-center space-y-3">
-                    <Sparkles className="h-10 w-10 text-cyan-400 mx-auto animate-pulse" />
-                    <h3 className="text-base font-bold text-white">Top 2026 Growth Playbook</h3>
+                  <div className="lg:col-span-4 rounded-2xl bg-slate-900/80 border border-slate-800 p-6 text-center space-y-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+                      Growth Playbook
+                    </span>
+                    <h3 className="text-base font-bold text-white">Proven Tactics</h3>
                     <p className="text-xs text-slate-400">
-                      Learn the exact organic ranking blueprints driving 180%+ client traffic increases this year.
+                      Learn the exact ranking and paid acquisition blueprints driving verified client results.
                     </p>
                   </div>
                 </div>
@@ -130,7 +126,7 @@ export default function BlogPage() {
       )}
 
       {/* 3. Category Filter Tabs & Blog Grid */}
-      <section className="py-16 bg-[#070b14] border-t border-slate-800/80">
+      <section className="py-16 bg-[#060914] border-t border-slate-800/80">
         <Container className="relative z-10">
           {/* Category Tabs */}
           <div className="flex flex-wrap items-center justify-center gap-2 pb-10">
@@ -141,9 +137,9 @@ export default function BlogPage() {
                   key={cat}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                  className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                     isSelected
-                      ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/30 scale-105"
+                      ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
                       : "border border-slate-800 bg-slate-900/80 text-slate-400 hover:border-slate-700 hover:text-white"
                   }`}
                 >
@@ -159,8 +155,8 @@ export default function BlogPage() {
               <ScrollReveal
                 key={post.id}
                 animation="fade-up"
-                duration={500}
-                delay={index * 60}
+                duration={400}
+                delay={index * 50}
               >
                 <BlogCard post={post} />
               </ScrollReveal>

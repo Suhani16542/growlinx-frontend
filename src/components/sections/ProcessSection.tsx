@@ -1,134 +1,233 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import {
-  Compass,
-  LineChart,
-  Target,
-  Rocket,
-  Sliders,
-  TrendingUp,
-} from "lucide-react";
+import { useInView } from "@/hooks/useInView";
+import { CheckCircle2, Sparkles, ArrowRight } from "lucide-react";
 
 export function ProcessSection() {
+  const [activeStep, setActiveStep] = useState(0);
+  const [isManual, setIsManual] = useState(false);
+  const [sectionRef, inView] = useInView<HTMLElement>({ threshold: 0.25 });
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
   const steps = [
     {
-      number: "01",
+      num: "01",
       title: "Discover",
-      subtitle: "Auditing & Foundations",
-      description: "Deep audit of your current digital footprint, market positioning, historical performance data, and competitor gaps.",
-      icon: Compass,
-      color: "text-blue-400",
-      accentBg: "bg-blue-500/10",
+      phase: "Audit & Intelligence",
+      description:
+        "Deep-dive audit of market positioning, search demand, conversion bottlenecks, and competitor vulnerabilities.",
+      deliverables: ["Full Tech & SEO Audit", "TAM Demand Analysis", "Competitor Matrix"],
     },
     {
-      number: "02",
-      title: "Analyze",
-      subtitle: "Data & Intelligence",
-      description: "Analyzing high-converting buyer personas, intent keywords, creative fatigue patterns, and unit economics.",
-      icon: LineChart,
-      color: "text-cyan-400",
-      accentBg: "bg-cyan-500/10",
-    },
-    {
-      number: "03",
+      num: "02",
       title: "Strategize",
-      subtitle: "Custom Growth Blueprint",
-      description: "Building an integrated multi-channel roadmap with precise budget allocation, channel priorities, and conversion goals.",
-      icon: Target,
-      color: "text-purple-400",
-      accentBg: "bg-purple-500/10",
+      phase: "Growth Architecture",
+      description:
+        "Bespoke full-funnel blueprint defining high-intent channel priorities, unit economics, and pipeline KPI targets.",
+      deliverables: ["Channel CAC Modeling", "High-Converting Angle Maps", "Revenue KPI Roadmap"],
     },
     {
-      number: "04",
+      num: "03",
       title: "Execute",
-      subtitle: "High-Velocity Launch",
-      description: "Deploying high-converting ad creative, technical SEO enhancements, content schedules, and tracking infrastructure.",
-      icon: Rocket,
-      color: "text-rose-400",
-      accentBg: "bg-rose-500/10",
+      phase: "Velocity Deployment",
+      description:
+        "High-velocity deployment of direct-response creative, technical SEO infrastructure, and multi-touch telemetry.",
+      deliverables: ["Direct-Response Ads", "Landing Page CRO", "Real-Time Telemetry"],
     },
     {
-      number: "05",
-      title: "Optimize",
-      subtitle: "Iterative Refinement",
-      description: "Relentless A/B testing across landing pages, ad angles, keyword bids, and retention flows to lower blended CAC.",
-      icon: Sliders,
-      color: "text-amber-400",
-      accentBg: "bg-amber-500/10",
-    },
-    {
-      number: "06",
+      num: "04",
       title: "Scale",
-      subtitle: "Compounding Domination",
-      description: "Multiplying spend on winning funnels, expanding into new verticals, and cementing dominant market leadership.",
-      icon: TrendingUp,
-      color: "text-emerald-400",
-      accentBg: "bg-emerald-500/10",
+      phase: "Compounding Revenue",
+      description:
+        "Aggressive budget compounding on validated winning funnels to multiply customer lifetime value and commercial profit.",
+      deliverables: ["Budget Compounding", "LTV Multipliers", "Dominant Market Share"],
     },
   ];
 
+  // Automatic Step Tracker Cycle when in viewport
+  useEffect(() => {
+    if (!inView || isManual) return;
+
+    timerRef.current = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % steps.length);
+    }, 3200);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [inView, isManual, steps.length]);
+
+  const handleStepClick = (index: number) => {
+    setActiveStep(index);
+    setIsManual(true);
+    // Reset manual override after 8 seconds of inactivity
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setIsManual(false);
+    }, 8000);
+  };
+
+  // Compute progress line width (0% -> 33.3% -> 66.6% -> 100%)
+  const progressWidth = `${(activeStep / (steps.length - 1)) * 100}%`;
+
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden bg-[#060913]">
-      {/* Subtle grid pattern background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none" />
+    <section
+      ref={sectionRef}
+      className="py-24 lg:py-32 relative overflow-hidden bg-[#060a15] border-t border-white/[0.06]"
+    >
+      {/* Background ambient glow focused behind active step */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-blue-600/10 blur-3xl pointer-events-none rounded-full" />
 
       <Container className="relative z-10">
-        <ScrollReveal animation="fade-up" duration={600}>
-          <SectionHeading
-            badge="The 6-Phase Engine"
-            title="How We Grow Your Business"
-            description="Our proven six-step framework turns marketing from an unpredictable expense into a systematic, compounding growth asset."
-            align="center"
-          />
+        <ScrollReveal animation="fade-up" duration={500}>
+          <div className="flex flex-col items-center text-center">
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold glow-badge mb-3">
+              <Sparkles className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
+              <span className="tracking-wider uppercase font-bold text-cyan-300">
+                Live Sequential Growth Tracker
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+              How We Grow <span className="glow-accent-gradient">Your Business</span>
+            </h2>
+            <p className="mt-3 text-base text-slate-300 sm:text-lg leading-relaxed max-w-2xl">
+              A repeatable, battle-tested 4-phase methodology that transforms acquisition into a predictable revenue asset.
+            </p>
+          </div>
         </ScrollReveal>
 
-        {/* 6 Steps Grid with Connected Step Indicators */}
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <ScrollReveal
-                key={index}
-                animation="fade-up"
-                duration={500}
-                delay={index * 80}
-              >
-                <div className="glow-card glow-card-interactive group relative flex flex-col justify-between rounded-2xl p-6 sm:p-7 h-full border border-slate-800 transition-all duration-300 hover:border-blue-500/40">
-                  <div>
-                    {/* Top Step Number & Icon */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-3xl font-extrabold text-slate-700 group-hover:text-blue-500/40 transition-colors font-mono">
-                        {step.number}
-                      </span>
-                      <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${step.accentBg} border border-slate-800 ${step.color} group-hover:scale-110 transition-transform duration-300`}>
-                        <Icon className="h-5 w-5" />
-                      </div>
+        {/* Horizontal Process Tracker Timeline */}
+        <div className="mt-12 lg:mt-16 relative max-w-6xl mx-auto">
+          {/* Base Background Track Line (Desktop) */}
+          <div className="absolute top-5.5 left-12 right-12 h-[2px] bg-white/[0.08] hidden lg:block rounded-full" />
+
+          {/* Animated Glowing Active Progress Fill Line (Desktop) */}
+          <div
+            className="absolute top-5.5 left-12 h-[2px] bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 hidden lg:block rounded-full transition-all duration-700 ease-out shadow-[0_0_10px_rgba(56,189,248,0.6)]"
+            style={{ width: `calc(${progressWidth} * 0.88)` }}
+          />
+
+          {/* 4 Compact Step Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-5">
+            {steps.map((step, index) => {
+              const isActive = activeStep === index;
+              const isCompleted = activeStep > index;
+
+              return (
+                <div
+                  key={step.num}
+                  onClick={() => handleStepClick(index)}
+                  className={`flex flex-col rounded-2xl p-4 sm:p-5 transition-all duration-400 cursor-pointer relative group border ${
+                    isActive
+                      ? "bg-white/[0.05] border-cyan-400/50 shadow-[0_10px_30px_rgba(56,189,248,0.12)] ring-1 ring-cyan-400/30 scale-[1.01]"
+                      : isCompleted
+                      ? "bg-white/[0.02] border-white/10 hover:border-white/20"
+                      : "bg-transparent border-white/[0.06] hover:bg-white/[0.02] hover:border-white/15 opacity-75 hover:opacity-100"
+                  }`}
+                >
+                  {/* Step Node Icon & Mono Number */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div
+                      className={`flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl border transition-all duration-400 z-10 ${
+                        isActive
+                          ? "bg-gradient-to-br from-cyan-500/20 to-blue-600/30 border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(56,189,248,0.4)] scale-105"
+                          : isCompleted
+                          ? "bg-blue-950/60 border-cyan-500/40 text-cyan-400"
+                          : "bg-[#090f20] border-white/10 text-slate-500 group-hover:border-white/20 group-hover:text-slate-300"
+                      }`}
+                    >
+                      <span className="text-base sm:text-lg font-mono font-bold">{step.num}</span>
                     </div>
 
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-400 block mb-1">
-                      {step.subtitle}
-                    </span>
-
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                      {step.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                      {step.description}
-                    </p>
+                    {/* Step Status Badge */}
+                    <div className="flex items-center text-[10px] font-mono">
+                      {isActive ? (
+                        <span className="flex items-center gap-1 text-cyan-300 bg-cyan-500/15 px-2 py-0.5 rounded-full border border-cyan-500/30 font-bold">
+                          <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-ping" />
+                          Active
+                        </span>
+                      ) : isCompleted ? (
+                        <span className="flex items-center gap-1 text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                          <CheckCircle2 className="h-3 w-3" />
+                          Done
+                        </span>
+                      ) : (
+                        <span className="text-slate-500">Phase {step.num}</span>
+                      )}
+                    </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
-                    <span>Phase {step.number} of 06</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-blue-500 group-hover:scale-150 transition-transform" />
+                  {/* Subtitle / Phase */}
+                  <span
+                    className={`text-[10px] font-bold uppercase tracking-wider mb-0.5 transition-colors ${
+                      isActive ? "text-cyan-400" : isCompleted ? "text-slate-400" : "text-slate-500"
+                    }`}
+                  >
+                    {step.phase}
+                  </span>
+
+                  {/* Step Title */}
+                  <h3
+                    className={`text-lg sm:text-xl font-bold transition-colors ${
+                      isActive ? "text-white glow-accent-gradient" : "text-slate-200 group-hover:text-white"
+                    }`}
+                  >
+                    {step.title}
+                  </h3>
+
+                  {/* Step Description */}
+                  <p className="mt-1.5 text-xs text-slate-300 leading-relaxed line-clamp-3">
+                    {step.description}
+                  </p>
+
+                  {/* Compact Micro Deliverables Checklist */}
+                  <div className="mt-3.5 pt-3 border-t border-white/[0.08] space-y-1">
+                    {step.deliverables.slice(0, 2).map((item) => (
+                      <div
+                        key={item}
+                        className={`flex items-center gap-1.5 text-[11px] transition-colors ${
+                          isActive ? "text-slate-200 font-medium" : "text-slate-400"
+                        }`}
+                      >
+                        <span
+                          className={`h-1 w-1 rounded-full shrink-0 ${
+                            isActive ? "bg-cyan-400 animate-pulse" : isCompleted ? "bg-emerald-400" : "bg-slate-600"
+                          }`}
+                        />
+                        <span className="truncate">{item}</span>
+                      </div>
+                    ))}
                   </div>
+
+                  {/* Interactive Active Bottom Accent Bar */}
+                  {isActive && (
+                    <div className="absolute bottom-0 left-4 right-4 h-[2px] bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 rounded-full" />
+                  )}
                 </div>
-              </ScrollReveal>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          {/* Interactive Controls & Progress Indicators */}
+          <div className="mt-8 flex items-center justify-center gap-2.5">
+            {steps.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => handleStepClick(i)}
+                aria-label={`Jump to Step 0${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  activeStep === i
+                    ? "w-8 bg-gradient-to-r from-cyan-400 to-blue-500 shadow-[0_0_8px_rgba(56,189,248,0.5)]"
+                    : "w-2 bg-white/20 hover:bg-white/40"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </Container>
     </section>

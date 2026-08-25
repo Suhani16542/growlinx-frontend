@@ -5,124 +5,115 @@ import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { testimonialsData } from "@/data/testimonials";
-import { Star, ChevronLeft, ChevronRight, Quote, Building2, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 
 export function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonialsData.length);
+  const prev = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? testimonialsData.length - 1 : prev - 1
+    );
   };
 
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonialsData.length) % testimonialsData.length);
+  const next = () => {
+    setCurrentIndex((prev) =>
+      prev === testimonialsData.length - 1 ? 0 : prev + 1
+    );
   };
 
-  const current = testimonialsData[currentIndex];
+  const item = testimonialsData[currentIndex];
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden bg-[#060914]">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
-
+    <section className="py-24 lg:py-32 relative overflow-hidden bg-[#050811] border-t border-white/[0.06]">
       <Container className="relative z-10">
-        <ScrollReveal animation="fade-up" duration={600}>
+        <ScrollReveal animation="fade-up" duration={500}>
           <SectionHeading
             badge="Client Endorsements"
-            title="Trusted by Fast-Growing Companies"
-            description="Discover how our performance marketing and brand acceleration frameworks empower founders, CMOs, and growth leaders to scale with confidence."
+            title="Trusted by High-Growth Founders"
+            description="Read what venture-backed founders and enterprise marketing leaders say about partnering with Growlinx."
             align="center"
           />
         </ScrollReveal>
 
-        {/* Featured Testimonial Carousel Frame */}
-        <div className="mt-14 max-w-4xl mx-auto">
-          <ScrollReveal animation="fade-up" duration={600} delay={150}>
-            <div className="glow-card rounded-3xl p-8 sm:p-12 border border-slate-800 relative">
-              {/* Quote Watermark Icon */}
-              <div className="absolute top-6 right-8 text-slate-800/40 pointer-events-none">
-                <Quote className="h-16 w-16" />
-              </div>
+        {/* Large Editorial Quotation Showcase */}
+        <div className="mt-16 max-w-4xl mx-auto">
+          <ScrollReveal animation="fade-up" duration={500} delay={100}>
+            <div className="glass-panel rounded-3xl p-8 sm:p-14 relative overflow-hidden border border-white/10 shadow-2xl">
+              <Quote className="h-16 w-16 text-cyan-400/15 absolute top-8 right-8 pointer-events-none" />
 
-              {/* Star Ratings */}
-              <div className="flex items-center gap-1 mb-6">
-                {[...Array(current.rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
+              {/* Star Rating */}
+              <div className="flex items-center gap-1 mb-8">
+                {[...Array(item.rating || 5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-4 w-4 fill-amber-400 text-amber-400"
+                  />
                 ))}
               </div>
 
-              {/* Testimonial Quote */}
-              <p className="text-lg sm:text-2xl font-medium text-white leading-relaxed italic">
-                "{current.quote}"
+              {/* Quote Statement */}
+              <p className="text-xl sm:text-2xl lg:text-3xl font-light text-slate-100 leading-relaxed">
+                "{item.quote}"
               </p>
 
-              {/* Author & Metric Details */}
-              <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 p-[2px]">
-                    <div className="h-full w-full rounded-full bg-[#0c1427] flex items-center justify-center text-cyan-300 font-bold text-sm">
-                      {current.name.split(" ").map((n) => n[0]).join("")}
-                    </div>
+              {/* Author & Verified Metric */}
+              <div className="mt-10 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 text-white font-bold text-base shadow-lg shadow-blue-500/20">
+                    {item.name.split(" ").map((n: string) => n[0]).join("")}
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-white">
-                      {current.name}
-                    </h4>
-                    <p className="text-xs text-slate-400">
-                      {current.role} • <span className="text-slate-300">{current.company}</span>
-                    </p>
+                    <span className="block text-base font-bold text-white">
+                      {item.name}
+                    </span>
+                    <span className="block text-xs sm:text-sm text-slate-400">
+                      {item.role}, <span className="text-slate-300 font-semibold">{item.company}</span>
+                    </span>
                   </div>
                 </div>
 
-                {current.metric && (
-                  <div className="rounded-xl bg-slate-900/90 border border-slate-800 px-4 py-2 flex items-center gap-2">
-                    <span className="text-base font-extrabold text-cyan-400">
-                      {current.metric.value}
-                    </span>
-                    <span className="text-xs text-slate-400">
-                      {current.metric.label}
-                    </span>
+                {item.metric && (
+                  <div className="rounded-full bg-emerald-500/10 px-4 py-1.5 border border-emerald-500/20 text-xs font-bold text-emerald-400 self-start sm:self-auto">
+                    {item.metric.value} {item.metric.label}
                   </div>
                 )}
               </div>
+            </div>
 
-              {/* Controls */}
-              <div className="mt-8 flex items-center justify-between pt-4 border-t border-slate-800/60">
-                <div className="flex items-center gap-1.5">
-                  {testimonialsData.map((_, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setCurrentIndex(i)}
-                      aria-label={`Go to testimonial ${i + 1}`}
-                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                        i === currentIndex
-                          ? "w-8 bg-gradient-to-r from-blue-500 to-cyan-400"
-                          : "w-2 bg-slate-700 hover:bg-slate-500"
-                      }`}
-                    />
-                  ))}
-                </div>
+            {/* Minimalist Carousel Controls */}
+            <div className="mt-8 flex items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={prev}
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
 
-                <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
+                {testimonialsData.map((_, idx) => (
                   <button
+                    key={idx}
                     type="button"
-                    onClick={prevTestimonial}
-                    aria-label="Previous testimonial"
-                    className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:border-slate-700 transition-colors cursor-pointer"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={nextTestimonial}
-                    aria-label="Next testimonial"
-                    className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:border-slate-700 transition-colors cursor-pointer"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
-                </div>
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      currentIndex === idx ? "w-6 bg-cyan-400" : "w-1.5 bg-slate-700"
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
               </div>
+
+              <button
+                type="button"
+                onClick={next}
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
             </div>
           </ScrollReveal>
         </div>

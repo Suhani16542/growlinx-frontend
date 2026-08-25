@@ -16,20 +16,24 @@ export const navigationData: NavItem[] = [
     })),
   },
   {
-    title: "About Us",
-    href: "/about-us",
+    title: "Industries",
+    href: "/#industries",
   },
   {
-    title: "Portfolio",
+    title: "Results",
+    href: "/#results",
+  },
+  {
+    title: "Case Studies",
     href: "/portfolio",
+  },
+  {
+    title: "About",
+    href: "/about-us",
   },
   {
     title: "Blog",
     href: "/blog",
-  },
-  {
-    title: "Contact",
-    href: "/contact",
   },
 ];
 

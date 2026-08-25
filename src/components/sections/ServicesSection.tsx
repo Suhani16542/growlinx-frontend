@@ -10,29 +10,30 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export function ServicesSection() {
   return (
-    <section id="services" className="py-20 lg:py-28 relative overflow-hidden bg-[#060a14]">
+    <section id="services" className="py-24 lg:py-32 relative overflow-hidden bg-[#060a15]">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
 
       <Container className="relative z-10">
-        <ScrollReveal animation="fade-up" duration={600}>
+        <ScrollReveal animation="fade-up" duration={500}>
           <SectionHeading
             badge="Full-Stack Capabilities"
             title="Complete Digital Marketing Solutions"
-            description="From high-intent search optimization and viral social engagement to data-backed paid media and YouTube monetization, our specialized growth units drive measurable business outcomes."
+            description="Specialized growth units engineered to drive brand visibility, qualified pipeline acceleration, and compounding commercial ROI."
             align="center"
           />
         </ScrollReveal>
 
-        {/* 6 Services Grid */}
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Asymmetrical Custom Grid */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
           {servicesData.map((service, index) => (
             <ScrollReveal
               key={service.id}
               animation="fade-up"
-              duration={500}
-              delay={index * 100}
+              duration={400}
+              delay={index * 60}
+              className={index === 0 || index === 3 ? "lg:col-span-1" : "lg:col-span-1"}
             >
               <ServiceCard service={service} />
             </ScrollReveal>
@@ -40,14 +41,14 @@ export function ServicesSection() {
         </div>
 
         {/* Bottom CTA Bar for Services */}
-        <ScrollReveal animation="fade-up" duration={600} delay={400}>
+        <ScrollReveal animation="fade-up" duration={500} delay={200}>
           <div className="mt-16 text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-slate-800 bg-slate-900/80 px-6 py-4 backdrop-blur-xl shadow-xl">
-              <span className="text-sm font-medium text-slate-300 flex items-center gap-2">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-white/10 bg-[#090f20]/90 px-8 py-5 shadow-2xl backdrop-blur-xl">
+              <span className="text-sm font-bold text-slate-200 flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-cyan-400" />
-                Need a custom multi-channel growth bundle?
+                Looking for a bespoke multi-channel growth architecture?
               </span>
-              <Button href="/free-strategy-call" variant="gradient" size="sm" className="gap-1.5">
+              <Button href="/free-strategy-call" variant="gradient" size="sm" className="gap-1.5 font-bold">
                 <span>Request Custom Strategy</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Button>

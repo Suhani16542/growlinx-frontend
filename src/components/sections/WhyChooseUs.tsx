@@ -1,127 +1,99 @@
 "use client";
 
 import { Container } from "@/components/common/Container";
-import { SectionHeading } from "@/components/common/SectionHeading";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import {
-  Compass,
-  BarChart3,
-  Sparkles,
-  FileCheck2,
-  Headphones,
-  TrendingUp,
-} from "lucide-react";
+import { Sparkles, CheckCircle2 } from "lucide-react";
 
 export function WhyChooseUs() {
-  const reasons = [
+  const benefits = [
     {
-      title: "Strategy-First Approach",
-      description: "We don't launch random tactics. Every campaign begins with in-depth competitive intelligence, unit economics analysis, and a structured growth roadmap.",
-      icon: Compass,
-      tag: "Methodology",
-      color: "text-blue-400",
-      glow: "group-hover:border-blue-500/50 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.2)]",
+      num: "01",
+      title: "Data-Driven Strategy",
+      tag: "Precision Modeling",
+      description: "Campaign architectures engineered on search intent mapping, competitor vulnerability analysis, and unit economics—eliminating wasted ad spend.",
     },
     {
-      title: "Data-Driven Marketing",
-      description: "Decisions are backed by rigorous real-time analytics, conversion signals, and predictive audience modeling—eliminating costly guesswork.",
-      icon: BarChart3,
-      tag: "Analytics",
-      color: "text-cyan-400",
-      glow: "group-hover:border-cyan-500/50 group-hover:shadow-[0_0_25px_rgba(6,182,212,0.2)]",
+      num: "02",
+      title: "Performance Marketing",
+      tag: "High-Margin ROI",
+      description: "Relentless focus on bottom-line business outcomes: qualified inbound pipeline, low blended CAC, and predictable compounding ROAS.",
     },
     {
-      title: "Creative That Converts",
-      description: "Eye-catching aesthetics engineered for high click-through rates. We pair modern visual design with direct-response psychological triggers.",
-      icon: Sparkles,
-      tag: "Creative",
-      color: "text-purple-400",
-      glow: "group-hover:border-purple-500/50 group-hover:shadow-[0_0_25px_rgba(168,85,247,0.2)]",
+      num: "03",
+      title: "Transparent Real-Time Reporting",
+      tag: "Live Telemetry",
+      description: "Live 24/7 client telemetry dashboards delivering transparent attribution across every single dollar, click, and conversion touchpoint.",
     },
     {
-      title: "Transparent Reporting",
-      description: "No hidden vanity metrics. Enjoy 24/7 access to live client dashboards tracking your real customer acquisition cost (CAC), ROAS, and pipeline value.",
-      icon: FileCheck2,
-      tag: "Clarity",
-      color: "text-emerald-400",
-      glow: "group-hover:border-emerald-500/50 group-hover:shadow-[0_0_25px_rgba(16,185,129,0.2)]",
-    },
-    {
-      title: "Dedicated Support",
-      description: "Work directly with senior growth strategists and media buyers who act as an integrated extension of your executive and marketing team.",
-      icon: Headphones,
-      tag: "Partnership",
-      color: "text-amber-400",
-      glow: "group-hover:border-amber-500/50 group-hover:shadow-[0_0_25px_rgba(245,158,11,0.2)]",
-    },
-    {
-      title: "Focus on Measurable Growth",
-      description: "We are obsessed with bottom-line business metrics: qualified leads, verified customers, high-LTV retention, and maximum return on investment.",
-      icon: TrendingUp,
-      tag: "Bottom Line",
-      color: "text-rose-400",
-      glow: "group-hover:border-rose-500/50 group-hover:shadow-[0_0_25px_rgba(244,63,94,0.2)]",
+      num: "04",
+      title: "Dedicated Senior Growth Team",
+      tag: "Elite Partnership",
+      description: "Work directly with senior strategists, copywriters, and performance media buyers embedded as an agile extension of your commercial unit.",
     },
   ];
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden bg-[#070b14]">
-      {/* Background radial highlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section className="py-24 lg:py-32 relative overflow-hidden bg-[#050811]">
       <Container className="relative z-10">
-        <ScrollReveal animation="fade-up" duration={600}>
-          <SectionHeading
-            badge="The GrowlinX Advantage"
-            title="Why Businesses Choose GrowlinX"
-            description="We combine enterprise-grade strategic discipline with nimble creative execution to help modern brands outpace competitors."
-            align="center"
-          />
+        {/* Large Statement Header */}
+        <ScrollReveal animation="fade-up" duration={500}>
+          <div className="max-w-3xl space-y-4">
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold glow-badge">
+              <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+              <span>The Growlinx Advantage</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black tracking-tight text-white leading-[1.08]">
+              Strategy that connects every layer of your <span className="glow-accent-gradient">commercial growth.</span>
+            </h2>
+
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed pt-2">
+              We eliminate agency fragmentation by integrating data intelligence, high-converting creative assets, and performance media execution into one unified growth engine.
+            </p>
+          </div>
         </ScrollReveal>
 
-        {/* 6 Feature Cards Grid */}
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {reasons.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <ScrollReveal
-                key={index}
-                animation="fade-up"
-                duration={500}
-                delay={index * 80}
-              >
-                <div
-                  className={`glow-card glow-card-interactive group relative flex flex-col justify-between rounded-2xl p-6 sm:p-8 h-full border border-slate-800 transition-all duration-300 ${item.glow}`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-slate-900 border border-slate-800 ${item.color} group-hover:scale-110 transition-transform duration-300`}>
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-slate-900/80 px-2.5 py-1 rounded-full border border-slate-800">
-                        {item.tag}
-                      </span>
-                    </div>
-
-                    <h3 className="mt-6 text-xl font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
-                    <span>Advantage 0{index + 1}</span>
-                    <span className="text-cyan-400 font-semibold group-hover:translate-x-1 transition-transform">
-                      Verified Standard →
+        {/* Numbered Horizontal Benefit Rows with Hairline Dividers */}
+        <div className="mt-16 divide-y divide-white/[0.08] border-t border-b border-white/[0.08]">
+          {benefits.map((benefit, index) => (
+            <ScrollReveal
+              key={benefit.num}
+              animation="fade-up"
+              duration={400}
+              delay={index * 80}
+            >
+              <div className="py-8 sm:py-10 px-4 sm:px-6 transition-all duration-300 hover:bg-white/[0.02] group">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+                  {/* Mono Step Number */}
+                  <div className="lg:col-span-2 flex items-center gap-3">
+                    <span className="text-2xl sm:text-4xl font-mono font-black text-slate-600 group-hover:text-cyan-400 transition-colors">
+                      {benefit.num}
+                    </span>
+                    <span className="lg:hidden text-xs font-bold uppercase tracking-wider text-cyan-400/90">
+                      {benefit.tag}
                     </span>
                   </div>
+
+                  {/* Title & Tag */}
+                  <div className="lg:col-span-4">
+                    <span className="hidden lg:block text-xs font-bold uppercase tracking-wider text-cyan-400/90 mb-1">
+                      {benefit.tag}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                      {benefit.title}
+                    </h3>
+                  </div>
+
+                  {/* Description */}
+                  <div className="lg:col-span-6">
+                    <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
+                      {benefit.description}
+                    </p>
+                  </div>
                 </div>
-              </ScrollReveal>
-            );
-          })}
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </Container>
     </section>

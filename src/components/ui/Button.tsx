@@ -24,19 +24,19 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
+      "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
 
     const variantStyles = {
       primary:
-        "bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 active:scale-[0.98]",
+        "bg-blue-600 text-white font-semibold hover:bg-blue-500 shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 active:scale-[0.98]",
       gradient:
-        "glow-button-primary text-white font-semibold active:scale-[0.98]",
+        "bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white font-semibold shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 hover:opacity-95 active:scale-[0.98]",
       secondary:
-        "bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/80 hover:border-slate-600 active:scale-[0.98]",
+        "bg-white/[0.06] text-white font-medium hover:bg-white/[0.12] border border-white/15 hover:border-white/25 backdrop-blur-md active:scale-[0.98]",
       outline:
-        "border border-slate-700 bg-transparent text-slate-200 hover:bg-slate-800 hover:text-white hover:border-slate-600 active:scale-[0.98]",
+        "border border-white/20 bg-transparent text-white font-medium hover:bg-white/[0.08] hover:border-white/30 active:scale-[0.98]",
       ghost:
-        "bg-transparent text-slate-300 hover:bg-slate-800/60 hover:text-white",
+        "bg-transparent text-slate-300 font-medium hover:bg-white/[0.08] hover:text-white",
     };
 
     const sizeStyles = {

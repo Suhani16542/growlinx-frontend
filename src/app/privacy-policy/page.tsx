@@ -5,14 +5,14 @@ import { ShieldCheck, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Privacy Policy | GrowlinX Digital Marketing",
-  description: "Privacy Policy and data governance standards of GrowlinX Digital Marketing Agency.",
+  title: "Privacy Policy | Growlinx Digital Marketing",
+  description: "Privacy Policy and data governance standards of Growlinx Digital Marketing Agency.",
 });
 
 export default function PrivacyPolicyPage() {
   return (
     <div className="py-20 lg:py-28 bg-[#070b14] text-slate-300">
-      <Container className="max-w-4xl">
+      <Container className="max-w-3xl">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white mb-8 transition-colors"
@@ -39,14 +39,14 @@ export default function PrivacyPolicyPage() {
             <section className="space-y-2">
               <h2 className="text-lg font-bold text-white">1. Information We Collect</h2>
               <p>
-                GrowlinX ("we," "our," or "us") collects information you provide directly through our strategy request forms, contact inquiries, and newsletter signups. This may include your full name, work email address, phone number, company name, website URL, and details concerning your marketing goals.
+                Growlinx ("we," "our," or "us") collects information you provide directly through our strategy request forms, contact inquiries, and communication channels. This may include your full name, work email address, phone number, company name, website URL, and details concerning your marketing goals.
               </p>
             </section>
 
             <section className="space-y-2">
               <h2 className="text-lg font-bold text-white">2. How We Use Your Information</h2>
               <p>
-                We use your information exclusively to deliver our digital marketing services, schedule strategic consultations, communicate performance reporting, process transactions, and provide tailored growth proposals. We never sell, rent, or lease client data to third parties.
+                We use your information exclusively to deliver our digital marketing services, schedule strategic consultations, communicate performance reporting, process transactions, and provide tailored growth proposals. We never sell or rent client data to third parties.
               </p>
             </section>
 
@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
             <section className="space-y-2">
               <h2 className="text-lg font-bold text-white">5. Contact Our Privacy Team</h2>
               <p>
-                If you have questions regarding this Privacy Policy or wish to exercise data access/deletion rights, please reach out to our privacy compliance desk at{" "}
+                If you have questions regarding this Privacy Policy, please reach out to our team at{" "}
                 <a href="mailto:privacy@growlinx.com" className="text-cyan-400 hover:underline">
                   privacy@growlinx.com
                 </a>.

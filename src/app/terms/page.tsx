@@ -5,14 +5,14 @@ import { ShieldCheck, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Terms & Conditions | GrowlinX Digital Marketing",
-  description: "Terms and conditions governing the services provided by GrowlinX Digital Marketing Agency.",
+  title: "Terms & Conditions | Growlinx Digital Marketing",
+  description: "Terms and conditions governing the services provided by Growlinx Digital Marketing Agency.",
 });
 
 export default function TermsPage() {
   return (
     <div className="py-20 lg:py-28 bg-[#070b14] text-slate-300">
-      <Container className="max-w-4xl">
+      <Container className="max-w-3xl">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white mb-8 transition-colors"
@@ -39,7 +39,7 @@ export default function TermsPage() {
             <section className="space-y-2">
               <h2 className="text-lg font-bold text-white">1. Scope of Engagement</h2>
               <p>
-                GrowlinX provides digital marketing, search engine optimization, mobile app acquisition, creator management, and performance advertising services as defined in mutually executed Statements of Work (SOW) or service agreements.
+                Growlinx provides digital marketing, search engine optimization, mobile app acquisition, creator management, and performance advertising services as defined in mutually executed Statements of Work (SOW) or service agreements.
               </p>
             </section>
 
@@ -53,14 +53,14 @@ export default function TermsPage() {
             <section className="space-y-2">
               <h2 className="text-lg font-bold text-white">3. Third-Party Ad Platform Spend</h2>
               <p>
-                Direct advertising costs incurred across ad platforms (such as Google Ads, Meta Ads, Apple Search Ads) are paid directly to the respective ad networks and remain separate from GrowlinX agency management fees unless specified under an all-inclusive enterprise retainer.
+                Direct advertising costs incurred across ad platforms (such as Google Ads, Meta Ads, Apple Search Ads) are paid directly to the respective ad networks and remain separate from Growlinx agency management fees unless specified under an enterprise retainer.
               </p>
             </section>
 
             <section className="space-y-2">
               <h2 className="text-lg font-bold text-white">4. Confidentiality & Non-Disclosure</h2>
               <p>
-                GrowlinX treats all client business data, revenue numbers, customer lists, and proprietary marketing architectures with strict confidentiality under enforceable non-disclosure provisions.
+                Growlinx treats all client business data, revenue numbers, customer lists, and proprietary marketing architectures with strict confidentiality under enforceable non-disclosure provisions.
               </p>
             </section>
           </div>

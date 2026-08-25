@@ -12,14 +12,15 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
   options: UseInViewOptions = {}
 ): [RefObject<T | null>, boolean] {
   const { threshold = 0.15, rootMargin = "0px", triggerOnce = true } = options;
-  const [isInView, setIsInView] = useState(() => {
-    return typeof window === "undefined" || typeof IntersectionObserver === "undefined";
-  });
+  const [isInView, setIsInView] = useState(false);
   const ref = useRef<T>(null);
 
   useEffect(() => {
     const element = ref.current;
-    if (!element || typeof IntersectionObserver === "undefined") return;
+    if (!element || typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
