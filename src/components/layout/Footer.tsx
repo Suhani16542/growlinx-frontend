@@ -168,8 +168,8 @@ export function Footer() {
           <div className="mt-4 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500">
             <p>© {currentYear} Growlinx. All rights reserved.</p>
             <div className="flex items-center gap-4 mt-2 sm:mt-0">
-              <Link href="/privacy" className="hover:text-[#FF5E3A] transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-[#FF5E3A] transition-colors">Terms of Service</Link>
+              <Link href="/refund-policy" className="hover:text-[#FF5E3A] transition-colors">Refund Policy</Link>
+              <Link href="/terms-and-conditions" className="hover:text-[#FF5E3A] transition-colors">Terms & Conditions</Link>
               <span className="text-white/20">•</span>
               <Link href="/admin/login" className="hover:text-[#FF5E3A] transition-colors text-slate-400">Admin Portal</Link>
             </div>
