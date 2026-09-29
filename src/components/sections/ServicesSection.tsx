@@ -1,60 +1,157 @@
 "use client";
 
+import Link from "next/link";
 import { Container } from "@/components/common/Container";
-import { SectionHeading } from "@/components/common/SectionHeading";
-import { ServiceCard } from "@/components/ui/ServiceCard";
+import { Services3DScene } from "@/components/3d/Services3DScene";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { servicesData } from "@/data/services";
-import { Button } from "@/components/ui/Button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import {
+  Search,
+  Target,
+  Share2,
+  Smartphone,
+  Flame,
+  Video,
+  ArrowUpRight,
+  Sparkles,
+} from "lucide-react";
 
 export function ServicesSection() {
-  return (
-    <section id="services" className="py-24 lg:py-32 relative overflow-hidden bg-[#060a15]">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
+  const services = [
+    {
+      id: "seo",
+      title: "SEO Services",
+      description: "Build long-term organic visibility through technical, on-page, off-page, and local SEO strategies that secure top search rankings.",
+      icon: Search,
+      href: "/services/seo",
+      tag: "ORGANIC GROWTH",
+    },
+    {
+      id: "paid-advertising",
+      title: "Paid Advertising & Media",
+      description: "High-ROAS multichannel acquisition campaigns across Google Ads, Meta, LinkedIn, and programmatic networks with real-time budget optimization.",
+      icon: Target,
+      href: "/services/paid-advertising",
+      tag: "HIGH ROAS",
+    },
+    {
+      id: "social-media",
+      title: "Social Media Management",
+      description: "Transforming social profiles into high-converting revenue channels with engaging short-form creative, community management, and brand storytelling.",
+      icon: Share2,
+      href: "/services/social-media-management",
+      tag: "BRAND INFLUENCE",
+    },
+    {
+      id: "app-marketing",
+      title: "App Marketing & Acquisition",
+      description: "Accelerating mobile app downloads, App Store Optimization (ASO), and low-CPA install campaigns that maximize long-term retention.",
+      icon: Smartphone,
+      href: "/services/app-marketing",
+      tag: "USER ACQUISITION",
+    },
+    {
+      id: "influencer-management",
+      title: "Influencer Management",
+      description: "Vetted creator partnerships and authentic viral brand collaborations that generate direct conversions, social proof, and high-trust reach.",
+      icon: Flame,
+      href: "/services/influencer-management",
+      tag: "CREATOR SCALE",
+    },
+    {
+      id: "youtube-monetization",
+      title: "YouTube Monetization",
+      description: "Strategic video optimization, thumbnail psychology, channel growth frameworks, and monetization architectures to build recurring digital revenue.",
+      icon: Video,
+      href: "/services/youtube-monetization",
+      tag: "VIDEO SCALE",
+    },
+  ];
 
-      <Container className="relative z-10">
-        <ScrollReveal animation="fade-up" duration={500}>
-          <SectionHeading
-            badge="Full-Stack Capabilities"
-            title="Complete Digital Marketing Solutions"
-            description="Specialized growth units engineered to drive brand visibility, qualified pipeline acceleration, and compounding commercial ROI."
-            align="center"
-          />
+  return (
+    <section className="relative py-16 sm:py-24 lg:py-28 cream-surface overflow-hidden border-b border-[#EADECE]">
+      {/* Background Ambience */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#FFEBE5]/50 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      <Container>
+        {/* Section Header */}
+        <ScrollReveal animation="fade-up" duration={700}>
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 lg:mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest bg-white border border-[#EADECE] text-[#FF5E3A] shadow-xs">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>FULL-FUNNEL CAPABILITIES</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0A0F1D] leading-tight">
+              Complete Digital Marketing <br className="hidden sm:inline" />
+              <span className="text-[#FF5E3A]">Solutions</span>
+            </h2>
+
+            <p className="text-sm sm:text-base lg:text-lg text-[#5A6578] font-medium leading-relaxed">
+              High-impact growth marketing capabilities engineered to dominate search rankings, maximize return on ad spend, and scale compounding business revenue.
+            </p>
+          </div>
         </ScrollReveal>
 
-        {/* Asymmetrical Custom Grid */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-          {servicesData.map((service, index) => (
-            <ScrollReveal
-              key={service.id}
-              animation="fade-up"
-              duration={400}
-              delay={index * 60}
-              className={index === 0 || index === 3 ? "lg:col-span-1" : "lg:col-span-1"}
-            >
-              <ServiceCard service={service} />
-            </ScrollReveal>
-          ))}
-        </div>
-
-        {/* Bottom CTA Bar for Services */}
-        <ScrollReveal animation="fade-up" duration={500} delay={200}>
-          <div className="mt-16 text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-white/10 bg-[#090f20]/90 px-8 py-5 shadow-2xl backdrop-blur-xl">
-              <span className="text-sm font-bold text-slate-200 flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-cyan-400" />
-                Looking for a bespoke multi-channel growth architecture?
-              </span>
-              <Button href="/free-strategy-call" variant="gradient" size="sm" className="gap-1.5 font-bold">
-                <span>Request Custom Strategy</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
+        {/* Central 3D Interactive Ecosystem Hub (Framed in Rounded Dark Container for High Contrast) */}
+        <ScrollReveal animation="zoom-in" duration={800} delay={100} className="relative mb-12">
+          <div className="rounded-[2.5rem] border border-white/15 bg-gradient-to-b from-[#111827] to-[#0A0F1D] overflow-hidden relative shadow-2xl p-4 flex flex-col items-center justify-center">
+            {/* 3D WebGL Hub */}
+            <Services3DScene />
+            
+            <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A0F1D]/80 border border-[#FF5E3A]/30 text-xs font-semibold text-[#FF5E3A]">
+              <span className="h-2 w-2 rounded-full bg-[#FF5E3A] animate-pulse" />
+              Connected Growth Channels Ecosystem
             </div>
           </div>
         </ScrollReveal>
+
+        {/* Six Service Cards in Cream Rounded Containers with Side Scroll Reveal */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, idx) => {
+            const Icon = service.icon;
+            const anim = idx % 3 === 0 ? "fade-left" : idx % 3 === 2 ? "fade-right" : "fade-up";
+            const delay = (idx % 3) * 120;
+            return (
+              <ScrollReveal
+                key={service.id}
+                animation={anim}
+                duration={750}
+                delay={delay}
+                className="h-full"
+              >
+                <Link
+                  href={service.href}
+                  className="cream-card cream-card-interactive group rounded-3xl p-7 flex flex-col justify-between h-full"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="h-12 w-12 rounded-2xl bg-[#FAF6F0] border border-[#EADECE] flex items-center justify-center text-[#FF5E3A] group-hover:bg-[#FF5E3A] group-hover:text-white transition-all duration-300">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-[#FAF6F0] border border-[#EADECE] text-[#5A6578] group-hover:text-[#0A0F1D] transition-colors">
+                        {service.tag}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-bold text-[#0A0F1D] group-hover:text-[#FF5E3A] transition-colors flex items-center gap-1.5">
+                        {service.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[#5A6578] leading-relaxed mt-2 font-normal">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 border-t border-[#EADECE] flex items-center justify-between text-xs font-bold text-[#5A6578] group-hover:text-[#0A0F1D] transition-colors mt-6">
+                    <span>Explore Solution</span>
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-[#FF5E3A]" />
+                  </div>
+                </Link>
+              </ScrollReveal>
+            );
+          })}
+        </div>
       </Container>
     </section>
   );

@@ -1,192 +1,128 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/common/Container";
-import { SectionHeading } from "@/components/common/SectionHeading";
-import { PortfolioCard } from "@/components/ui/PortfolioCard";
-import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { Button } from "@/components/ui/Button";
 import { portfolioData } from "@/data/portfolio";
-import { ArrowRight } from "lucide-react";
+import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 
 export function PortfolioSection() {
-  const featuredCases = [
+  const caseStudies = [
     {
-      id: "case-1",
-      client: "NexaFlow Systems",
-      category: "B2B SaaS & Enterprise",
-      headline: "Scaling Inbound Sales Pipeline by +310% in 9 Months",
-      summary: "Restructured omnichannel acquisition with high-intent search capture, LinkedIn thought leadership ads, and conversion landing page infrastructure.",
-      metricValue: "+310%",
-      metricLabel: "Qualified Demo Volume",
-      secondaryMetric: "4.2X ROAS",
-      tags: ["Technical SEO", "Paid Search", "Conversion CRO"],
+      ...portfolioData[0],
+      image: "/images/case-study-saas.jpg",
+      highlightMetric: "3.2X",
+      highlightLabel: "ROAS Increase",
     },
     {
-      id: "case-2",
-      client: "Aura Living Direct",
-      category: "E-Commerce & Retail",
-      headline: "Generating $1.4M Inbound Revenue with -38% Lower CAC",
-      summary: "Engineered high-velocity direct-response creative testing across Meta and TikTok, coupled with automated post-click personalized landing funnels.",
-      metricValue: "$1.4M+",
-      metricLabel: "New Net Revenue",
-      secondaryMetric: "-38% Blended CAC",
-      tags: ["Performance Creative", "Paid Social", "Funnel Optimization"],
+      ...portfolioData[1],
+      image: "/images/case-study-seo.jpg",
+      highlightMetric: "+180%",
+      highlightLabel: "Organic Traffic",
     },
     {
-      id: "case-3",
-      client: "Apex Capital Partners",
-      category: "FinTech & Wealth",
-      headline: "Capturing #1 Search Dominance for High-Value Commercial Intent",
-      summary: "Comprehensive technical architecture overhaul and authority digital PR strategy, taking organic impressions from 25k to over 380k monthly.",
-      metricValue: "#1 Rank",
-      metricLabel: "Competitive Keywords",
-      secondaryMetric: "380K+ Impressions",
-      tags: ["Digital PR", "Enterprise SEO", "Authority Content"],
+      ...portfolioData[2],
+      image: "/images/case-study-ecommerce.jpg",
+      highlightMetric: "500K+",
+      highlightLabel: "App Installs",
     },
   ];
 
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden bg-[#060a15] border-t border-white/[0.06]">
-      <Container className="relative z-10">
-        <ScrollReveal animation="fade-up" duration={500}>
-          <SectionHeading
-            badge="Proven Case Studies"
-            title="Work That Generates Real Commercial Scale"
-            description="Explore how our strategic execution has propelled ambitious brands to dominant market positions."
-            align="center"
-          />
-        </ScrollReveal>
+    <section className="relative py-16 sm:py-24 lg:py-28 bg-[#0A0F1D] text-[#FAF6F0] overflow-hidden border-b border-white/10">
+      {/* Background Ambience */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#FF5E3A]/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
-        {/* Alternating Editorial Showcase Rows */}
-        <div className="mt-20 space-y-16 lg:space-y-24">
-          {featuredCases.map((study, index) => {
-            const isEven = index % 2 === 0;
+      <Container>
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
+          <ScrollReveal animation="fade-left" duration={750} className="space-y-4 max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest bg-white/[0.06] border border-[#FF5E3A]/30 text-[#FF5E3A]">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>PROVEN RESULTS</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#FAF6F0] leading-tight">
+              Real Digital Growth. <br />
+              <span className="text-[#FF5E3A]">Measurable Revenue Impact.</span>
+            </h2>
+
+            <p className="text-base text-slate-300 font-normal leading-relaxed">
+              Explore how our full-funnel digital marketing strategies propelled ambitious brands to market leadership.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal animation="fade-right" duration={750} delay={150}>
+            <Link
+              href="/portfolio"
+              className="orange-btn inline-flex items-center gap-2 font-extrabold px-7 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all duration-200 hover:scale-105 active:scale-95 shadow-md shadow-[#FF5E3A]/25"
+            >
+              <span>EXPLORE ALL CASE STUDIES</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </ScrollReveal>
+        </div>
+
+        {/* Overlapping Case Study Cards with Side Scroll Entrance */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {caseStudies.map((item, idx) => {
+            const anim = idx === 0 ? "fade-left" : idx === 2 ? "fade-right" : "fade-up";
+            const delay = idx * 140;
             return (
               <ScrollReveal
-                key={study.id}
-                animation="fade-up"
-                duration={500}
-                delay={index * 100}
+                key={item.id}
+                animation={anim}
+                duration={750}
+                delay={delay}
+                className="h-full"
               >
-                <div
-                  className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center ${
-                    isEven ? "" : "lg:flex-row-reverse"
-                  }`}
-                >
-                  {/* Text Column */}
-                  <div
-                    className={`space-y-6 ${
-                      isEven ? "lg:col-span-7 lg:order-1" : "lg:col-span-7 lg:order-2"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-xs font-mono font-bold text-cyan-400">
-                        0{index + 1}
-                      </span>
-                      <span className="h-1 w-1 rounded-full bg-slate-600" />
-                      <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">
-                        {study.category}
-                      </span>
-                      <span className="h-1 w-1 rounded-full bg-slate-600" />
-                      <span className="text-xs text-slate-400 font-medium">
-                        {study.client}
-                      </span>
-                    </div>
+                <div className="navy-card navy-card-interactive rounded-[2rem] overflow-hidden flex flex-col group h-full">
+                  {/* Image Frame with Rounded Top */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                    />
 
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
-                      {study.headline}
-                    </h3>
-
-                    <p className="text-base text-slate-300 leading-relaxed">
-                      {study.summary}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      {study.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-white/[0.04] px-3.5 py-1 text-xs font-medium text-slate-300 border border-white/10"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="pt-3">
-                      <Button
-                        href="/portfolio"
-                        variant="secondary"
-                        size="md"
-                        className="border border-white/10 bg-white/[0.04] text-white hover:bg-white/[0.08] hover:border-white/20 gap-2 font-bold"
-                      >
-                        <span>View Full Breakdown</span>
-                        <ArrowRight className="h-4 w-4" />
-                      </Button>
+                    {/* Floating Metric Badge in Orange */}
+                    <div className="absolute top-4 right-4 bg-[#0A0F1D]/90 backdrop-blur-md rounded-2xl px-3.5 py-2 shadow-lg border border-[#FF5E3A]/40">
+                      <p className="text-xl font-black text-[#FF5E3A] leading-none">
+                        {item.highlightMetric}
+                      </p>
+                      <p className="text-[10px] font-bold text-slate-300 uppercase mt-0.5">
+                        {item.highlightLabel}
+                      </p>
                     </div>
                   </div>
 
-                  {/* Visual / Results Metric Box */}
-                  <div
-                    className={`${
-                      isEven ? "lg:col-span-5 lg:order-2" : "lg:col-span-5 lg:order-1"
-                    }`}
-                  >
-                    <div
-                      className={`rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden transition-all duration-300 ${
-                        index === 0
-                          ? "bg-white border border-white text-slate-900"
-                          : "glass-panel border border-white/10"
-                      }`}
-                    >
-                      <div
-                        className={`flex items-center justify-between border-b pb-4 mb-6 ${
-                          index === 0 ? "border-slate-100" : "border-white/[0.08]"
-                        }`}
-                      >
-                        <span
-                          className={`text-xs font-mono font-bold uppercase ${
-                            index === 0 ? "text-slate-500" : "text-slate-400"
-                          }`}
-                        >
-                          Verified Growth Impact
-                        </span>
-                        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping" />
+                  {/* Card Body */}
+                  <div className="p-7 flex flex-col justify-between flex-1 space-y-6">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
+                        <span>{item.client}</span>
+                        <span className="text-[#FF5E3A]">• {item.category}</span>
                       </div>
 
-                      {/* Giant Highlight Number */}
-                      <div
-                        className={`text-4xl sm:text-5xl lg:text-6xl font-black ${
-                          index === 0 ? "text-slate-900" : "text-white glow-accent-gradient"
-                        }`}
-                      >
-                        {study.metricValue}
-                      </div>
-                      <span
-                        className={`text-sm font-bold mt-2 block ${
-                          index === 0 ? "text-slate-600" : "text-slate-300"
-                        }`}
-                      >
-                        {study.metricLabel}
+                      <h3 className="text-xl font-black text-[#FAF6F0] leading-snug group-hover:text-[#FF5E3A] transition-colors">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                        {item.summary}
+                      </p>
+                    </div>
+
+                    {/* Action Button */}
+                    <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-400 group-hover:text-white transition-colors">
+                        View Audited Case Study
                       </span>
-
-                      {/* Secondary Metric */}
-                      <div
-                        className={`mt-8 pt-5 border-t flex items-center justify-between text-xs sm:text-sm ${
-                          index === 0
-                            ? "border-slate-100 text-slate-500"
-                            : "border-white/[0.08] text-slate-400"
-                        }`}
-                      >
-                        <span>Attributed Efficiency</span>
-                        <span
-                          className={`font-bold px-3 py-1 rounded-full border ${
-                            index === 0
-                              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                              : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                          }`}
-                        >
-                          {study.secondaryMetric}
-                        </span>
+                      <div className="h-9 w-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#FF5E3A] group-hover:bg-[#FF5E3A] group-hover:text-white transition-all duration-300">
+                        <ArrowUpRight className="h-4 w-4" />
                       </div>
                     </div>
                   </div>
@@ -194,21 +130,6 @@ export function PortfolioSection() {
               </ScrollReveal>
             );
           })}
-        </div>
-
-        {/* View All Button */}
-        <div className="mt-20 text-center">
-          <ScrollReveal animation="fade-up" duration={500} delay={200}>
-            <Button
-              href="/portfolio"
-              variant="secondary"
-              size="lg"
-              className="border border-white/10 bg-white/[0.04] text-white hover:bg-white/[0.08] hover:border-white/20 gap-2 font-bold px-8"
-            >
-              <span>Explore All Case Studies</span>
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </ScrollReveal>
         </div>
       </Container>
     </section>

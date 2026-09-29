@@ -1,0 +1,58 @@
+[
+  {
+    "id": "enq-1",
+    "name": "Jonathan Vance",
+    "email": "j.vance@apexcloud.io",
+    "phone": "+1 (415) 892-3401",
+    "company": "ApexCloud SaaS",
+    "service": "SEO Services",
+    "budget": "$5,000 – $10,000 / month",
+    "message": "We need an advanced technical SEO audit and topical authority architecture to compete with legacy players in our AI infrastructure niche.",
+    "status": "New",
+    "isRead": false,
+    "createdAt": "2026-09-29T06:29:49.601Z",
+    "notes": "High potential enterprise lead. Needs CAPI integration and keyword gap audit."
+  },
+  {
+    "id": "enq-2",
+    "name": "Marcus Holloway",
+    "email": "marcus@luminafashion.com",
+    "phone": "+1 (212) 555-0199",
+    "company": "Lumina Direct E-Commerce",
+    "service": "Paid Advertising & Media",
+    "budget": "$10,000+ / month (Enterprise)",
+    "message": "Currently spending $40k/mo on Meta ads with declining ROAS (1.8X). Looking for creative sprints and server-side tracking to get back to 4.0X+.",
+    "status": "In Progress",
+    "isRead": true,
+    "createdAt": "2026-09-28T14:29:49.601Z",
+    "notes": "Call scheduled for Thursday 2 PM EST."
+  },
+  {
+    "id": "enq-3",
+    "name": "Elena Rostova",
+    "email": "elena@novafintech.app",
+    "phone": "+44 20 7946 0912",
+    "company": "Nova Wallet Mobile",
+    "service": "App Marketing & Acquisition",
+    "budget": "$5,000 – $10,000 / month",
+    "message": "Looking for Apple Search Ads optimization and custom product pages to lower our current $6.50 CPI on iOS.",
+    "status": "Contacted",
+    "isRead": true,
+    "createdAt": "2026-09-27T08:29:49.601Z",
+    "notes": "Sent introductory proposal deck and audit questionnaire."
+  },
+  {
+    "id": "enq-4",
+    "name": "Harrison Forde",
+    "email": "harrison@lumendigital.co",
+    "phone": "+1 (310) 802-9911",
+    "company": "Lumen Skincare",
+    "service": "Influencer Management",
+    "budget": "$3,000 – $5,000 / month",
+    "message": "Need 15-20 vetted creator partnerships with whitelisted dark posting for our Q4 product rollout.",
+    "status": "Converted",
+    "isRead": true,
+    "createdAt": "2026-09-24T08:29:49.601Z",
+    "notes": "Closed 3-month retainer. Onboarding kick-off call completed."
+  }
+]

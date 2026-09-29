@@ -1,40 +1,65 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
   className?: string;
-  showText?: boolean;
-  variant?: "dark" | "light"; // "light" = on light/white navbar; "dark" = on dark background (footer)
+  variant?: "header" | "footer" | "dark" | "light";
+  priority?: boolean;
 }
 
-export function Logo({ className, showText = true, variant = "dark" }: LogoProps) {
-  const isLightBg = variant === "light";
+export function Logo({ className, variant = "header", priority = false }: LogoProps) {
+  const isFooter = variant === "footer" || variant === "dark";
 
   return (
     <Link
       href="/"
-      className={cn("group inline-flex items-center gap-2.5 font-bold tracking-tight", className)}
-      aria-label="Growlinx Home"
+      className={cn(
+        "group inline-flex items-center gap-3 shrink-0 transition-transform duration-200 hover:scale-[1.02] focus:outline-none",
+        className
+      )}
+      aria-label="Growlinx Official Brand"
     >
-      <div className="relative flex h-8.5 w-8.5 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-500 to-cyan-400 p-[1.5px] shadow-lg shadow-blue-500/25 transition-transform duration-300 group-hover:scale-105">
-        <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-[#050811]">
-          <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-base font-black text-transparent">
-            G
-          </span>
-        </div>
+      {/* Official Exact Uploaded Logo Image */}
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-2xl transition-all duration-300 shadow-md",
+          isFooter
+            ? "h-12 w-12 sm:h-14 sm:w-14 border border-white/20 bg-black"
+            : "h-10 w-10 sm:h-12 sm:w-12 border border-[#0A0F1D]/15 bg-black"
+        )}
+      >
+        <Image
+          src="/logo/growlinx-logo.jpg"
+          alt="Growlinx Official Brand Logo"
+          width={512}
+          height={512}
+          priority={priority || !isFooter}
+          className="h-full w-full object-cover object-center"
+        />
       </div>
-      {showText && (
+
+      {/* Brand Title (Optional pairing for accessibility & branding clarity) */}
+      <div className="flex flex-col text-left">
         <span
           className={cn(
-            "text-xl font-bold tracking-tight transition-colors",
-            isLightBg
-              ? "text-slate-900 group-hover:text-blue-600"
-              : "text-white group-hover:text-cyan-300"
+            "text-lg sm:text-xl font-black tracking-tight leading-none transition-colors",
+            isFooter
+              ? "text-[#FAF6F0] group-hover:text-[#FF5E3A]"
+              : "text-[#0A0F1D] group-hover:text-[#FF5E3A]"
           )}
         >
-          Grow<span className="text-blue-500 font-extrabold">linx</span>
+          Growlinx
         </span>
-      )}
+        <span
+          className={cn(
+            "text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest leading-none mt-1",
+            isFooter ? "text-slate-400" : "text-[#5A6578]"
+          )}
+        >
+          Growth Agency
+        </span>
+      </div>
     </Link>
   );
 }

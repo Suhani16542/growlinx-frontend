@@ -1,0 +1,44 @@
+[
+  {
+    "id": "cat-1",
+    "name": "SEO Strategy",
+    "slug": "seo-strategy",
+    "description": "Articles, tactical playbooks and growth breakdowns focused on SEO Strategy.",
+    "createdAt": "2026-01-01"
+  },
+  {
+    "id": "cat-2",
+    "name": "Performance Marketing",
+    "slug": "performance-marketing",
+    "description": "Articles, tactical playbooks and growth breakdowns focused on Performance Marketing.",
+    "createdAt": "2026-01-01"
+  },
+  {
+    "id": "cat-3",
+    "name": "Social Media",
+    "slug": "social-media",
+    "description": "Articles, tactical playbooks and growth breakdowns focused on Social Media.",
+    "createdAt": "2026-01-01"
+  },
+  {
+    "id": "cat-4",
+    "name": "App Growth",
+    "slug": "app-growth",
+    "description": "Articles, tactical playbooks and growth breakdowns focused on App Growth.",
+    "createdAt": "2026-01-01"
+  },
+  {
+    "id": "cat-5",
+    "name": "YouTube Strategy",
+    "slug": "youtube-strategy",
+    "description": "Articles, tactical playbooks and growth breakdowns focused on YouTube Strategy.",
+    "createdAt": "2026-01-01"
+  },
+  {
+    "id": "cat-6",
+    "name": "Agency Insights",
+    "slug": "agency-insights",
+    "description": "Articles, tactical playbooks and growth breakdowns focused on Agency Insights.",
+    "createdAt": "2026-01-01"
+  }
+]

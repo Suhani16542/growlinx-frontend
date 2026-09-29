@@ -3,43 +3,35 @@ import { TrustBar } from "@/components/sections/TrustBar";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { ProcessSection } from "@/components/sections/ProcessSection";
-import { IndustriesSection } from "@/components/sections/IndustriesSection";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { FAQSection } from "@/components/sections/FAQSection";
 import { LeadContactPreview } from "@/components/sections/LeadContactPreview";
 
 export default function HomePage() {
   return (
     <div className="flex flex-col w-full overflow-hidden">
-      {/* 1. Hero Section (Digital Marketing -> Growth -> Real Results) */}
+      {/* 1. HERO (LIGHT): Digital Marketing Agency Landing Page with Large Image & Subtle Particles */}
       <HeroSection />
 
-      {/* 2. Key Results & Attribution Statistics Bar */}
+      {/* 2. SECTION 2 (DARK + THREE.JS): 3D Digital Analytics & Attribution Bar */}
       <TrustBar />
 
-      {/* 3. Complete Digital Marketing Solutions */}
+      {/* 3. SECTION 3 (LIGHT + THREE.JS): Full-Funnel Digital Marketing Solutions Hub */}
       <ServicesSection />
 
-      {/* 4. The Growlinx Advantage (Why Businesses Choose Growlinx) */}
+      {/* 4. SECTION 4 (DARK + THREE.JS): The Growlinx Strategic Advantage & 3D Growth Curve */}
       <WhyChooseUs />
 
-      {/* 5. How We Grow Your Business (4-Step Growth Journey) */}
+      {/* 5. SECTION 5 (LIGHT + THREE.JS): How We Scale Your Revenue (4-Step Process & 3D Flow) */}
       <ProcessSection />
 
-      {/* 6. Industries We Scale (Interactive Vertical Playbooks) */}
-      <IndustriesSection />
-
-      {/* 7. Proven Case Studies (Editorial Impact Showcases) */}
+      {/* 6. SECTION 6 (DARK + THREE.JS): Proven Case Studies with Verified Metrics */}
       <PortfolioSection />
 
-      {/* 8. Testimonials (Founder Endorsement Statement) */}
+      {/* 7. SECTION 7 (LIGHT): Client Endorsements & CMO Testimonials */}
       <TestimonialsSection />
 
-      {/* 9. Frequently Asked Questions */}
-      <FAQSection />
-
-      {/* 10. Final Conversion & Growth Consultation Form */}
+      {/* 8. SECTION 8 (DARK): Final Growth Consultation Form & Conversion Section */}
       <LeadContactPreview />
     </div>
   );

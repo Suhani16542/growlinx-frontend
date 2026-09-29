@@ -3,11 +3,15 @@ import { servicesData } from "./services";
 
 export const navigationData: NavItem[] = [
   {
-    title: "Home",
+    title: "HOME",
     href: "/",
   },
   {
-    title: "Services",
+    title: "ABOUT US",
+    href: "/about-us",
+  },
+  {
+    title: "SERVICES",
     href: "/services",
     children: servicesData.map((service) => ({
       title: service.title,
@@ -16,24 +20,16 @@ export const navigationData: NavItem[] = [
     })),
   },
   {
-    title: "Industries",
-    href: "/#industries",
-  },
-  {
-    title: "Results",
-    href: "/#results",
-  },
-  {
-    title: "Case Studies",
+    title: "PORTFOLIO",
     href: "/portfolio",
   },
   {
-    title: "About",
-    href: "/about-us",
+    title: "BLOG",
+    href: "/blog",
   },
   {
-    title: "Blog",
-    href: "/blog",
+    title: "CONTACT",
+    href: "/contact",
   },
 ];
 
@@ -46,13 +42,12 @@ export const footerNavigation = {
     { title: "Home", href: "/" },
     { title: "About Us", href: "/about-us" },
     { title: "Portfolio", href: "/portfolio" },
-    { title: "Blog", href: "/blog" },
-    { title: "Contact", href: "/contact" },
-    { title: "Free Strategy Call", href: "/free-strategy-call" },
+    { title: "Blog & Guides", href: "/blog" },
+    { title: "Contact Us", href: "/contact" },
+    { title: "Book Strategy Call", href: "/free-strategy-call" },
   ],
   legal: [
-    { title: "Privacy Policy", href: "/privacy-policy" },
+    { title: "Privacy Policy", href: "/privacy" },
     { title: "Terms & Conditions", href: "/terms" },
-    { title: "Cookie Policy", href: "/cookies" },
   ],
 };

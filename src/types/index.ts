@@ -101,3 +101,49 @@ export interface SiteConfig {
     address: string;
   };
 }
+
+// ==========================================
+// ADMIN DASHBOARD & ENQUIRY TYPES
+// ==========================================
+export type EnquiryStatus = "New" | "Contacted" | "In Progress" | "Converted" | "Closed";
+
+export interface EnquiryItem {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  company?: string;
+  service: string;
+  budget?: string;
+  message: string;
+  status: EnquiryStatus;
+  isRead: boolean;
+  createdAt: string;
+  notes?: string;
+}
+
+export interface BlogCategoryItem {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  postCount?: number;
+  createdAt: string;
+}
+
+export interface AdminUser {
+  id: string;
+  name: string;
+  email: string;
+  role: "admin" | "editor" | "strategist";
+}
+
+export interface AdminStats {
+  totalBlogs: number;
+  publishedBlogs: number;
+  draftBlogs: number;
+  totalCategories: number;
+  newEnquiries: number;
+  unreadEnquiries: number;
+  totalEnquiries: number;
+}

@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/common/Container";
 import { Logo } from "@/components/common/Logo";
-import { siteConfig } from "@/lib/metadata";
-import { Mail, Phone, MapPin, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 
 function InstagramIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -45,44 +43,110 @@ function LinkedinIcon({ className = "h-4 w-4" }: { className?: string }) {
 }
 
 export function Footer() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
+
+  // Hide public footer on admin routes
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   const servicesLinks = [
     { title: "SEO Services", href: "/services/seo" },
+    { title: "Paid Advertising & Media", href: "/services/paid-advertising" },
+    { title: "Social Media Management", href: "/services/social-media-management" },
     { title: "App Marketing & Acquisition", href: "/services/app-marketing" },
     { title: "Influencer Management", href: "/services/influencer-management" },
-    { title: "Social Media Management", href: "/services/social-media-management" },
     { title: "YouTube Monetization", href: "/services/youtube-monetization" },
-    { title: "Paid Advertising & Media", href: "/services/paid-advertising" },
   ];
 
   const quickLinks = [
-    { title: "Home", href: "/" },
     { title: "About Us", href: "/about-us" },
-    { title: "Services", href: "/services" },
-    { title: "Portfolio", href: "/portfolio" },
+    { title: "All Services", href: "/services" },
+    { title: "Case Studies", href: "/portfolio" },
     { title: "Blog & Insights", href: "/blog" },
     { title: "Contact Us", href: "/contact" },
+    { title: "Book Strategy Call", href: "/free-strategy-call" },
   ];
 
   const socialLinks = [
-    { name: "Instagram", href: "https://instagram.com/growlinx", icon: InstagramIcon },
-    { name: "Facebook", href: "https://facebook.com/growlinx", icon: FacebookIcon },
-    { name: "YouTube", href: "https://youtube.com/@growlinx", icon: YoutubeIcon },
     { name: "LinkedIn", href: "https://linkedin.com/company/growlinx", icon: LinkedinIcon },
+    { name: "Instagram", href: "https://instagram.com/growlinx", icon: InstagramIcon },
+    { name: "YouTube", href: "https://youtube.com/@growlinx", icon: YoutubeIcon },
+    { name: "Facebook", href: "https://facebook.com/growlinx", icon: FacebookIcon },
   ];
 
   return (
-    <footer className="border-t border-white/[0.08] bg-[#050811] text-slate-300 relative overflow-hidden">
-      <Container className="py-14 lg:py-16 relative z-10">
+    <footer className="border-t border-white/10 bg-[#0A0F1D] text-slate-300 relative overflow-hidden">
+      {/* Subtle Orange Atmospheric Glow */}
+      <div className="absolute top-0 right-1/4 w-[400px] h-[300px] bg-[#FF5E3A]/5 rounded-full blur-3xl pointer-events-none -z-0" />
+
+      {/* Top Footer Navigation Columns */}
+      <Container className="py-12 lg:py-16 relative z-10">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12">
-          {/* Column 1: Brand & Description (4 cols) */}
-          <div className="space-y-4 lg:col-span-4">
+          {/* Brand Info */}
+          <div className="space-y-4 lg:col-span-5">
             <Logo variant="dark" />
-            <p className="text-xs sm:text-sm leading-relaxed text-slate-300 max-w-sm">
+            <p className="text-xs sm:text-sm leading-relaxed text-slate-400 max-w-sm font-normal">
               Growlinx engineers high-performance digital marketing campaigns that elevate brand authority, multiply inbound traffic, and generate predictable business revenue.
             </p>
-            <div className="flex items-center gap-2.5 pt-2">
+          </div>
+
+          {/* Capabilities */}
+          <div className="space-y-3 lg:col-span-4">
+            <p className="text-xs font-extrabold uppercase tracking-wider text-[#FAF6F0]">
+              Digital Marketing Solutions
+            </p>
+            <ul className="space-y-2 text-xs sm:text-sm">
+              {servicesLinks.map((link) => (
+                <li key={link.title}>
+                  <Link
+                    href={link.href}
+                    className="text-slate-400 hover:text-[#FF5E3A] transition-colors duration-200"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Quick Links */}
+          <div className="space-y-3 lg:col-span-3">
+            <p className="text-xs font-extrabold uppercase tracking-wider text-[#FAF6F0]">
+              Agency Navigation
+            </p>
+            <ul className="space-y-2 text-xs sm:text-sm">
+              {quickLinks.map((link) => (
+                <li key={link.title}>
+                  <Link
+                    href={link.href}
+                    className="text-slate-400 hover:text-[#FF5E3A] transition-colors duration-200"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Container>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10 bg-[#070A14] py-6 relative z-10">
+        <Container>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Left: Logo + Divider + Tagline */}
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-center sm:text-left">
+              <Logo variant="dark" />
+              <div className="hidden sm:block h-4 w-[1px] bg-white/20" />
+              <span className="text-[11px] sm:text-xs font-bold tracking-widest text-[#FAF6F0]/70 uppercase">
+                DIGITAL MARKETING ENGINES THAT SCALE REVENUE.
+              </span>
+            </div>
+
+            {/* Right: Social Links with Orange Hover Badges */}
+            <div className="flex items-center gap-3">
               {socialLinks.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -91,8 +155,8 @@ export function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Follow Growlinx on ${item.name}`}
-                    className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300 hover:text-cyan-300 hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200"
+                    aria-label={`Growlinx on ${item.name}`}
+                    className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 hover:text-[#FF5E3A] hover:border-[#FF5E3A]/40 hover:bg-[#FF5E3A]/10 transition-all duration-200"
                   >
                     <Icon className="h-4 w-4" />
                   </a>
@@ -101,95 +165,17 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links (2 cols) */}
-          <div className="lg:col-span-2">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white border-b border-white/[0.08] pb-2">
-              Quick Links
-            </h3>
-            <ul className="mt-3 space-y-2.5 text-xs sm:text-sm">
-              {quickLinks.map((item) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.href}
-                    className="text-slate-300 hover:text-white transition-colors"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Services (3 cols) */}
-          <div className="lg:col-span-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white border-b border-white/[0.08] pb-2">
-              Growth Services
-            </h3>
-            <ul className="mt-3 space-y-2.5 text-xs sm:text-sm">
-              {servicesLinks.map((item) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.href}
-                    className="text-slate-300 hover:text-white transition-colors"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Contact & CTA (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white border-b border-white/[0.08] pb-2">
-              Direct Contact
-            </h3>
-            <div className="space-y-2.5 pt-1 text-xs">
-              <div className="flex items-center gap-2.5 text-slate-200">
-                <Mail className="h-4 w-4 text-cyan-400 shrink-0" />
-                <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-cyan-300 transition-colors font-medium">
-                  {siteConfig.contact.email}
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5 text-slate-200">
-                <Phone className="h-4 w-4 text-cyan-400 shrink-0" />
-                <a href={`tel:${siteConfig.contact.phone}`} className="hover:text-cyan-300 transition-colors font-medium">
-                  {siteConfig.contact.phone}
-                </a>
-              </div>
-              <div className="flex items-start gap-2.5 text-slate-200">
-                <MapPin className="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span className="leading-snug">{siteConfig.contact.address}</span>
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <Button
-                href="/free-strategy-call"
-                variant="primary"
-                size="sm"
-                className="w-full text-xs justify-center gap-1.5 font-bold"
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                <span>Book Free Strategy Call</span>
-              </Button>
+          <div className="mt-4 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500">
+            <p>© {currentYear} Growlinx. All rights reserved.</p>
+            <div className="flex items-center gap-4 mt-2 sm:mt-0">
+              <Link href="/privacy" className="hover:text-[#FF5E3A] transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-[#FF5E3A] transition-colors">Terms of Service</Link>
+              <span className="text-white/20">•</span>
+              <Link href="/admin/login" className="hover:text-[#FF5E3A] transition-colors text-slate-400">Admin Portal</Link>
             </div>
           </div>
-        </div>
-
-        {/* Bottom Footer Bar */}
-        <div className="mt-12 border-t border-white/[0.08] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {currentYear} Growlinx. All Rights Reserved.</p>
-          <div className="flex flex-wrap items-center gap-6">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
-              Terms & Conditions
-            </Link>
-          </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </footer>
   );
 }

@@ -1,100 +1,175 @@
 "use client";
 
+import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { Sparkles, CheckCircle2 } from "lucide-react";
+import {
+  TrendingUp,
+  Layers,
+  Zap,
+  Award,
+  Sparkles,
+  ShieldCheck,
+  BarChart3,
+  ArrowRight,
+  CheckCircle2,
+  Lock,
+  Target,
+} from "lucide-react";
 
 export function WhyChooseUs() {
-  const benefits = [
+  const pillars = [
     {
-      num: "01",
-      title: "Data-Driven Strategy",
-      tag: "Precision Modeling",
-      description: "Campaign architectures engineered on search intent mapping, competitor vulnerability analysis, and unit economics—eliminating wasted ad spend.",
+      title: "Revenue Attribution Engine",
+      tag: "MULTI-TOUCH CAPI",
+      description:
+        "We tie every marketing dollar directly to qualified pipeline, customer acquisition, and bottom-line commercial revenue with server-side tracking.",
+      icon: TrendingUp,
+      highlight: "Direct ROI tracking",
     },
     {
-      num: "02",
-      title: "Performance Marketing",
-      tag: "High-Margin ROI",
-      description: "Relentless focus on bottom-line business outcomes: qualified inbound pipeline, low blended CAC, and predictable compounding ROAS.",
+      title: "Multichannel Synergy",
+      tag: "OMNICHANNEL",
+      description:
+        "Seamless synchronization across SEO, Google Ads, Meta, and social media to capture and convert high-intent buyers across the entire customer journey.",
+      icon: Layers,
+      highlight: "Unified audience targeting",
     },
     {
-      num: "03",
-      title: "Transparent Real-Time Reporting",
-      tag: "Live Telemetry",
-      description: "Live 24/7 client telemetry dashboards delivering transparent attribution across every single dollar, click, and conversion touchpoint.",
+      title: "Agile Testing Velocity",
+      tag: "RAPID ITERATION",
+      description:
+        "Rapid multivariate creative iterations, hook variations, and landing page split tests that continuously lower blended CAC and raise conversion rates.",
+      icon: Zap,
+      highlight: "Weekly sprint cycles",
     },
     {
-      num: "04",
-      title: "Dedicated Senior Growth Team",
-      tag: "Elite Partnership",
-      description: "Work directly with senior strategists, copywriters, and performance media buyers embedded as an agile extension of your commercial unit.",
+      title: "Senior Growth Architects",
+      tag: "DEDICATED TEAM",
+      description:
+        "Direct partnership with seasoned digital marketing strategists and channel specialists rather than junior account manager handoffs.",
+      icon: Award,
+      highlight: "Zero account delegation",
+    },
+    {
+      title: "First-Party Data Infrastructure",
+      tag: "FUTURE-PROOF",
+      description:
+        "Custom server-side conversion APIs and data pipelines that keep your tracking 100% accurate despite iOS privacy changes and third-party cookie loss.",
+      icon: ShieldCheck,
+      highlight: "Cookieless attribution",
+    },
+    {
+      title: "Transparent Live Telemetry",
+      tag: "24/7 DASHBOARDS",
+      description:
+        "Real-time client telemetry dashboards with live blended ROAS, CAC payback velocity, and actionable commercial growth insights updated continuously.",
+      icon: BarChart3,
+      highlight: "Live GA4 & CAPI sync",
     },
   ];
 
+  const metrics = [
+    { value: "4.8X", label: "Average Blended ROAS", subtext: "Across active client accounts" },
+    { value: "+340%", label: "Pipeline Velocity", subtext: "Average inbound growth rate" },
+    { value: "92%", label: "Client Retention Rate", subtext: "Multi-year growth partnerships" },
+    { value: "100%", label: "Attribution Transparency", subtext: "Server-side verified data" },
+  ];
+
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden bg-[#050811]">
-      <Container className="relative z-10">
-        {/* Large Statement Header */}
-        <ScrollReveal animation="fade-up" duration={500}>
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold glow-badge">
-              <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-              <span>The Growlinx Advantage</span>
+    <section className="relative py-20 sm:py-28 lg:py-32 bg-[#0A0F1D] text-[#FAF6F0] overflow-hidden border-b border-white/10">
+      {/* Ambient Gradient Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-[#FF5E3A]/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#FF7A45]/5 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      <Container>
+        {/* Centered Section Header */}
+        <ScrollReveal animation="fade-up" duration={700}>
+          <div className="text-center max-w-3xl mx-auto space-y-5 mb-16 lg:mb-20">
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest bg-white/[0.06] border border-[#FF5E3A]/30 text-[#FF5E3A] shadow-xs">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>THE GROWLINX ADVANTAGE</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black tracking-tight text-white leading-[1.08]">
-              Strategy that connects every layer of your <span className="glow-accent-gradient">commercial growth.</span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#FAF6F0] leading-[1.08]">
+              Why Leading Brands <br />
+              <span className="text-[#FF5E3A]">Scale Faster With Us</span>
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed pt-2">
-              We eliminate agency fragmentation by integrating data intelligence, high-converting creative assets, and performance media execution into one unified growth engine.
+            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+              We replace marketing guesswork with battle-tested performance frameworks that combine deep data telemetry, high-converting creative, and compounding organic velocity.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Numbered Horizontal Benefit Rows with Hairline Dividers */}
-        <div className="mt-16 divide-y divide-white/[0.08] border-t border-b border-white/[0.08]">
-          {benefits.map((benefit, index) => (
-            <ScrollReveal
-              key={benefit.num}
-              animation="fade-up"
-              duration={400}
-              delay={index * 80}
-            >
-              <div className="py-8 sm:py-10 px-4 sm:px-6 transition-all duration-300 hover:bg-white/[0.02] group">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
-                  {/* Mono Step Number */}
-                  <div className="lg:col-span-2 flex items-center gap-3">
-                    <span className="text-2xl sm:text-4xl font-mono font-black text-slate-600 group-hover:text-cyan-400 transition-colors">
-                      {benefit.num}
-                    </span>
-                    <span className="lg:hidden text-xs font-bold uppercase tracking-wider text-cyan-400/90">
-                      {benefit.tag}
-                    </span>
+        {/* 6 Core Growth Pillars Grid (Dark Navy Containers with Side Slide In) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 lg:mb-20">
+          {pillars.map((pillar, idx) => {
+            const Icon = pillar.icon;
+            const anim = idx % 3 === 0 ? "fade-left" : idx % 3 === 2 ? "fade-right" : "fade-up";
+            const delay = (idx % 3) * 120;
+            return (
+              <ScrollReveal
+                key={pillar.title}
+                animation={anim}
+                duration={750}
+                delay={delay}
+                className="h-full"
+              >
+                <div className="rounded-3xl p-7 sm:p-8 border border-white/10 bg-white/[0.03] backdrop-blur-md flex flex-col justify-between hover:border-[#FF5E3A]/40 transition-all duration-300 group hover:-translate-y-1 shadow-lg h-full">
+                  <div className="space-y-4">
+                    {/* Header: Icon + Tag */}
+                    <div className="flex items-center justify-between">
+                      <div className="h-12 w-12 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center text-[#FF5E3A] group-hover:bg-[#FF5E3A] group-hover:text-white transition-all duration-300">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-slate-400 group-hover:text-[#FF5E3A] transition-colors">
+                        {pillar.tag}
+                      </span>
+                    </div>
+
+                    {/* Title & Description */}
+                    <div>
+                      <h3 className="text-xl font-bold text-[#FAF6F0] group-hover:text-[#FF5E3A] transition-colors">
+                        {pillar.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2.5 font-normal">
+                        {pillar.description}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Title & Tag */}
-                  <div className="lg:col-span-4">
-                    <span className="hidden lg:block text-xs font-bold uppercase tracking-wider text-cyan-400/90 mb-1">
-                      {benefit.tag}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                      {benefit.title}
-                    </h3>
-                  </div>
-
-                  {/* Description */}
-                  <div className="lg:col-span-6">
-                    <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-                      {benefit.description}
-                    </p>
+                  {/* Highlight Feature Row */}
+                  <div className="pt-6 mt-6 border-t border-white/10 flex items-center gap-2 text-xs font-semibold text-slate-400 group-hover:text-slate-200 transition-colors">
+                    <CheckCircle2 className="h-4 w-4 text-[#FF5E3A] shrink-0" />
+                    <span>{pillar.highlight}</span>
                   </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
+
+        {/* Bottom Verified Metric Strip */}
+        <ScrollReveal animation="fade-up" duration={800} delay={150}>
+          <div className="rounded-[2.5rem] p-8 sm:p-10 border border-white/15 bg-gradient-to-r from-[#111827] via-[#0F172A] to-[#111827] shadow-2xl">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+              {metrics.map((m, idx) => (
+                <div key={idx} className={`pt-6 lg:pt-0 ${idx !== 0 ? "lg:pl-8" : ""}`}>
+                  <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#FF5E3A] tracking-tight font-mono">
+                    {m.value}
+                  </p>
+                  <h4 className="text-sm sm:text-base font-bold text-[#FAF6F0] mt-2">
+                    {m.label}
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-1 font-normal">
+                    {m.subtext}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
       </Container>
     </section>
   );

@@ -16,23 +16,23 @@ interface ScrollRevealProps {
 export function ScrollReveal({
   children,
   animation = "fade-up",
-  duration = 700,
+  duration = 750,
   delay = 0,
   className,
-  threshold = 0.1,
+  threshold = 0.08,
 }: ScrollRevealProps) {
   const [ref, inView] = useInView<HTMLDivElement>({ threshold, triggerOnce: true });
 
   const getInitialStyles = () => {
     switch (animation) {
       case "fade-up":
-        return "opacity-0 translate-y-8";
+        return "opacity-0 translate-y-10";
       case "fade-down":
-        return "opacity-0 -translate-y-8";
+        return "opacity-0 -translate-y-10";
       case "fade-left":
-        return "opacity-0 translate-x-8";
+        return "opacity-0 -translate-x-12";
       case "fade-right":
-        return "opacity-0 -translate-x-8";
+        return "opacity-0 translate-x-12";
       case "zoom-in":
         return "opacity-0 scale-95";
       case "fade":
@@ -44,7 +44,7 @@ export function ScrollReveal({
   const getVisibleStyles = () => {
     switch (animation) {
       case "zoom-in":
-        return "opacity-100 scale-100";
+        return "opacity-100 scale-100 translate-x-0 translate-y-0";
       default:
         return "opacity-100 translate-x-0 translate-y-0";
     }
@@ -58,7 +58,7 @@ export function ScrollReveal({
         transitionDelay: `${delay}ms`,
       }}
       className={cn(
-        "transition-all ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform",
+        "transition-all ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]",
         inView ? getVisibleStyles() : getInitialStyles(),
         className
       )}

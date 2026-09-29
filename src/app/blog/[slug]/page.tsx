@@ -3,17 +3,18 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { blogData } from "@/data/blog";
 import { Container } from "@/components/common/Container";
-import { Button } from "@/components/ui/Button";
 import { BlogCard } from "@/components/ui/BlogCard";
-import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { BackgroundBeams } from "@/components/common/BackgroundBeams";
 import { CTASection } from "@/components/sections/CTASection";
+import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { constructMetadata } from "@/lib/metadata";
 import {
   Clock,
   ArrowLeft,
   CheckCircle2,
   Calendar,
+  Sparkles,
+  ArrowRight,
+  User,
 } from "lucide-react";
 
 interface BlogPageProps {
@@ -58,54 +59,53 @@ export default async function BlogPostDetailPage({ params }: BlogPageProps) {
   const relatedPosts = blogData.filter((p) => p.id !== post.id).slice(0, 3);
 
   return (
-    <div className="flex flex-col w-full overflow-hidden bg-[#070b14]">
-      {/* 1. Article Header Section */}
-      <section className="py-20 lg:py-24 relative overflow-hidden bg-grid-pattern">
-        <BackgroundBeams intensity="high" showDots={true} />
-        <Container className="relative z-10 max-w-3xl">
+    <div className="flex flex-col w-full overflow-hidden bg-[#0A0F1D]">
+      {/* 1. Article Header Section (Dark Navy) */}
+      <section className="relative py-16 sm:py-20 lg:py-24 bg-[#0A0F1D] text-[#FAF6F0] overflow-hidden border-b border-white/10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#FF5E3A]/10 rounded-full blur-3xl pointer-events-none -z-0" />
+
+        <Container className="relative z-10 max-w-4xl">
           <div className="mb-6">
-            <Button
+            <Link
               href="/blog"
-              variant="ghost"
-              size="sm"
-              className="gap-2 text-slate-400 hover:text-white"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-[#FF5E3A] transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to All Insights
-            </Button>
+              <span>Back to All Insights</span>
+            </Link>
           </div>
 
-          <ScrollReveal animation="fade-up" duration={500}>
-            <div className="flex flex-wrap items-center gap-3 mb-3 text-xs">
-              <span className="rounded-full bg-blue-500/10 px-2.5 py-0.5 font-semibold text-cyan-400 border border-blue-500/20">
+          <ScrollReveal animation="fade-up" duration={750}>
+            <div className="flex flex-wrap items-center gap-3 mb-4 text-xs">
+              <span className="rounded-full bg-white/[0.06] px-3.5 py-1 font-extrabold uppercase tracking-widest text-[#FF5E3A] border border-[#FF5E3A]/30 text-[10px]">
                 {post.category}
               </span>
-              <span className="text-slate-400 flex items-center gap-1">
+              <span className="text-slate-400 flex items-center gap-1 font-medium">
                 <Clock className="h-3.5 w-3.5" />
                 {post.readTime}
               </span>
-              <span className="text-slate-400 flex items-center gap-1">
+              <span className="text-slate-400 flex items-center gap-1 font-medium">
                 <Calendar className="h-3.5 w-3.5" />
                 {post.publishedAt}
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#FAF6F0] leading-tight">
               {post.title}
             </h1>
 
-            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
               {post.excerpt}
             </p>
 
             {/* Author Profile Banner */}
-            <div className="mt-8 pt-6 border-t border-slate-800 flex items-center justify-between">
+            <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-cyan-300 font-bold text-sm">
+                <div className="h-10 w-10 rounded-full bg-white/[0.08] border border-[#FF5E3A]/40 flex items-center justify-center text-[#FF5E3A] font-bold text-sm">
                   {post.author.name.split(" ").map((n) => n[0]).join("")}
                 </div>
                 <div>
-                  <span className="text-sm font-bold text-white block">
+                  <span className="text-sm font-bold text-[#FAF6F0] block">
                     {post.author.name}
                   </span>
                   <span className="text-xs text-slate-400">{post.author.role}</span>
@@ -116,20 +116,21 @@ export default async function BlogPostDetailPage({ params }: BlogPageProps) {
         </Container>
       </section>
 
-      {/* 2. Article Body & Takeaways */}
-      <section className="py-14 bg-[#070b14] border-t border-slate-800/80">
+      {/* 2. Article Body & Takeaways (Warm White / Cream Surface) */}
+      <section className="py-16 lg:py-20 bg-[#FAF6F0] cream-surface border-b border-[#EADECE] relative overflow-hidden">
         <Container className="relative z-10 max-w-3xl">
-          {/* Key Takeaways Box */}
+          {/* Key Strategic Takeaways Box */}
           {post.takeaways && (
-            <ScrollReveal animation="fade-up" duration={500}>
-              <div className="glow-card rounded-2xl p-6 border border-blue-500/30 bg-blue-950/20 mb-10">
-                <h3 className="text-sm font-bold text-cyan-300 uppercase tracking-wider mb-3">
-                  Key Strategic Takeaways
+            <ScrollReveal animation="fade-up" duration={700}>
+              <div className="cream-card rounded-3xl p-7 sm:p-8 border border-[#EADECE] bg-white mb-12 shadow-md">
+                <h3 className="text-xs font-extrabold text-[#FF5E3A] uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  <span>Key Strategic Takeaways</span>
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {post.takeaways.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-300">
-                      <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" />
+                    <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#0A0F1D] font-semibold">
+                      <CheckCircle2 className="h-4.5 w-4.5 text-[#FF5E3A] shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -139,59 +140,76 @@ export default async function BlogPostDetailPage({ params }: BlogPageProps) {
           )}
 
           {/* Body Content Paragraphs */}
-          <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-            {post.content ? (
-              post.content.map((paragraph, index) => (
-                <p key={index} className="leading-relaxed">
-                  {paragraph}
-                </p>
-              ))
-            ) : (
-              <p>{post.excerpt}</p>
-            )}
-          </div>
-
-          {/* Author Bio Box */}
-          <div className="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <h4 className="text-sm font-bold text-white">
-                Written by {post.author.name}
-              </h4>
-              <p className="text-xs text-slate-400">
-                {post.author.role} at Growlinx.
-              </p>
+          <ScrollReveal animation="fade-up" duration={750} delay={100}>
+            <div className="space-y-6 text-base sm:text-lg text-[#2D3748] leading-relaxed font-normal">
+              {post.content ? (
+                post.content.map((paragraph, index) => (
+                  <p key={index} className="leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))
+              ) : (
+                <p>{post.excerpt}</p>
+              )}
             </div>
-            <Button href="/free-strategy-call" variant="gradient" size="sm">
-              <span>Discuss Strategy With Author</span>
-            </Button>
-          </div>
+
+            {/* Author Bio Box */}
+            <div className="mt-14 pt-8 border-t border-[#EADECE] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+              <div>
+                <h4 className="text-base font-bold text-[#0A0F1D]">
+                  Written by {post.author.name}
+                </h4>
+                <p className="text-xs text-[#5A6578] font-medium mt-0.5">
+                  {post.author.role} at Growlinx Growth Consultancy.
+                </p>
+              </div>
+              <Link
+                href="/free-strategy-call"
+                className="orange-btn inline-flex items-center gap-2 font-extrabold px-6 py-3 rounded-full text-xs uppercase tracking-wider"
+              >
+                <span>Discuss With Author</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </ScrollReveal>
         </Container>
       </section>
 
-      {/* 3. Related Articles Section */}
-      <section className="py-20 bg-[#060914] border-t border-slate-800/80">
+      {/* 3. Related Articles Section (Warm White / Cream Surface) */}
+      <section className="py-20 lg:py-24 bg-[#FAF6F0] cream-surface border-b border-[#EADECE] relative overflow-hidden">
         <Container className="relative z-10">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-10">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">
-                Continue Reading
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#FF5E3A]">
+                CONTINUE LEARNING
               </span>
-              <h2 className="text-2xl font-bold text-white">
-                Related Growth Insights
+              <h2 className="text-2xl sm:text-3xl font-black text-[#0A0F1D] mt-1">
+                Related Growth Playbooks
               </h2>
             </div>
             <Link
               href="/blog"
-              className="text-sm font-semibold text-cyan-400 hover:text-cyan-300"
+              className="text-xs font-extrabold uppercase tracking-wider text-[#0A0F1D] hover:text-[#FF5E3A] transition-colors"
             >
               View All Insights →
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {relatedPosts.map((relPost) => (
-              <BlogCard key={relPost.id} post={relPost} />
-            ))}
+            {relatedPosts.map((relPost, idx) => {
+              const anim = idx === 0 ? "fade-left" : idx === 2 ? "fade-right" : "fade-up";
+              return (
+                <ScrollReveal
+                  key={relPost.id}
+                  animation={anim}
+                  duration={750}
+                  delay={idx * 120}
+                  className="h-full"
+                >
+                  <BlogCard post={relPost} theme="light" />
+                </ScrollReveal>
+              );
+            })}
           </div>
         </Container>
       </section>

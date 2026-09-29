@@ -1,121 +1,150 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Container } from "@/components/common/Container";
-import { SectionHeading } from "@/components/common/SectionHeading";
-import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { testimonialsData } from "@/data/testimonials";
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 export function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const prev = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? testimonialsData.length - 1 : prev - 1
-    );
+  const nextTestimonial = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonialsData.length);
   };
 
-  const next = () => {
-    setCurrentIndex((prev) =>
-      prev === testimonialsData.length - 1 ? 0 : prev + 1
-    );
+  const prevTestimonial = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonialsData.length) % testimonialsData.length);
   };
 
-  const item = testimonialsData[currentIndex];
+  const current = testimonialsData[currentIndex];
+
+  const testimonialImages = [
+    "/images/client-testimonial.jpg",
+    "/images/strategist-laptop.jpg",
+    "/images/strategist-tablet.jpg",
+    "/images/case-study-ecommerce.jpg",
+    "/images/case-study-saas.jpg",
+    "/images/case-study-seo.jpg",
+  ];
 
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden bg-[#050811] border-t border-white/[0.06]">
-      <Container className="relative z-10">
-        <ScrollReveal animation="fade-up" duration={500}>
-          <SectionHeading
-            badge="Client Endorsements"
-            title="Trusted by High-Growth Founders"
-            description="Read what venture-backed founders and enterprise marketing leaders say about partnering with Growlinx."
-            align="center"
-          />
-        </ScrollReveal>
+    <section className="relative py-16 sm:py-24 lg:py-28 cream-surface overflow-hidden border-b border-[#EADECE]">
+      <Container>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Left Column: Client Portrait Masked in Orange Arch Circle (Slides in from Left) */}
+          <div className="lg:col-span-5 relative flex justify-center">
+            <ScrollReveal animation="fade-left" duration={800} className="w-full flex justify-center">
+              <div className="relative w-full max-w-[360px] aspect-square">
+                {/* Background Orange Arch Circle */}
+                <div className="absolute inset-0 rounded-full bg-[#FF5E3A] -z-0 opacity-95" />
 
-        {/* Large Editorial Quotation Showcase */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <ScrollReveal animation="fade-up" duration={500} delay={100}>
-            <div className="glass-panel rounded-3xl p-8 sm:p-14 relative overflow-hidden border border-white/10 shadow-2xl">
-              <Quote className="h-16 w-16 text-cyan-400/15 absolute top-8 right-8 pointer-events-none" />
-
-              {/* Star Rating */}
-              <div className="flex items-center gap-1 mb-8">
-                {[...Array(item.rating || 5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 fill-amber-400 text-amber-400"
+                {/* Portrait Image Container */}
+                <div className="relative w-full h-full rounded-full overflow-hidden z-10 shadow-2xl border-4 border-[#FAF6F0]">
+                  <Image
+                    src={testimonialImages[currentIndex % testimonialImages.length]}
+                    alt={current.name}
+                    fill
+                    className="object-cover object-center transition-all duration-700"
+                    sizes="(max-width: 768px) 100vw, 400px"
                   />
-                ))}
-              </div>
-
-              {/* Quote Statement */}
-              <p className="text-xl sm:text-2xl lg:text-3xl font-light text-slate-100 leading-relaxed">
-                "{item.quote}"
-              </p>
-
-              {/* Author & Verified Metric */}
-              <div className="mt-10 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 text-white font-bold text-base shadow-lg shadow-blue-500/20">
-                    {item.name.split(" ").map((n: string) => n[0]).join("")}
-                  </div>
-                  <div>
-                    <span className="block text-base font-bold text-white">
-                      {item.name}
-                    </span>
-                    <span className="block text-xs sm:text-sm text-slate-400">
-                      {item.role}, <span className="text-slate-300 font-semibold">{item.company}</span>
-                    </span>
-                  </div>
                 </div>
 
-                {item.metric && (
-                  <div className="rounded-full bg-emerald-500/10 px-4 py-1.5 border border-emerald-500/20 text-xs font-bold text-emerald-400 self-start sm:self-auto">
-                    {item.metric.value} {item.metric.label}
+                {/* Floating Verified Metric Badge */}
+                {current.metric && (
+                  <div className="absolute -bottom-2 right-4 z-20 bg-white border border-[#EADECE] rounded-full px-4 py-1.5 shadow-lg flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-[#FF5E3A]" />
+                    <span className="text-xs font-bold text-[#0A0F1D]">
+                      {current.metric.value} {current.metric.label}
+                    </span>
                   </div>
                 )}
               </div>
-            </div>
+            </ScrollReveal>
+          </div>
 
-            {/* Minimalist Carousel Controls */}
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <button
-                type="button"
-                onClick={prev}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
+          {/* Right Column: Reference-Inspired Layout with Authentic Growlinx Testimonial (Slides in from Right) */}
+          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <ScrollReveal animation="fade-right" duration={800} delay={100} className="space-y-6">
+              {/* Top Row: Label & Pagination Dots */}
+              <div className="flex items-center justify-center lg:justify-between">
+                <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#FF5E3A]">
+                  CLIENT ENDORSEMENTS
+                </span>
 
-              <div className="flex items-center gap-1.5">
-                {testimonialsData.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setCurrentIndex(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      currentIndex === idx ? "w-6 bg-cyan-400" : "w-1.5 bg-slate-700"
-                    }`}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  />
+                {/* Dots Indicator */}
+                <div className="hidden lg:flex items-center gap-2">
+                  {testimonialsData.map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setCurrentIndex(idx)}
+                      aria-label={`Go to testimonial ${idx + 1}`}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                        idx === currentIndex ? "w-6 bg-[#FF5E3A]" : "w-2.5 bg-[#EADECE]"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Headline */}
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-[#0A0F1D]">
+                What Founders & CMOs Say
+              </h2>
+
+              {/* Big Quote with Orange Quote Icon */}
+              <div className="flex items-start gap-4 pt-2">
+                <span className="text-5xl sm:text-6xl font-black text-[#FF5E3A] leading-none shrink-0 select-none">
+                  “
+                </span>
+                <div>
+                  <p className="text-xl sm:text-2xl font-bold text-[#0A0F1D] leading-relaxed">
+                    {current.quote}
+                  </p>
+                </div>
+              </div>
+
+              {/* Star Ratings */}
+              <div className="flex items-center justify-center lg:justify-start gap-1 text-[#FF5E3A]">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-[#FF5E3A]" />
                 ))}
               </div>
 
-              <button
-                type="button"
-                onClick={next}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-          </ScrollReveal>
+              {/* Client Info & Prev/Next Navigation Controls */}
+              <div className="pt-4 border-t border-[#EADECE] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                  <h4 className="text-lg font-black text-[#0A0F1D]">{current.name}</h4>
+                  <p className="text-xs font-semibold text-[#5A6578]">
+                    {current.role} at {current.company}
+                  </p>
+                </div>
+
+                {/* Arrow Controls */}
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={prevTestimonial}
+                    aria-label="Previous testimonial"
+                    className="h-11 w-11 rounded-full border border-[#EADECE] bg-white flex items-center justify-center text-[#0A0F1D] hover:bg-[#FF5E3A] hover:border-[#FF5E3A] hover:text-white transition-all shadow-xs"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={nextTestimonial}
+                    aria-label="Next testimonial"
+                    className="h-11 w-11 rounded-full border border-[#EADECE] bg-[#FF5E3A] flex items-center justify-center text-white hover:bg-[#E8502B] transition-all shadow-xs"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </Container>
     </section>

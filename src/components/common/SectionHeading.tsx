@@ -1,12 +1,14 @@
-import { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
+import { Sparkles } from "lucide-react";
 
-interface SectionHeadingProps extends HTMLAttributes<HTMLDivElement> {
+interface SectionHeadingProps {
   badge?: string;
   title: string;
   highlightText?: string;
   description?: string;
   align?: "left" | "center" | "right";
+  className?: string;
+  theme?: "dark" | "light";
 }
 
 export function SectionHeading({
@@ -16,40 +18,46 @@ export function SectionHeading({
   description,
   align = "center",
   className,
-  ...props
+  theme = "dark",
 }: SectionHeadingProps) {
+  const isLight = theme === "light";
+
   return (
     <div
       className={cn(
-        "space-y-3.5",
-        {
-          "text-left": align === "left",
-          "text-center mx-auto": align === "center",
-          "text-right ml-auto": align === "right",
-        },
-        "max-w-3xl",
+        "space-y-4 max-w-3xl",
+        align === "center" && "mx-auto text-center",
+        align === "left" && "text-left",
+        align === "right" && "ml-auto text-right",
         className
       )}
-      {...props}
     >
       {badge && (
-        <div
-          className={cn("inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-semibold glow-badge", {
-            "mx-auto": align === "center",
-          })}
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
-          {badge}
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest bg-white/10 border border-[#FF5E3A]/30 text-[#FF5E3A] shadow-xs">
+          <Sparkles className="h-3.5 w-3.5" />
+          <span>{badge}</span>
         </div>
       )}
-      <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight">
+
+      <h2
+        className={cn(
+          "text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.12]",
+          isLight ? "text-[#0A0F1D]" : "text-[#FAF6F0]"
+        )}
+      >
         {title}{" "}
         {highlightText && (
-          <span className="glow-accent-gradient">{highlightText}</span>
+          <span className="text-[#FF5E3A]">{highlightText}</span>
         )}
       </h2>
+
       {description && (
-        <p className="text-base text-slate-300 sm:text-lg leading-relaxed max-w-2xl mx-auto">
+        <p
+          className={cn(
+            "text-sm sm:text-base lg:text-lg leading-relaxed font-normal",
+            isLight ? "text-[#5A6578]" : "text-slate-300"
+          )}
+        >
           {description}
         </p>
       )}

@@ -1,233 +1,138 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import { Container } from "@/components/common/Container";
-import { SectionHeading } from "@/components/common/SectionHeading";
+import { Process3DScene } from "@/components/3d/Process3DScene";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { useInView } from "@/hooks/useInView";
-import { CheckCircle2, Sparkles, ArrowRight } from "lucide-react";
+import { Search, Compass, Rocket, TrendingUp, ArrowRight, Sparkles, Activity } from "lucide-react";
 
 export function ProcessSection() {
-  const [activeStep, setActiveStep] = useState(0);
-  const [isManual, setIsManual] = useState(false);
-  const [sectionRef, inView] = useInView<HTMLElement>({ threshold: 0.25 });
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
   const steps = [
     {
-      num: "01",
-      title: "Discover",
-      phase: "Audit & Intelligence",
-      description:
-        "Deep-dive audit of market positioning, search demand, conversion bottlenecks, and competitor vulnerabilities.",
-      deliverables: ["Full Tech & SEO Audit", "TAM Demand Analysis", "Competitor Matrix"],
+      number: "01",
+      title: "AUDIT & DISCOVERY",
+      subtitle: "Uncover Conversion Leaks",
+      description: "Deep crawl of technical website health, keyword gaps, ad economics, and competitor acquisition moats.",
+      icon: Search,
     },
     {
-      num: "02",
-      title: "Strategize",
-      phase: "Growth Architecture",
-      description:
-        "Bespoke full-funnel blueprint defining high-intent channel priorities, unit economics, and pipeline KPI targets.",
-      deliverables: ["Channel CAC Modeling", "High-Converting Angle Maps", "Revenue KPI Roadmap"],
+      number: "02",
+      title: "STRATEGY BLUEPRINT",
+      subtitle: "Full-Funnel Roadmap",
+      description: "Architecting high-ROAS campaign structures, intent keyword clusters, and targeted customer journey funnels.",
+      icon: Compass,
     },
     {
-      num: "03",
-      title: "Execute",
-      phase: "Velocity Deployment",
-      description:
-        "High-velocity deployment of direct-response creative, technical SEO infrastructure, and multi-touch telemetry.",
-      deliverables: ["Direct-Response Ads", "Landing Page CRO", "Real-Time Telemetry"],
+      number: "03",
+      title: "MULTICHANNEL EXECUTION",
+      subtitle: "Launch & Drive Attention",
+      description: "Deploying high-converting creative assets, technical SEO infrastructure, and precision audience targeting.",
+      icon: Rocket,
     },
     {
-      num: "04",
-      title: "Scale",
-      phase: "Compounding Revenue",
-      description:
-        "Aggressive budget compounding on validated winning funnels to multiply customer lifetime value and commercial profit.",
-      deliverables: ["Budget Compounding", "LTV Multipliers", "Dominant Market Share"],
+      number: "04",
+      title: "SCALE & OPTIMIZE",
+      subtitle: "Compounding Growth",
+      description: "Continuous multivariate testing, bid optimization, cohort telemetry, and aggressive budget scaling on winners.",
+      icon: TrendingUp,
     },
   ];
 
-  // Automatic Step Tracker Cycle when in viewport
-  useEffect(() => {
-    if (!inView || isManual) return;
-
-    timerRef.current = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % steps.length);
-    }, 3200);
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [inView, isManual, steps.length]);
-
-  const handleStepClick = (index: number) => {
-    setActiveStep(index);
-    setIsManual(true);
-    // Reset manual override after 8 seconds of inactivity
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setTimeout(() => {
-      setIsManual(false);
-    }, 8000);
-  };
-
-  // Compute progress line width (0% -> 33.3% -> 66.6% -> 100%)
-  const progressWidth = `${(activeStep / (steps.length - 1)) * 100}%`;
-
   return (
-    <section
-      ref={sectionRef}
-      className="py-24 lg:py-32 relative overflow-hidden bg-[#060a15] border-t border-white/[0.06]"
-    >
-      {/* Background ambient glow focused behind active step */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-blue-600/10 blur-3xl pointer-events-none rounded-full" />
+    <section className="relative py-20 sm:py-28 lg:py-32 cream-surface overflow-hidden border-b border-[#EADECE]">
+      {/* Background Ambience */}
+      <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-[#FFEBE5]/60 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      <Container className="relative z-10">
-        <ScrollReveal animation="fade-up" duration={500}>
-          <div className="flex flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold glow-badge mb-3">
-              <Sparkles className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
-              <span className="tracking-wider uppercase font-bold text-cyan-300">
-                Live Sequential Growth Tracker
-              </span>
+      <Container>
+        {/* Section Header */}
+        <ScrollReveal animation="fade-up" duration={700}>
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest bg-white border border-[#EADECE] text-[#FF5E3A] shadow-xs">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>OUR GROWTH METHODOLOGY</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-              How We Grow <span className="glow-accent-gradient">Your Business</span>
+
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0A0F1D] leading-tight">
+              How We Scale <span className="text-[#FF5E3A]">Your Revenue</span>
             </h2>
-            <p className="mt-3 text-base text-slate-300 sm:text-lg leading-relaxed max-w-2xl">
-              A repeatable, battle-tested 4-phase methodology that transforms acquisition into a predictable revenue asset.
+
+            <p className="text-sm sm:text-base lg:text-lg text-[#5A6578] font-medium leading-relaxed">
+              A battle-tested 4-step performance marketing framework that transforms strategic intent into measurable, scalable market dominance.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Horizontal Process Tracker Timeline */}
-        <div className="mt-12 lg:mt-16 relative max-w-6xl mx-auto">
-          {/* Base Background Track Line (Desktop) */}
-          <div className="absolute top-5.5 left-12 right-12 h-[2px] bg-white/[0.08] hidden lg:block rounded-full" />
+        {/* Interactive 3D Flow Pathway (Framed in Rounded Dark Container with Telemetry Badges) */}
+        <ScrollReveal animation="zoom-in" duration={800} delay={100} className="relative mb-12">
+          <div className="rounded-[2.5rem] bg-gradient-to-br from-[#111827] via-[#0D1322] to-[#0A0F1D] border border-white/15 p-4 sm:p-6 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center">
+            
+            {/* Top Telemetry Header Overlay */}
+            <div className="w-full flex items-center justify-between pb-3 px-2 text-xs text-slate-300 font-bold border-b border-white/10">
+              <div className="flex items-center gap-2">
+                <Activity className="h-4 w-4 text-[#FF5E3A]" />
+                <span className="text-[#FAF6F0]">4-Stage Revenue Funnel Execution Pipeline</span>
+              </div>
+              <div className="hidden sm:flex items-center gap-2 text-[11px] text-[#FF5E3A] font-extrabold uppercase tracking-wider">
+                <span className="h-2 w-2 rounded-full bg-[#FF5E3A] animate-ping" />
+                <span>Audit → Blueprint → Execution → Scale</span>
+              </div>
+            </div>
 
-          {/* Animated Glowing Active Progress Fill Line (Desktop) */}
-          <div
-            className="absolute top-5.5 left-12 h-[2px] bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 hidden lg:block rounded-full transition-all duration-700 ease-out shadow-[0_0_10px_rgba(56,189,248,0.6)]"
-            style={{ width: `calc(${progressWidth} * 0.88)` }}
-          />
+            {/* 3D Visual */}
+            <div className="w-full">
+              <Process3DScene />
+            </div>
+          </div>
+        </ScrollReveal>
 
-          {/* 4 Compact Step Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-5">
-            {steps.map((step, index) => {
-              const isActive = activeStep === index;
-              const isCompleted = activeStep > index;
-
-              return (
-                <div
-                  key={step.num}
-                  onClick={() => handleStepClick(index)}
-                  className={`flex flex-col rounded-2xl p-4 sm:p-5 transition-all duration-400 cursor-pointer relative group border ${
-                    isActive
-                      ? "bg-white/[0.05] border-cyan-400/50 shadow-[0_10px_30px_rgba(56,189,248,0.12)] ring-1 ring-cyan-400/30 scale-[1.01]"
-                      : isCompleted
-                      ? "bg-white/[0.02] border-white/10 hover:border-white/20"
-                      : "bg-transparent border-white/[0.06] hover:bg-white/[0.02] hover:border-white/15 opacity-75 hover:opacity-100"
-                  }`}
-                >
-                  {/* Step Node Icon & Mono Number */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div
-                      className={`flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl border transition-all duration-400 z-10 ${
-                        isActive
-                          ? "bg-gradient-to-br from-cyan-500/20 to-blue-600/30 border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(56,189,248,0.4)] scale-105"
-                          : isCompleted
-                          ? "bg-blue-950/60 border-cyan-500/40 text-cyan-400"
-                          : "bg-[#090f20] border-white/10 text-slate-500 group-hover:border-white/20 group-hover:text-slate-300"
-                      }`}
-                    >
-                      <span className="text-base sm:text-lg font-mono font-bold">{step.num}</span>
-                    </div>
-
-                    {/* Step Status Badge */}
-                    <div className="flex items-center text-[10px] font-mono">
-                      {isActive ? (
-                        <span className="flex items-center gap-1 text-cyan-300 bg-cyan-500/15 px-2 py-0.5 rounded-full border border-cyan-500/30 font-bold">
-                          <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-ping" />
-                          Active
-                        </span>
-                      ) : isCompleted ? (
-                        <span className="flex items-center gap-1 text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                          <CheckCircle2 className="h-3 w-3" />
-                          Done
-                        </span>
-                      ) : (
-                        <span className="text-slate-500">Phase {step.num}</span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Subtitle / Phase */}
-                  <span
-                    className={`text-[10px] font-bold uppercase tracking-wider mb-0.5 transition-colors ${
-                      isActive ? "text-cyan-400" : isCompleted ? "text-slate-400" : "text-slate-500"
-                    }`}
-                  >
-                    {step.phase}
-                  </span>
-
-                  {/* Step Title */}
-                  <h3
-                    className={`text-lg sm:text-xl font-bold transition-colors ${
-                      isActive ? "text-white glow-accent-gradient" : "text-slate-200 group-hover:text-white"
-                    }`}
-                  >
-                    {step.title}
-                  </h3>
-
-                  {/* Step Description */}
-                  <p className="mt-1.5 text-xs text-slate-300 leading-relaxed line-clamp-3">
-                    {step.description}
-                  </p>
-
-                  {/* Compact Micro Deliverables Checklist */}
-                  <div className="mt-3.5 pt-3 border-t border-white/[0.08] space-y-1">
-                    {step.deliverables.slice(0, 2).map((item) => (
-                      <div
-                        key={item}
-                        className={`flex items-center gap-1.5 text-[11px] transition-colors ${
-                          isActive ? "text-slate-200 font-medium" : "text-slate-400"
-                        }`}
-                      >
-                        <span
-                          className={`h-1 w-1 rounded-full shrink-0 ${
-                            isActive ? "bg-cyan-400 animate-pulse" : isCompleted ? "bg-emerald-400" : "bg-slate-600"
-                          }`}
-                        />
-                        <span className="truncate">{item}</span>
+        {/* 4 Process Step Cards with Side Scroll Entrance */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          {steps.map((step, idx) => {
+            const Icon = step.icon;
+            const anim = idx === 0 ? "fade-left" : idx === 3 ? "fade-right" : "fade-up";
+            const delay = idx * 120;
+            return (
+              <ScrollReveal
+                key={step.number}
+                animation={anim}
+                duration={750}
+                delay={delay}
+                className="h-full"
+              >
+                <div className="cream-card cream-card-interactive group rounded-3xl p-6 sm:p-7 relative flex flex-col justify-between h-full">
+                  <div>
+                    {/* Top Row: Circular Icon + Step Number & Title */}
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="h-12 w-12 rounded-2xl bg-[#FAF6F0] border border-[#EADECE] text-[#FF5E3A] group-hover:bg-[#FF5E3A] group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 shadow-xs">
+                        <Icon className="h-5 w-5" />
                       </div>
-                    ))}
+
+                      <div>
+                        <span className="text-[11px] font-extrabold text-[#FF5E3A] tracking-wider block">
+                          STEP {step.number}
+                        </span>
+                        <h4 className="text-xs font-black tracking-wider text-[#0A0F1D] uppercase">
+                          {step.title}
+                        </h4>
+                      </div>
+                    </div>
+
+                    {/* Step Content */}
+                    <h3 className="text-lg font-bold text-[#0A0F1D] group-hover:text-[#FF5E3A] transition-colors mb-2">
+                      {step.subtitle}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#5A6578] leading-relaxed font-normal">
+                      {step.description}
+                    </p>
                   </div>
 
-                  {/* Interactive Active Bottom Accent Bar */}
-                  {isActive && (
-                    <div className="absolute bottom-0 left-4 right-4 h-[2px] bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 rounded-full" />
-                  )}
+                  <div className="pt-4 mt-6 border-t border-[#EADECE] flex items-center justify-between text-[11px] font-bold text-[#5A6578]">
+                    <span>Stage {step.number} Protocol</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#FF5E3A]" />
+                  </div>
                 </div>
-              );
-            })}
-          </div>
-
-          {/* Interactive Controls & Progress Indicators */}
-          <div className="mt-8 flex items-center justify-center gap-2.5">
-            {steps.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => handleStepClick(i)}
-                aria-label={`Jump to Step 0${i + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeStep === i
-                    ? "w-8 bg-gradient-to-r from-cyan-400 to-blue-500 shadow-[0_0_8px_rgba(56,189,248,0.5)]"
-                    : "w-2 bg-white/20 hover:bg-white/40"
-                }`}
-              />
-            ))}
-          </div>
+              </ScrollReveal>
+            );
+          })}
         </div>
       </Container>
     </section>
