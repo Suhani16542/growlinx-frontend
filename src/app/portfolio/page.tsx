@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { Container } from "@/components/common/Container";
 import { PortfolioCard } from "@/components/ui/PortfolioCard";
 import { portfolioData, portfolioCategories } from "@/data/portfolio";
@@ -29,17 +28,6 @@ import {
 } from "lucide-react";
 import { PortfolioItem } from "@/types";
 
-// Dynamic 3D Components
-const PortfolioHero3D = dynamic(
-  () => import("@/components/3d/PortfolioHero3D").then((mod) => mod.PortfolioHero3D),
-  { ssr: false }
-);
-
-const MarketingDashboard3D = dynamic(
-  () => import("@/components/3d/MarketingDashboard3D").then((mod) => mod.MarketingDashboard3D),
-  { ssr: false }
-);
-
 const disciplineTabs = [
   { id: "paid-advertising", label: "Paid Acquisition (ROAS)", icon: Target },
   { id: "seo", label: "Organic Search Engine", icon: Search },
@@ -51,7 +39,7 @@ const disciplineTabs = [
 export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
-  const [active3DDiscipline, setActive3DDiscipline] = useState("paid-advertising");
+  const [activeDiscipline, setActiveDiscipline] = useState("paid-advertising");
 
   const filteredItems =
     selectedCategory === "All"
@@ -139,11 +127,44 @@ export default function PortfolioPage() {
               </ScrollReveal>
             </div>
 
-            {/* Right Column: Interactive 3D Growth Engine & Attribution Visual */}
+            {/* Right Column: High-Impact Performance Image Card */}
             <div className="lg:col-span-6 relative">
               <ScrollReveal animation="fade-right" duration={800} delay={150}>
                 <div className="relative mx-auto max-w-lg lg:max-w-none">
-                  <PortfolioHero3D />
+                  <div className="relative rounded-[2.5rem] overflow-hidden border border-[#EADECE] bg-white shadow-2xl aspect-[4/3] sm:aspect-[16/12] p-2">
+                    <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
+                      <Image
+                        src="/images/case-study-saas.jpg"
+                        alt="Growlinx Verified Client Growth"
+                        fill
+                        priority
+                        className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                    </div>
+
+                    {/* Floating Telemetry Chip 1 */}
+                    <div className="absolute top-5 left-5 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-xl border border-[#EADECE] flex items-center gap-3">
+                      <div className="h-9 w-9 rounded-xl bg-[#FF5E3A]/15 text-[#FF5E3A] flex items-center justify-center font-black">
+                        <TrendingUp className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-black text-[#0A0F1D] leading-none">+340%</p>
+                        <p className="text-[10px] font-bold text-[#5A6578] uppercase mt-0.5">Pipeline Scale</p>
+                      </div>
+                    </div>
+
+                    {/* Floating Telemetry Chip 2 */}
+                    <div className="absolute bottom-5 right-5 bg-[#0A0F1D]/95 backdrop-blur-md rounded-2xl p-3 shadow-xl border border-white/10 flex items-center gap-3">
+                      <div className="h-9 w-9 rounded-xl bg-[#FF5E3A] text-white flex items-center justify-center font-black">
+                        <Zap className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-black text-[#FAF6F0] leading-none">4.8X Blended ROAS</p>
+                        <p className="text-[10px] font-bold text-[#FF5E3A] uppercase mt-0.5">Verified Return</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </ScrollReveal>
             </div>
@@ -456,35 +477,50 @@ export default function PortfolioPage() {
 
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Column: Interactive 3D Model with Discipline Switcher */}
+            {/* Left Column: Interactive Attributor Discipline Showcase */}
             <div className="lg:col-span-6 relative">
               <ScrollReveal animation="fade-left" duration={800}>
                 <div className="rounded-[2rem] bg-gradient-to-br from-[#111827] via-[#0F172A] to-[#0A0F1D] border border-white/15 p-4 sm:p-5 shadow-2xl relative overflow-hidden">
                   <div className="w-full flex items-center justify-between pb-3 px-2 text-xs text-slate-300 font-bold border-b border-white/10">
                     <div className="flex items-center gap-2">
                       <TrendingUp className="h-4 w-4 text-[#FF5E3A]" />
-                      <span className="text-[#FAF6F0]">3D Campaign Attributor: Live</span>
+                      <span className="text-[#FAF6F0]">Multi-Touch Attribution Engine</span>
                     </div>
                     <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-[#FF5E3A]/20 text-[#FF5E3A] border border-[#FF5E3A]/30">
-                      WebGL Real-Time
+                      Live Telemetry
                     </span>
                   </div>
 
-                  {/* Live 3D Scene based on activeDiscipline */}
-                  <div className="w-full relative min-h-[340px]">
-                    <MarketingDashboard3D variant={active3DDiscipline} />
+                  {/* Discipline Image Banner */}
+                  <div className="w-full relative aspect-[16/10] rounded-2xl overflow-hidden mt-3 border border-white/10">
+                    <Image
+                      src={
+                        activeDiscipline === "seo"
+                          ? "/images/service-seo-dashboard.jpg"
+                          : activeDiscipline === "app-marketing"
+                          ? "/images/service-app-marketing.jpg"
+                          : activeDiscipline === "social-media-management"
+                          ? "/images/service-social-media.jpg"
+                          : activeDiscipline === "youtube-monetization"
+                          ? "/images/hero-agency-studio.jpg"
+                          : "/images/service-paid-ads.jpg"
+                      }
+                      alt="Campaign Telemetry Discipline Showcase"
+                      fill
+                      className="object-cover object-center transition-all duration-500"
+                    />
                   </div>
 
-                  {/* 3D Discipline Interactive Switcher */}
-                  <div className="mt-3 pt-3 border-t border-white/10 flex flex-wrap gap-1.5 justify-center">
+                  {/* Discipline Interactive Switcher */}
+                  <div className="mt-4 pt-3 border-t border-white/10 flex flex-wrap gap-1.5 justify-center">
                     {disciplineTabs.map((tab) => {
                       const Icon = tab.icon;
-                      const isActive = active3DDiscipline === tab.id;
+                      const isActive = activeDiscipline === tab.id;
                       return (
                         <button
                           key={tab.id}
                           type="button"
-                          onClick={() => setActive3DDiscipline(tab.id)}
+                          onClick={() => setActiveDiscipline(tab.id)}
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                             isActive
                               ? "bg-[#FF5E3A] text-white shadow-md shadow-[#FF5E3A]/30 scale-105"

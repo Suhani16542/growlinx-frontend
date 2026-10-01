@@ -5,9 +5,10 @@ import Link from "next/link";
 import { servicesData } from "@/data/services";
 import { Container } from "@/components/common/Container";
 import { CTASection } from "@/components/sections/CTASection";
-import { MarketingDashboard3D } from "@/components/3d/MarketingDashboard3D";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { constructMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { generateBreadcrumbSchema, generateServiceSchema } from "@/lib/schema";
 import {
   CheckCircle2,
   ArrowLeft,
@@ -608,8 +609,16 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     },
   ];
 
+  const breadcrumbsSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Services", url: "/services" },
+    { name: service.title, url: `/services/${service.slug}` },
+  ]);
+  const serviceSchema = generateServiceSchema(service, `https://growlinx.com/services/${service.slug}`);
+
   return (
     <div className="flex flex-col w-full overflow-hidden cream-surface">
+      <JsonLd schema={[breadcrumbsSchema, serviceSchema]} />
       {/* =========================================================================
           SECTION 1: SERVICE HERO (LIGHT: Warm White / Cream with Large Image Card)
           ========================================================================= */}
@@ -1035,14 +1044,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       </section>
 
       {/* =========================================================================
-          SECTION 5: DARK FEATURE SECTION & 3D TELEMETRY (DARK: Navy + White Headings)
+          SECTION 5: DARK FEATURE SECTION & TELEMETRY BREAK (DARK: Navy + White Headings)
           ========================================================================= */}
       <section className="py-16 sm:py-20 lg:py-24 relative bg-[#0A0F1D] text-[#FAF6F0] overflow-hidden border-b border-white/10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#FF5E3A]/10 rounded-full blur-3xl pointer-events-none -z-0" />
 
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Column: 3D Interactive Telemetry Container */}
+            {/* Left Column: Interactive Telemetry Image Showcase */}
             <div className="lg:col-span-6 relative">
               <ScrollReveal animation="fade-left" duration={800}>
                 <div className="rounded-[2rem] bg-gradient-to-br from-[#111827] via-[#0F172A] to-[#0A0F1D] border border-white/15 p-4 sm:p-5 shadow-2xl relative overflow-hidden">
@@ -1066,12 +1075,25 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                       </span>
                     </div>
                     <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-[#FF5E3A]/20 text-[#FF5E3A] border border-[#FF5E3A]/30">
-                      Live 3D Telemetry
+                      Live Telemetry
                     </span>
                   </div>
 
-                  <div className="w-full">
-                    <MarketingDashboard3D variant={service.slug} />
+                  <div className="w-full relative aspect-[16/10] rounded-2xl overflow-hidden mt-3 border border-white/10">
+                    <Image
+                      src={images.benefits || images.intro || "/images/service-paid-ads.jpg"}
+                      alt={`${service.title} Telemetry Engine`}
+                      fill
+                      className="object-cover object-center"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1D]/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between p-3 rounded-xl bg-[#0A0F1D]/90 backdrop-blur-md border border-white/10">
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
+                        <span className="text-xs font-bold text-[#FAF6F0]">{service.metrics?.[0]?.value ? `${service.metrics[0].value} ${service.metrics[0].label}` : "4.8X Verified ROAS"}</span>
+                      </div>
+                      <span className="text-[10px] text-slate-300 font-mono font-bold uppercase">{service.metrics?.[1]?.value ? `${service.metrics[1].value} ${service.metrics[1].label}` : "+340% Pipeline Velocity"}</span>
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>

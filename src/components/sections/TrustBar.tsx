@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
-import { MarketingDashboard3D } from "@/components/3d/MarketingDashboard3D";
 import {
   TrendingUp,
   BarChart3,
@@ -158,34 +158,37 @@ export function TrustBar() {
             }`}
           >
             <div className="relative mx-auto max-w-lg lg:max-w-none">
-              {/* Premium Dark Navy Rounded Container framing the 3D visual */}
-              <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#0F172A] via-[#0A0F1D] to-[#060913] border border-[#1E293B] shadow-2xl overflow-hidden p-3 sm:p-4">
-                
-                {/* Top Subtle Status Bar Overlay */}
-                <div className="absolute top-5 left-6 right-6 z-20 flex items-center justify-between pointer-events-none">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-[11px] font-bold text-slate-300">
-                    <Activity className="h-3 w-3 text-[#FF5E3A]" />
-                    <span>Conversion Telemetry Engine</span>
-                  </div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#FF5E3A]/20 border border-[#FF5E3A]/40 text-[#FF5E3A]">
-                    Live 3D Flow
-                  </span>
+              {/* Premium Rounded Image Container with Telemetry Badges */}
+              <div className="relative rounded-[2.5rem] overflow-hidden border border-[#EADECE] bg-white shadow-2xl aspect-[4/3] sm:aspect-[16/12] p-2">
+                <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
+                  <Image
+                    src="/images/marketing-strategy-growth.jpg"
+                    alt="Real-Time Revenue Attribution Engines"
+                    fill
+                    className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
                 </div>
 
-                {/* 3D Marketing Attribution Scene */}
-                <div className="relative w-full pt-4">
-                  <MarketingDashboard3D />
+                {/* Floating Telemetry Chip 1 */}
+                <div className="absolute top-5 left-5 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-xl border border-[#EADECE] flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-xl bg-[#FF5E3A]/15 text-[#FF5E3A] flex items-center justify-center font-black">
+                    <TrendingUp className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-black text-[#0A0F1D] leading-none">+340%</p>
+                    <p className="text-[10px] font-bold text-[#5A6578] uppercase mt-0.5">Pipeline Velocity</p>
+                  </div>
                 </div>
 
-                {/* Bottom Floating Telemetry Chips */}
-                <div className="absolute bottom-5 left-6 right-6 z-20 flex items-center justify-between pointer-events-none">
-                  <div className="bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/10 text-[11px] font-semibold text-slate-300">
-                    <span className="text-slate-400">Blended ROAS:</span>{" "}
-                    <strong className="text-[#FAF6F0] font-black">4.8X</strong>
+                {/* Floating Telemetry Chip 2 */}
+                <div className="absolute bottom-5 right-5 bg-[#0A0F1D]/95 backdrop-blur-md rounded-2xl p-3.5 shadow-xl border border-white/10 flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-xl bg-[#FF5E3A] text-white flex items-center justify-center font-black">
+                    <Activity className="h-4 w-4" />
                   </div>
-                  <div className="bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/10 text-[11px] font-semibold text-slate-300">
-                    <span className="text-slate-400">Pipeline Velocity:</span>{" "}
-                    <strong className="text-[#FF5E3A] font-black">+340%</strong>
+                  <div>
+                    <p className="text-sm font-black text-[#FAF6F0] leading-none">4.8X Blended ROAS</p>
+                    <p className="text-[10px] font-bold text-[#FF5E3A] uppercase mt-0.5">Attributable Media</p>
                   </div>
                 </div>
               </div>

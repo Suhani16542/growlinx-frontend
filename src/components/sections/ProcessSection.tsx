@@ -1,7 +1,6 @@
 "use client";
 
 import { Container } from "@/components/common/Container";
-import { Process3DScene } from "@/components/3d/Process3DScene";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { Search, Compass, Rocket, TrendingUp, ArrowRight, Sparkles, Activity } from "lucide-react";
 
@@ -58,29 +57,6 @@ export function ProcessSection() {
             <p className="text-sm sm:text-base lg:text-lg text-[#5A6578] font-medium leading-relaxed">
               A battle-tested 4-step performance marketing framework that transforms strategic intent into measurable, scalable market dominance.
             </p>
-          </div>
-        </ScrollReveal>
-
-        {/* Interactive 3D Flow Pathway (Framed in Rounded Dark Container with Telemetry Badges) */}
-        <ScrollReveal animation="zoom-in" duration={800} delay={100} className="relative mb-12">
-          <div className="rounded-[2.5rem] bg-gradient-to-br from-[#111827] via-[#0D1322] to-[#0A0F1D] border border-white/15 p-4 sm:p-6 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center">
-            
-            {/* Top Telemetry Header Overlay */}
-            <div className="w-full flex items-center justify-between pb-3 px-2 text-xs text-slate-300 font-bold border-b border-white/10">
-              <div className="flex items-center gap-2">
-                <Activity className="h-4 w-4 text-[#FF5E3A]" />
-                <span className="text-[#FAF6F0]">4-Stage Revenue Funnel Execution Pipeline</span>
-              </div>
-              <div className="hidden sm:flex items-center gap-2 text-[11px] text-[#FF5E3A] font-extrabold uppercase tracking-wider">
-                <span className="h-2 w-2 rounded-full bg-[#FF5E3A] animate-ping" />
-                <span>Audit → Blueprint → Execution → Scale</span>
-              </div>
-            </div>
-
-            {/* 3D Visual */}
-            <div className="w-full">
-              <Process3DScene />
-            </div>
           </div>
         </ScrollReveal>
 

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/common/Container";
-import { Floating3DOrb } from "@/components/3d/Floating3DOrb";
 import { ArrowRight, BarChart3, TrendingUp } from "lucide-react";
 
 export function AboutAgencySection() {
@@ -100,11 +99,6 @@ export function AboutAgencySection() {
                     className="object-cover object-center transition-transform duration-500 hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 500px"
                   />
-                </div>
-
-                {/* Overlapping Interactive 3D Holographic Orange Orb */}
-                <div className="absolute -bottom-6 -left-8 z-30 hidden sm:block">
-                  <Floating3DOrb color="orange" size={150} />
                 </div>
               </div>
             </div>

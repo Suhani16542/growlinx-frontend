@@ -1,3 +1,5 @@
+"use client";
+
 import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { BlogCard } from "@/components/ui/BlogCard";

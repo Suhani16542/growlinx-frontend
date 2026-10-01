@@ -5,9 +5,11 @@ import { Container } from "@/components/common/Container";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { servicesData } from "@/data/services";
 import { CTASection } from "@/components/sections/CTASection";
-import { MarketingDashboard3D } from "@/components/3d/MarketingDashboard3D";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { constructMetadata } from "@/lib/metadata";
+import { siteSEOConfig } from "@/lib/seo-config";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import {
   TrendingUp,
   Sparkles,
@@ -24,10 +26,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Growth Services | Full-Stack Digital Marketing Solutions",
-  description:
-    "Explore Growlinx's full suite of performance digital marketing services: SEO, App Marketing, Influencer Management, Social Media, YouTube Monetization, and Paid Advertising.",
-  canonicalUrl: "https://growlinx.com/services",
+  title: siteSEOConfig.services.title,
+  description: siteSEOConfig.services.description,
+  canonicalUrl: siteSEOConfig.services.canonicalUrl,
 });
 
 export default function ServicesPage() {
@@ -159,8 +160,14 @@ export default function ServicesPage() {
     },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Services", url: "/services" },
+  ]);
+
   return (
     <div className="flex flex-col w-full overflow-hidden cream-surface">
+      <JsonLd schema={breadcrumbSchema} />
       {/* =========================================================================
           SECTION 1: SERVICES HUB HERO (LIGHT: Warm White / Cream + Large Image Card)
           ========================================================================= */}
@@ -539,22 +546,34 @@ export default function ServicesPage() {
 
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left: 3D Visualization */}
+            {/* Left: Attribution Visualization Card */}
             <div className="lg:col-span-6 relative">
               <ScrollReveal animation="fade-left" duration={800}>
-                <div className="rounded-[2rem] bg-gradient-to-br from-[#111827] via-[#0F172A] to-[#0A0F1D] border border-white/15 p-4 sm:p-5 shadow-2xl relative overflow-hidden">
-                  <div className="w-full flex items-center justify-between pb-3 px-2 text-xs text-slate-300 font-bold border-b border-white/10">
-                    <div className="flex items-center gap-2">
-                      <TrendingUp className="h-4 w-4 text-[#FF5E3A]" />
-                      <span className="text-[#FAF6F0]">Unified Cross-Channel Attribution</span>
-                    </div>
-                    <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-[#FF5E3A]/20 text-[#FF5E3A] border border-[#FF5E3A]/30">
-                      Live 3D Telemetry
-                    </span>
+                <div className="relative rounded-[2rem] overflow-hidden border border-white/15 bg-white/5 shadow-2xl aspect-[4/3] p-2">
+                  <div className="relative w-full h-full rounded-[1.6rem] overflow-hidden">
+                    <Image
+                      src="/images/service-paid-ads.jpg"
+                      alt="Cross-Channel Attribution Architecture"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
                   </div>
 
-                  <div className="w-full">
-                    <MarketingDashboard3D variant="paid-advertising" />
+                  {/* Floating Telemetry Chip */}
+                  <div className="absolute bottom-5 left-5 right-5 bg-[#0A0F1D]/90 backdrop-blur-md rounded-2xl p-3.5 shadow-lg border border-white/10 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="h-9 w-9 rounded-xl bg-[#FF5E3A] text-white flex items-center justify-center font-black">
+                        <BarChart3 className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-black text-[#FAF6F0]">Cookieless Conversion API</p>
+                        <p className="text-[10px] text-slate-400 font-bold">100% Attribution Precision</p>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-[#FF5E3A]/20 text-[#FF5E3A] border border-[#FF5E3A]/40">
+                      Live Telemetry
+                    </span>
                   </div>
                 </div>
               </ScrollReveal>

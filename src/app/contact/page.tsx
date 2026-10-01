@@ -7,7 +7,6 @@ import { servicesData } from "@/data/services";
 import { siteConfig } from "@/lib/metadata";
 import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import dynamic from "next/dynamic";
 import {
   Mail,
   Phone,
@@ -23,13 +22,9 @@ import {
   Briefcase,
   HelpCircle,
   ArrowRight,
+  Headphones,
+  Lock,
 } from "lucide-react";
-
-// Dynamic Three.js telemetry visualization
-const MarketingDashboard3D = dynamic(
-  () => import("@/components/3d/MarketingDashboard3D").then((mod) => mod.MarketingDashboard3D),
-  { ssr: false }
-);
 
 const budgetRanges = [
   "Select Estimated Budget",
@@ -198,24 +193,42 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Mini 3D Connectivity Visual Box */}
-                <div className="rounded-3xl p-6 bg-[#0A0F1D] border border-white/10 text-[#FAF6F0] relative overflow-hidden shadow-xl">
-                  <div className="flex items-center justify-between mb-3">
+                {/* Strategy Hotline & Security Guarantee Box */}
+                <div className="rounded-3xl p-6 sm:p-7 bg-[#0A0F1D] border border-white/10 text-[#FAF6F0] relative overflow-hidden shadow-xl">
+                  <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                      <div className="h-2.5 w-2.5 rounded-full bg-[#FF5E3A] animate-pulse" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-[#10B981] animate-pulse" />
                       <span className="text-xs font-black uppercase tracking-wider text-[#FAF6F0]">
-                        Telemetry Node: Live
+                        Strategy Desk: Available
                       </span>
                     </div>
-                    <span className="text-[10px] text-slate-400 font-mono">100% SECURE</span>
+                    <span className="text-[10px] font-bold text-[#FF5E3A] uppercase px-2 py-0.5 rounded-full bg-[#FF5E3A]/20 border border-[#FF5E3A]/30 font-mono">
+                      100% NDA Protected
+                    </span>
                   </div>
                   
-                  <div className="h-44 w-full relative rounded-2xl overflow-hidden border border-white/10 bg-[#070A14]">
-                    <MarketingDashboard3D variant="general" />
+                  <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF5E3A]/20 text-[#FF5E3A] shrink-0">
+                        <Headphones className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-[#FAF6F0]">Direct Partner Access</p>
+                        <p className="text-[11px] text-slate-400">Speak directly with senior directors, not salespeople.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
+                      <span className="flex items-center gap-1.5 text-[11px]">
+                        <Lock className="h-3.5 w-3.5 text-[#FF5E3A]" />
+                        Strict Data Privacy
+                      </span>
+                      <span className="font-bold text-[#FF5E3A]">&lt; 24-Hour Turnaround</span>
+                    </div>
                   </div>
                   
-                  <p className="mt-3 text-[11px] text-slate-400 text-center leading-relaxed">
-                    Real-time algorithmic monitoring across advertising networks, search indexes, and conversion funnels.
+                  <p className="mt-4 text-[11px] text-slate-400 text-center leading-relaxed">
+                    Custom marketing roadmaps, full channel audits, and competitor tear-downs provided upon initial discovery.
                   </p>
                 </div>
               </ScrollReveal>

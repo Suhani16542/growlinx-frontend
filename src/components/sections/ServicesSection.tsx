@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
-import { Services3DScene } from "@/components/3d/Services3DScene";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import {
   Search,
@@ -89,19 +88,6 @@ export function ServicesSection() {
             <p className="text-sm sm:text-base lg:text-lg text-[#5A6578] font-medium leading-relaxed">
               High-impact growth marketing capabilities engineered to dominate search rankings, maximize return on ad spend, and scale compounding business revenue.
             </p>
-          </div>
-        </ScrollReveal>
-
-        {/* Central 3D Interactive Ecosystem Hub (Framed in Rounded Dark Container for High Contrast) */}
-        <ScrollReveal animation="zoom-in" duration={800} delay={100} className="relative mb-12">
-          <div className="rounded-[2.5rem] border border-white/15 bg-gradient-to-b from-[#111827] to-[#0A0F1D] overflow-hidden relative shadow-2xl p-4 flex flex-col items-center justify-center">
-            {/* 3D WebGL Hub */}
-            <Services3DScene />
-            
-            <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A0F1D]/80 border border-[#FF5E3A]/30 text-xs font-semibold text-[#FF5E3A]">
-              <span className="h-2 w-2 rounded-full bg-[#FF5E3A] animate-pulse" />
-              Connected Growth Channels Ecosystem
-            </div>
           </div>
         </ScrollReveal>
 

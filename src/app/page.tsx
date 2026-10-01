@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { ServicesSection } from "@/components/sections/ServicesSection";
@@ -6,10 +7,24 @@ import { ProcessSection } from "@/components/sections/ProcessSection";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { LeadContactPreview } from "@/components/sections/LeadContactPreview";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { generateOrganizationSchema, generateWebSiteSchema } from "@/lib/schema";
+import { siteSEOConfig } from "@/lib/seo-config";
+import { constructMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = constructMetadata({
+  title: siteSEOConfig.home.title,
+  description: siteSEOConfig.home.description,
+  canonicalUrl: siteSEOConfig.home.canonicalUrl,
+});
 
 export default function HomePage() {
+  const orgSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebSiteSchema();
+
   return (
     <div className="flex flex-col w-full overflow-hidden">
+      <JsonLd schema={[orgSchema, websiteSchema]} />
       {/* 1. HERO (LIGHT): Digital Marketing Agency Landing Page with Large Image & Subtle Particles */}
       <HeroSection />
 

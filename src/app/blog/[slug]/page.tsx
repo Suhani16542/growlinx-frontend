@@ -7,6 +7,8 @@ import { BlogCard } from "@/components/ui/BlogCard";
 import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { constructMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import {
   Clock,
   ArrowLeft,
@@ -57,9 +59,17 @@ export default async function BlogPostDetailPage({ params }: BlogPageProps) {
   }
 
   const relatedPosts = blogData.filter((p) => p.id !== post.id).slice(0, 3);
+  const currentUrl = `https://growlinx.com/blog/${post.slug}`;
+  const articleSchema = generateArticleSchema(post, currentUrl);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Blog", url: "/blog" },
+    { name: post.title, url: `/blog/${post.slug}` },
+  ]);
 
   return (
     <div className="flex flex-col w-full overflow-hidden bg-[#0A0F1D]">
+      <JsonLd schema={[articleSchema, breadcrumbSchema]} />
       {/* 1. Article Header Section (Dark Navy) */}
       <section className="relative py-16 sm:py-20 lg:py-24 bg-[#0A0F1D] text-[#FAF6F0] overflow-hidden border-b border-white/10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#FF5E3A]/10 rounded-full blur-3xl pointer-events-none -z-0" />

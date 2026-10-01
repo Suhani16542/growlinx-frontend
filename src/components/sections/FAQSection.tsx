@@ -7,6 +7,8 @@ import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { faqData } from "@/data/faq";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { generateFAQSchema } from "@/lib/schema";
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -15,8 +17,13 @@ export function FAQSection() {
     setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
+  const faqSchema = generateFAQSchema(
+    faqData.map((f) => ({ question: f.question, answer: f.answer }))
+  );
+
   return (
     <section className="py-20 lg:py-28 relative overflow-hidden bg-[#F8FAFC] border-b border-[#E2E8F0]">
+      <JsonLd schema={faqSchema} />
       <Container className="relative z-10 max-w-4xl">
         <ScrollReveal animation="fade-up" duration={500}>
           <SectionHeading
