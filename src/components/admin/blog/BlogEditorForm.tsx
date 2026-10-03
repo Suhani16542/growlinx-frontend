@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import {
   ArrowLeft,
   Eye,
@@ -34,7 +35,15 @@ import {
 } from "lucide-react";
 import { api, BackendCategory, BackendBlog } from "@/lib/api";
 import { RichTextEditor } from "@/components/admin/blog/RichTextEditor";
-import { BlogPreviewModal } from "@/components/admin/blog/BlogPreviewModal";
+
+// Lazy-load preview modal to reduce initial JS bundle size and render delay
+const BlogPreviewModal = dynamic(
+  () =>
+    import("@/components/admin/blog/BlogPreviewModal").then(
+      (mod) => mod.BlogPreviewModal
+    ),
+  { ssr: false }
+);
 
 interface BlogEditorFormProps {
   initialBlog?: BackendBlog | null;
@@ -106,20 +115,23 @@ export function BlogEditorForm({ initialBlog, isEditMode = false }: BlogEditorFo
 
   // Fetch Categories on Mount
   useEffect(() => {
+    let isMounted = true;
     async function loadCategories() {
       try {
         const res = await api.categories.getCategories();
-        if (res.success && Array.isArray(res.data)) {
-          setCategories(res.data);
-          if (res.data.length > 0) {
+        if (isMounted && res.success && Array.isArray(res.data)) {
+          const categoryList = res.data;
+          setCategories(categoryList);
+          if (categoryList.length > 0) {
+            const firstCatId = categoryList[0].id;
             if (initialBlog?.category) {
               const matchedCatId =
                 typeof initialBlog.category === "object" && initialBlog.category !== null
                   ? (initialBlog.category as any).id
                   : initialBlog.category;
-              setSelectedCategoryId(matchedCatId || res.data[0].id);
-            } else if (!selectedCategoryId) {
-              setSelectedCategoryId(res.data[0].id);
+              setSelectedCategoryId(matchedCatId || firstCatId);
+            } else {
+              setSelectedCategoryId((prev) => prev || firstCatId);
             }
           }
         }
@@ -128,10 +140,13 @@ export function BlogEditorForm({ initialBlog, isEditMode = false }: BlogEditorFo
       }
     }
     loadCategories();
+    return () => {
+      isMounted = false;
+    };
   }, [initialBlog]);
 
   // Auto generate slug from title if not manually edited
-  const handleTitleChange = (newTitle: string) => {
+  const handleTitleChange = useCallback((newTitle: string) => {
     setTitle(newTitle);
     if (!isSlugManuallyEdited && !isEditMode) {
       const generated = newTitle
@@ -139,33 +154,28 @@ export function BlogEditorForm({ initialBlog, isEditMode = false }: BlogEditorFo
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
       setSlug(generated);
-      if (!seoTitle) {
-        setSeoTitle(newTitle);
-      }
+      setSeoTitle((prev) => prev || newTitle);
     }
-  };
+  }, [isSlugManuallyEdited, isEditMode]);
 
-  const handleSlugChange = (newSlug: string) => {
+  const handleSlugChange = useCallback((newSlug: string) => {
     setIsSlugManuallyEdited(true);
     const sanitized = newSlug
       .toLowerCase()
       .replace(/[^a-z0-9-]+/g, "-");
     setSlug(sanitized);
-  };
+  }, []);
 
   // Auto Calculate Reading Time based on content words
-  const handleAutoCalculateReadTime = () => {
-    if (typeof window === "undefined") return;
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = contentHtml;
-    const text = (tempDiv.textContent || tempDiv.innerText || "").trim();
+  const handleAutoCalculateReadTime = useCallback(() => {
+    const text = contentHtml.replace(/<[^>]*>/g, " ").trim();
     const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
     const minutes = Math.max(1, Math.ceil(words / 200));
     setReadTime(`${minutes} min read`);
-  };
+  }, [contentHtml]);
 
   // Featured Image Upload
-  const handleCoverFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCoverFileUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -180,9 +190,7 @@ export function BlogEditorForm({ initialBlog, isEditMode = false }: BlogEditorFo
       const res = await api.uploads.uploadImage(file);
       if (res.success && res.data?.url) {
         setFeaturedImage(res.data.url);
-        if (!featuredImageAlt) {
-          setFeaturedImageAlt(file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "));
-        }
+        setFeaturedImageAlt((prev) => prev || file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "));
       } else {
         setCoverUploadError(res.message || "Failed to upload cover image.");
       }
@@ -191,10 +199,10 @@ export function BlogEditorForm({ initialBlog, isEditMode = false }: BlogEditorFo
     } finally {
       setIsUploadingCover(false);
     }
-  };
+  }, []);
 
   // Quick Create Category
-  const handleCreateCategory = async (e: React.FormEvent) => {
+  const handleCreateCategory = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newCategoryName.trim()) return;
 
@@ -216,31 +224,31 @@ export function BlogEditorForm({ initialBlog, isEditMode = false }: BlogEditorFo
     } finally {
       setIsCreatingCategory(false);
     }
-  };
+  }, [newCategoryName]);
 
   // Strategic Takeaways Management
-  const handleAddTakeaway = () => {
+  const handleAddTakeaway = useCallback(() => {
     if (!takeawayInput.trim()) return;
     setTakeaways((prev) => [...prev, takeawayInput.trim()]);
     setTakeawayInput("");
-  };
+  }, [takeawayInput]);
 
-  const handleRemoveTakeaway = (idx: number) => {
+  const handleRemoveTakeaway = useCallback((idx: number) => {
     setTakeaways((prev) => prev.filter((_, i) => i !== idx));
-  };
+  }, []);
 
   // Tags Management
-  const handleAddTag = () => {
+  const handleAddTag = useCallback(() => {
     const clean = tagInput.trim().replace(/^#/, "");
-    if (clean && !tags.includes(clean)) {
-      setTags((prev) => [...prev, clean]);
+    if (clean) {
+      setTags((prev) => (prev.includes(clean) ? prev : [...prev, clean]));
     }
     setTagInput("");
-  };
+  }, [tagInput]);
 
-  const handleRemoveTag = (tagToRemove: string) => {
+  const handleRemoveTag = useCallback((tagToRemove: string) => {
     setTags((prev) => prev.filter((t) => t !== tagToRemove));
-  };
+  }, []);
 
   // Save Blog (Draft or Publish)
   const handleSave = async (targetStatus: "DRAFT" | "PUBLISHED") => {
@@ -715,6 +723,7 @@ export function BlogEditorForm({ initialBlog, isEditMode = false }: BlogEditorFo
                     src={featuredImage}
                     alt={featuredImageAlt || "Featured Cover"}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 380px"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
@@ -970,24 +979,26 @@ export function BlogEditorForm({ initialBlog, isEditMode = false }: BlogEditorFo
       )}
 
       {/* LIVE PREVIEW SIMULATOR MODAL */}
-      <BlogPreviewModal
-        isOpen={previewOpen}
-        onClose={() => setPreviewOpen(false)}
-        blog={{
-          title,
-          slug,
-          category: currentCategoryName,
-          excerpt,
-          content: contentHtml,
-          takeaways,
-          authorName,
-          authorRole,
-          readTime,
-          featuredImage,
-          featuredImageAlt,
-          status,
-        }}
-      />
+      {previewOpen && (
+        <BlogPreviewModal
+          isOpen={previewOpen}
+          onClose={() => setPreviewOpen(false)}
+          blog={{
+            title,
+            slug,
+            category: currentCategoryName,
+            excerpt,
+            content: contentHtml,
+            takeaways,
+            authorName,
+            authorRole,
+            readTime,
+            featuredImage,
+            featuredImageAlt,
+            status,
+          }}
+        />
+      )}
     </div>
   );
 }

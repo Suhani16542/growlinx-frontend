@@ -32,8 +32,9 @@ export function Logo({ className, variant = "header", priority = false }: LogoPr
         <Image
           src="/logo/growlinx-logo.jpg"
           alt="Growlinqs Official Brand Logo"
-          width={512}
-          height={512}
+          width={128}
+          height={128}
+          sizes="(max-width: 640px) 48px, 56px"
           priority={priority || !isFooter}
           className="h-full w-full object-cover object-center"
         />

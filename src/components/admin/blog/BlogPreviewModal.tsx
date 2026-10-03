@@ -178,6 +178,8 @@ export function BlogPreviewModal({ isOpen, onClose, blog }: BlogPreviewModalProp
                 <img
                   src={blog.featuredImage}
                   alt={blog.featuredImageAlt || blog.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

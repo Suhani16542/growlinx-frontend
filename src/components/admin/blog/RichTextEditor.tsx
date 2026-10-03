@@ -75,9 +75,26 @@ export function RichTextEditor({
 
   // Selected Heading Level in Dropdown
   const [currentBlockType, setCurrentBlockType] = useState("p");
+  const isInternalChangeRef = useRef(false);
+
+  const updateCounts = useCallback((html: string) => {
+    if (!html) {
+      setCharCount(0);
+      setWordCount(0);
+      return;
+    }
+    const cleanText = html.replace(/<[^>]*>/g, " ").replace(/&[a-z0-9#]+;/gi, " ").trim();
+    setCharCount(cleanText.length);
+    const words = cleanText ? cleanText.split(/\s+/).filter(Boolean).length : 0;
+    setWordCount(words);
+  }, []);
 
   // Sync value from props to editor DOM when initialized or changed externally
   useEffect(() => {
+    if (isInternalChangeRef.current) {
+      isInternalChangeRef.current = false;
+      return;
+    }
     if (editorRef.current && !isSourceMode) {
       if (editorRef.current.innerHTML !== value) {
         editorRef.current.innerHTML = value || "";
@@ -85,35 +102,26 @@ export function RichTextEditor({
     }
     setSourceCode(value || "");
     updateCounts(value || "");
-  }, [value, isSourceMode]);
+  }, [value, isSourceMode, updateCounts]);
 
-  const updateCounts = (html: string) => {
-    if (typeof window === "undefined") return;
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = html;
-    const text = tempDiv.textContent || tempDiv.innerText || "";
-    const cleanText = text.trim();
-    setCharCount(cleanText.length);
-    const words = cleanText ? cleanText.split(/\s+/).filter(Boolean).length : 0;
-    setWordCount(words);
-  };
-
-  const handleEditorInput = () => {
+  const handleEditorInput = useCallback(() => {
     if (editorRef.current) {
       const html = editorRef.current.innerHTML;
+      isInternalChangeRef.current = true;
       onChange(html);
       setSourceCode(html);
       updateCounts(html);
       detectCurrentBlock();
     }
-  };
+  }, [onChange, updateCounts]);
 
-  const handleSourceChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleSourceChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = e.target.value;
+    isInternalChangeRef.current = true;
     setSourceCode(val);
     onChange(val);
     updateCounts(val);
-  };
+  }, [onChange, updateCounts]);
 
   const toggleSourceMode = () => {
     if (isSourceMode) {
