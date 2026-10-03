@@ -27,7 +27,6 @@ import {
   FileCode2,
   Cpu,
   Layers,
-  Info,
 } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
@@ -206,16 +205,6 @@ export default function ApisAndProductsPage() {
               </ScrollReveal>
             ))}
           </div>
-
-          {/* Centered Supporting Note */}
-          <ScrollReveal animation="fade-up" duration={600} delay={150}>
-            <div className="mt-8 flex justify-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#F3ECE2] border border-[#EADECE] text-xs text-[#5A6578] font-medium text-center">
-                <Info className="h-4 w-4 text-[#FF5E3A] shrink-0" />
-                <span>Commissions and transaction charges may vary by service.</span>
-              </div>
-            </div>
-          </ScrollReveal>
         </Container>
       </section>
 
@@ -254,16 +243,6 @@ export default function ApisAndProductsPage() {
               </ScrollReveal>
             ))}
           </div>
-
-          {/* Centered Supporting Note */}
-          <ScrollReveal animation="fade-up" duration={600} delay={150}>
-            <div className="mt-8 flex justify-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#F3ECE2] border border-[#EADECE] text-xs text-[#5A6578] font-medium text-center">
-                <Info className="h-4 w-4 text-[#FF5E3A] shrink-0" />
-                <span>Commissions and transaction charges may vary by service.</span>
-              </div>
-            </div>
-          </ScrollReveal>
         </Container>
       </section>
 
