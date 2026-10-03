@@ -219,7 +219,7 @@ export default function AdminDashboardPage() {
           </button>
 
           <Link
-            href="/admin/blog"
+            href="/admin/blog/create"
             className="orange-btn inline-flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider"
           >
             <Plus className="h-4 w-4" />

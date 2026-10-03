@@ -576,7 +576,7 @@ export const api = {
   uploads: {
     uploadImage: async (file: File) => {
       const formData = new FormData();
-      formData.append("image", file);
+      formData.append("file", file);
       return request<{ url: string; publicId?: string; originalName: string }>(
         "/uploads/image",
         {
