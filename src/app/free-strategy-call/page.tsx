@@ -17,6 +17,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import { api } from "@/lib/api";
+
 export default function FreeStrategyCallPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -32,28 +34,34 @@ export default function FreeStrategyCallPage() {
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.name || !formData.email) return;
+
     setIsSubmitting(true);
+    setErrorMsg(null);
+
     try {
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company || formData.website,
-          service: `${formData.service} (Strategy Call Booking)`,
-          budget: formData.businessGoals,
-          message: `[Preferred Time: ${formData.preferredTime}]\n${formData.message || "Free Strategy Call Requested."}`,
-        }),
+      const res = await api.enquiries.submitEnquiry({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || undefined,
+        company: (formData.company || formData.website).trim() || undefined,
+        website: formData.website.trim() || undefined,
+        service: `${formData.service} (Strategy Call Booking)`,
+        budget: formData.businessGoals,
+        message: `[Preferred Call Time: ${formData.preferredTime}]\n${formData.message.trim() || "Free Strategy Session Request"}`,
       });
-      setSubmitted(true);
-    } catch (error) {
-      console.error("Submission error:", error);
-      setSubmitted(true);
+
+      if (res.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMsg(res.message || "Failed to submit request. Please try again.");
+      }
+    } catch {
+      setErrorMsg("A network error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -184,6 +192,11 @@ export default function FreeStrategyCallPage() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
+                      {errorMsg && (
+                        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-400">
+                          {errorMsg}
+                        </div>
+                      )}
                       <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-2">
                         <h3 className="text-lg font-bold text-[#FAF6F0] flex items-center gap-2">
                           <PhoneCall className="h-4 w-4 text-[#FF5E3A]" />

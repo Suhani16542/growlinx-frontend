@@ -147,15 +147,15 @@ export default function AdminSettingsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
             <div className="p-3 rounded-xl bg-white/[0.02] border border-white/10">
               <span className="text-[10px] text-slate-400 block font-sans">Storage Engine</span>
-              <span className="text-emerald-400 font-bold">Local JSON Server Store</span>
+              <span className="text-emerald-400 font-bold">MongoDB & Mongoose API</span>
             </div>
             <div className="p-3 rounded-xl bg-white/[0.02] border border-white/10">
               <span className="text-[10px] text-slate-400 block font-sans">Session Type</span>
-              <span className="text-[#FF5E3A] font-bold">HttpOnly Signature Token</span>
+              <span className="text-[#FF5E3A] font-bold">JWT Bearer Token (24h)</span>
             </div>
             <div className="p-3 rounded-xl bg-white/[0.02] border border-white/10">
-              <span className="text-[10px] text-slate-400 block font-sans">Next.js Version</span>
-              <span className="text-blue-400 font-bold">v16.3.1 (Turbopack)</span>
+              <span className="text-[10px] text-slate-400 block font-sans">Backend URL</span>
+              <span className="text-blue-400 font-bold">http://localhost:5000/api</span>
             </div>
           </div>
         </div>

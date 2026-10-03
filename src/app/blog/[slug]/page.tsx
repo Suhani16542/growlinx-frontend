@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Link from "next/link";
 import { blogData } from "@/data/blog";
+import { BlogPostItem } from "@/types";
+import { api, BackendBlog } from "@/lib/api";
 import { Container } from "@/components/common/Container";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { CTASection } from "@/components/sections/CTASection";
@@ -25,6 +27,49 @@ interface BlogPageProps {
   }>;
 }
 
+async function getPost(slug: string): Promise<BlogPostItem | null> {
+  try {
+    const res = await api.blogs.getBlogBySlug(slug);
+    if (res.success && res.data) {
+      const b: BackendBlog = res.data;
+      const catName =
+        typeof b.category === "object" && b.category !== null
+          ? (b.category as any).name
+          : "Growth Strategy";
+      const authorName =
+        typeof b.author === "object" && b.author !== null
+          ? (b.author as any).name
+          : "Growlinqs Strategist";
+
+      return {
+        id: b.id,
+        slug: b.slug,
+        title: b.title,
+        excerpt: b.excerpt || "",
+        content: [b.content],
+        takeaways: [],
+        category: catName,
+        readTime: "5 min read",
+        publishedAt: b.publishedAt
+          ? new Date(b.publishedAt).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })
+          : "Recent",
+        author: {
+          name: authorName,
+          role: "Performance Growth Strategist",
+        },
+        imageSrc: b.featuredImage || "/images/service-seo-dashboard.jpg",
+      };
+    }
+  } catch {
+    // Fall back to static initial data
+  }
+  return blogData.find((p) => p.slug === slug) || null;
+}
+
 export async function generateStaticParams() {
   return blogData.map((post) => ({
     slug: post.slug,
@@ -35,7 +80,7 @@ export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogData.find((p) => p.slug === slug);
+  const post = await getPost(slug);
 
   if (!post) {
     return constructMetadata({
@@ -52,7 +97,7 @@ export async function generateMetadata({
 
 export default async function BlogPostDetailPage({ params }: BlogPageProps) {
   const { slug } = await params;
-  const post = blogData.find((p) => p.slug === slug);
+  const post = await getPost(slug);
 
   if (!post) {
     notFound();

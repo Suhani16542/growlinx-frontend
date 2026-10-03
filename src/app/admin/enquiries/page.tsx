@@ -21,7 +21,58 @@ import {
   Loader2,
   RefreshCw,
 } from "lucide-react";
+import { api, BackendEnquiry } from "@/lib/api";
 import { EnquiryItem, EnquiryStatus } from "@/types";
+
+function mapBackendStatusToUi(status: string): EnquiryStatus {
+  switch (status?.toUpperCase()) {
+    case "NEW":
+      return "New";
+    case "CONTACTED":
+      return "Contacted";
+    case "IN_PROGRESS":
+      return "In Progress";
+    case "CONVERTED":
+      return "Converted";
+    case "CLOSED":
+      return "Closed";
+    default:
+      return "New";
+  }
+}
+
+function mapUiStatusToBackend(status: EnquiryStatus): string {
+  switch (status) {
+    case "New":
+      return "NEW";
+    case "Contacted":
+      return "CONTACTED";
+    case "In Progress":
+      return "IN_PROGRESS";
+    case "Converted":
+      return "CONVERTED";
+    case "Closed":
+      return "CLOSED";
+    default:
+      return "NEW";
+  }
+}
+
+function transformBackendEnquiry(e: BackendEnquiry): EnquiryItem {
+  return {
+    id: e.id,
+    name: e.name,
+    email: e.email,
+    phone: e.phone || "",
+    company: e.company || e.website || "",
+    service: e.service || "General Growth Strategy",
+    budget: e.budget || "",
+    message: e.message,
+    status: mapBackendStatusToUi(e.status),
+    isRead: e.isRead,
+    createdAt: e.createdAt,
+  };
+}
 
 export default function AdminEnquiriesPage() {
   const [enquiries, setEnquiries] = useState<EnquiryItem[]>([]);
@@ -37,10 +88,9 @@ export default function AdminEnquiriesPage() {
   const fetchEnquiries = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/enquiries");
-      if (res.ok) {
-        const data = await res.json();
-        setEnquiries(data);
+      const res = await api.enquiries.getEnquiries({ limit: 100 });
+      if (res.success && res.data?.enquiries) {
+        setEnquiries(res.data.enquiries.map(transformBackendEnquiry));
       }
     } catch (error) {
       console.error("Fetch enquiries error:", error);
@@ -55,14 +105,15 @@ export default function AdminEnquiriesPage() {
 
   const handleStatusChange = async (id: string, newStatus: EnquiryStatus, notes?: string) => {
     try {
-      const res = await fetch(`/api/admin/enquiries/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus, notes }),
+      const backendStatus = mapUiStatusToBackend(newStatus);
+      const res = await api.enquiries.updateEnquiry(id, {
+        status: backendStatus,
+        isRead: true,
       });
 
-      if (res.ok) {
-        const updated = await res.json();
+      if (res.success && res.data) {
+        const updated = transformBackendEnquiry(res.data);
+        if (notes) updated.notes = notes;
         setEnquiries((prev) => prev.map((e) => (e.id === id ? updated : e)));
         if (selectedEnquiry?.id === id) {
           setSelectedEnquiry(updated);
@@ -75,14 +126,12 @@ export default function AdminEnquiriesPage() {
 
   const handleToggleRead = async (id: string) => {
     try {
-      const res = await fetch(`/api/admin/enquiries/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "toggleRead" }),
-      });
+      const current = enquiries.find((e) => e.id === id);
+      const nextReadState = current ? !current.isRead : true;
+      const res = await api.enquiries.updateEnquiry(id, { isRead: nextReadState });
 
-      if (res.ok) {
-        const updated = await res.json();
+      if (res.success && res.data) {
+        const updated = transformBackendEnquiry(res.data);
         setEnquiries((prev) => prev.map((e) => (e.id === id ? updated : e)));
       }
     } catch (error) {
@@ -92,8 +141,8 @@ export default function AdminEnquiriesPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await fetch(`/api/admin/enquiries/${id}`, { method: "DELETE" });
-      if (res.ok) {
+      const res = await api.enquiries.deleteEnquiry(id);
+      if (res.success) {
         setDeleteConfirmId(null);
         if (selectedEnquiry?.id === id) setSelectedEnquiry(null);
         setEnquiries((prev) => prev.filter((e) => e.id !== id));

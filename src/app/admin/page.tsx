@@ -20,8 +20,42 @@ import {
   User,
   Sparkles,
 } from "lucide-react";
+import { api, BackendBlog, BackendEnquiry, BackendCategory } from "@/lib/api";
 import { AdminStats, EnquiryItem, EnquiryStatus } from "@/types";
-import { ExtendedBlogPost } from "@/lib/server/storage";
+
+function mapBackendStatusToUi(status: string): EnquiryStatus {
+  switch (status?.toUpperCase()) {
+    case "NEW":
+      return "New";
+    case "CONTACTED":
+      return "Contacted";
+    case "IN_PROGRESS":
+      return "In Progress";
+    case "CONVERTED":
+      return "Converted";
+    case "CLOSED":
+      return "Closed";
+    default:
+      return "New";
+  }
+}
+
+function mapUiStatusToBackend(status: EnquiryStatus): string {
+  switch (status) {
+    case "New":
+      return "NEW";
+    case "Contacted":
+      return "CONTACTED";
+    case "In Progress":
+      return "IN_PROGRESS";
+    case "Converted":
+      return "CONVERTED";
+    case "Closed":
+      return "CLOSED";
+    default:
+      return "NEW";
+  }
+}
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState<AdminStats>({
@@ -35,33 +69,96 @@ export default function AdminDashboardPage() {
   });
 
   const [recentEnquiries, setRecentEnquiries] = useState<EnquiryItem[]>([]);
-  const [recentBlogs, setRecentBlogs] = useState<ExtendedBlogPost[]>([]);
+  const [recentBlogs, setRecentBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedEnquiry, setSelectedEnquiry] = useState<EnquiryItem | null>(null);
 
   const fetchDashboardData = useCallback(async () => {
     setLoading(true);
     try {
-      const [statsRes, enquiriesRes, blogsRes] = await Promise.all([
-        fetch("/api/admin/stats"),
-        fetch("/api/admin/enquiries"),
-        fetch("/api/admin/blogs"),
+      const [enquiriesRes, blogsRes, categoriesRes] = await Promise.all([
+        api.enquiries.getEnquiries({ limit: 100 }),
+        api.blogs.getAdminBlogs({ limit: 100 }),
+        api.categories.getCategories(),
       ]);
 
-      if (statsRes.ok) {
-        const statsData = await statsRes.json();
-        setStats(statsData);
-      }
+      const enquiriesList: BackendEnquiry[] =
+        enquiriesRes.success && enquiriesRes.data?.enquiries
+          ? enquiriesRes.data.enquiries
+          : [];
 
-      if (enquiriesRes.ok) {
-        const enquiriesData: EnquiryItem[] = await enquiriesRes.json();
-        setRecentEnquiries(enquiriesData.slice(0, 5));
-      }
+      const blogsList: BackendBlog[] =
+        blogsRes.success && blogsRes.data?.blogs
+          ? blogsRes.data.blogs
+          : [];
 
-      if (blogsRes.ok) {
-        const blogsData: ExtendedBlogPost[] = await blogsRes.json();
-        setRecentBlogs(blogsData.slice(0, 5));
-      }
+      const categoriesList: BackendCategory[] =
+        categoriesRes.success && Array.isArray(categoriesRes.data)
+          ? categoriesRes.data
+          : [];
+
+      // Compute stats
+      const totalBlogs = blogsList.length;
+      const publishedBlogs = blogsList.filter((b) => b.status === "PUBLISHED").length;
+      const draftBlogs = blogsList.filter((b) => b.status === "DRAFT").length;
+      const totalCategories = categoriesList.length;
+      const totalEnquiries = enquiriesList.length;
+      const newEnquiries = enquiriesList.filter((e) => e.status === "NEW").length;
+      const unreadEnquiries = enquiriesList.filter((e) => !e.isRead).length;
+
+      setStats({
+        totalBlogs,
+        publishedBlogs,
+        draftBlogs,
+        totalCategories,
+        newEnquiries,
+        unreadEnquiries,
+        totalEnquiries,
+      });
+
+      // Map enquiries
+      const mappedEnquiries: EnquiryItem[] = enquiriesList.map((e) => ({
+        id: e.id,
+        name: e.name,
+        email: e.email,
+        phone: e.phone || "",
+        company: e.company || e.website || "",
+        service: e.service || "General Inquiry",
+        budget: e.budget || "",
+        message: e.message,
+        status: mapBackendStatusToUi(e.status),
+        isRead: e.isRead,
+        createdAt: e.createdAt,
+      }));
+
+      setRecentEnquiries(mappedEnquiries.slice(0, 5));
+
+      // Map blogs
+      const mappedBlogs = blogsList.map((b) => {
+        const catName =
+          typeof b.category === "object" && b.category !== null
+            ? (b.category as any).name
+            : "Marketing Strategy";
+        const authorName =
+          typeof b.author === "object" && b.author !== null
+            ? (b.author as any).name
+            : "Editorial Team";
+
+        return {
+          id: b.id,
+          slug: b.slug,
+          title: b.title,
+          excerpt: b.excerpt || "",
+          category: catName,
+          status: b.status.toLowerCase(),
+          publishedAt: b.publishedAt || b.createdAt,
+          author: { name: authorName, role: "Strategist" },
+          imageSrc: b.featuredImage || "/images/service-seo-dashboard.jpg",
+          readTime: "5 min read",
+        };
+      });
+
+      setRecentBlogs(mappedBlogs.slice(0, 5));
     } catch (error) {
       console.error("Dashboard fetch error:", error);
     } finally {
@@ -75,15 +172,17 @@ export default function AdminDashboardPage() {
 
   const handleStatusChange = async (enquiryId: string, newStatus: EnquiryStatus) => {
     try {
-      const res = await fetch(`/api/admin/enquiries/${enquiryId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
+      const backendStatus = mapUiStatusToBackend(newStatus);
+      const res = await api.enquiries.updateEnquiry(enquiryId, {
+        status: backendStatus,
+        isRead: true,
       });
 
-      if (res.ok) {
+      if (res.success) {
         setRecentEnquiries((prev) =>
-          prev.map((e) => (e.id === enquiryId ? { ...e, status: newStatus, isRead: true } : e))
+          prev.map((e) =>
+            e.id === enquiryId ? { ...e, status: newStatus, isRead: true } : e
+          )
         );
         fetchDashboardData();
       }

@@ -1,7 +1,6 @@
-"use client";
-
 import React, { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { api, tokenStorage } from "@/lib/api";
 import { AdminUser } from "@/types";
 
 interface AdminAuthContextType {
@@ -21,11 +20,23 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   const refreshSession = useCallback(async () => {
+    const token = tokenStorage.getAccessToken();
+    if (!token) {
+      setUser(null);
+      setLoading(false);
+      return;
+    }
+
     try {
-      const res = await fetch("/api/admin/auth/me");
-      if (res.ok) {
-        const data = await res.json();
-        setUser(data.user);
+      const res = await api.auth.getMe();
+      if (res.success && res.data) {
+        const u = res.data;
+        setUser({
+          id: u.id,
+          name: u.name,
+          email: u.email,
+          role: (u.role?.toLowerCase() as any) || "admin",
+        });
       } else {
         setUser(null);
       }
@@ -56,29 +67,29 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, pass: string) => {
     try {
-      const res = await fetch("/api/admin/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password: pass }),
-      });
+      const res = await api.auth.login({ email, password: pass });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        return { success: false, error: data.error || "Login failed" };
+      if (!res.success || !res.data?.user) {
+        return { success: false, error: res.message || "Login failed. Please check your credentials." };
       }
 
-      setUser(data.user);
+      const u = res.data.user;
+      setUser({
+        id: u.id,
+        name: u.name,
+        email: u.email,
+        role: (u.role?.toLowerCase() as any) || "admin",
+      });
       router.push("/admin");
       return { success: true };
-    } catch (error) {
-      return { success: false, error: "Network error occurred." };
+    } catch (error: any) {
+      return { success: false, error: error?.message || "Network error occurred." };
     }
   };
 
   const logout = async () => {
     try {
-      await fetch("/api/admin/auth/logout", { method: "POST" });
+      await api.auth.logout();
     } catch (error) {
       console.error("Logout error:", error);
     } finally {

@@ -14,6 +14,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { siteConfig } from "@/lib/metadata";
+import { api } from "@/lib/api";
 
 export function LeadContactPreview() {
   const [formData, setFormData] = useState({
@@ -27,14 +28,44 @@ export function LeadContactPreview() {
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.name || !formData.email) return;
+
     setIsSubmitting(true);
-    setTimeout(() => {
+    setErrorMsg(null);
+
+    try {
+      const res = await api.enquiries.submitEnquiry({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || undefined,
+        company: formData.company.trim() || undefined,
+        website: formData.company.trim() || undefined,
+        service: formData.service,
+        message: formData.message.trim() || `Interested in ${formData.service} growth strategy.`,
+      });
+
+      if (res.success) {
+        setSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          service: servicesData[0]?.title || "SEO Services",
+          message: "",
+        });
+      } else {
+        setErrorMsg(res.message || "Failed to submit request. Please try again.");
+      }
+    } catch {
+      setErrorMsg("A network error occurred. Please try again.");
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-    }, 800);
+    }
   };
 
   return (
@@ -126,6 +157,11 @@ export function LeadContactPreview() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    {errorMsg && (
+                      <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-400">
+                        {errorMsg}
+                      </div>
+                    )}
                     <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-2">
                       <h3 className="text-lg font-bold text-[#FAF6F0] flex items-center gap-2">
                         <Sparkles className="h-4 w-4 text-[#FF5E3A]" />

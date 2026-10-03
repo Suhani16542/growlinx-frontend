@@ -1,16 +1,65 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { Button } from "@/components/ui/Button";
-import { blogData } from "@/data/blog";
+import { blogData as initialBlogData } from "@/data/blog";
+import { BlogPostItem } from "@/types";
+import { api, BackendBlog } from "@/lib/api";
 import { ArrowRight } from "lucide-react";
 
 export function LatestInsights() {
-  // Only display 3 blog cards on homepage
-  const featuredPosts = blogData.slice(0, 3);
+  const [featuredPosts, setFeaturedPosts] = useState<BlogPostItem[]>(initialBlogData.slice(0, 3));
+
+  useEffect(() => {
+    async function loadLatest() {
+      try {
+        const res = await api.blogs.getBlogs({ limit: 3 });
+        if (res.success && res.data?.blogs && res.data.blogs.length > 0) {
+          const mapped: BlogPostItem[] = res.data.blogs.map((b: BackendBlog) => {
+            const catName =
+              typeof b.category === "object" && b.category !== null
+                ? (b.category as any).name
+                : "Growth Strategy";
+            const authorName =
+              typeof b.author === "object" && b.author !== null
+                ? (b.author as any).name
+                : "Growlinqs Strategist";
+
+            return {
+              id: b.id,
+              slug: b.slug,
+              title: b.title,
+              excerpt: b.excerpt || "",
+              content: [b.content],
+              takeaways: [],
+              category: catName,
+              readTime: "5 min read",
+              publishedAt: b.publishedAt
+                ? new Date(b.publishedAt).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })
+                : "Recent",
+              author: {
+                name: authorName,
+                role: "Performance Growth Strategist",
+              },
+              imageSrc: b.featuredImage || "/images/service-seo-dashboard.jpg",
+            };
+          });
+          setFeaturedPosts(mapped);
+        }
+      } catch {
+        // Silently use fallback initialBlogData
+      }
+    }
+    loadLatest();
+  }, []);
 
   return (
     <section className="py-20 lg:py-28 relative overflow-hidden bg-[#050811] border-t border-slate-800/80">

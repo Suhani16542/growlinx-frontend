@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { BlogCard } from "@/components/ui/BlogCard";
-import { blogData, blogCategories } from "@/data/blog";
+import { blogData as initialBlogData, blogCategories as initialBlogCategories } from "@/data/blog";
+import { BlogPostItem } from "@/types";
+import { api, BackendBlog } from "@/lib/api";
 import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import {
@@ -22,13 +24,73 @@ import {
 } from "lucide-react";
 
 export default function BlogPage() {
+  const [blogs, setBlogs] = useState<BlogPostItem[]>(initialBlogData);
+  const [categories, setCategories] = useState<string[]>(initialBlogCategories);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(6);
 
-  const featuredPost = blogData[0];
+  useEffect(() => {
+    async function loadBackendBlogs() {
+      try {
+        const [blogsRes, catsRes] = await Promise.all([
+          api.blogs.getBlogs({ limit: 50 }),
+          api.categories.getCategories(),
+        ]);
 
-  const filteredPosts = blogData.filter((post) => {
+        if (blogsRes.success && blogsRes.data?.blogs && blogsRes.data.blogs.length > 0) {
+          const mapped: BlogPostItem[] = blogsRes.data.blogs.map((b: BackendBlog) => {
+            const catName =
+              typeof b.category === "object" && b.category !== null
+                ? (b.category as any).name
+                : "Growth Strategy";
+            const authorName =
+              typeof b.author === "object" && b.author !== null
+                ? (b.author as any).name
+                : "Growlinqs Strategist";
+
+            return {
+              id: b.id,
+              slug: b.slug,
+              title: b.title,
+              excerpt: b.excerpt || "",
+              content: [b.content],
+              takeaways: [],
+              category: catName,
+              readTime: "5 min read",
+              publishedAt: b.publishedAt
+                ? new Date(b.publishedAt).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })
+                : "Recent",
+              author: {
+                name: authorName,
+                role: "Performance Growth Strategist",
+              },
+              imageSrc: b.featuredImage || "/images/service-seo-dashboard.jpg",
+            };
+          });
+
+          setBlogs(mapped);
+        }
+
+        if (catsRes.success && Array.isArray(catsRes.data) && catsRes.data.length > 0) {
+          const catNames = ["All", ...catsRes.data.map((c) => c.name)];
+          setCategories(catNames);
+        }
+      } catch (err) {
+        // Silently use initialBlogData on network error
+      }
+    }
+
+    loadBackendBlogs();
+  }, []);
+
+  const featuredPost = blogs[0] || initialBlogData[0];
+
+  const filteredPosts = blogs.filter((post) => {
     const matchesCategory =
       selectedCategory === "All" ||
       post.category.toLowerCase() === selectedCategory.toLowerCase();
@@ -169,7 +231,7 @@ export default function BlogPage() {
 
             {/* Category Filter Pills */}
             <div className="flex flex-wrap items-center gap-2">
-              {blogCategories.map((cat) => {
+              {categories.map((cat: string) => {
                 const isSelected = selectedCategory === cat;
                 return (
                   <button

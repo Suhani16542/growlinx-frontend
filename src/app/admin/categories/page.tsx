@@ -13,6 +13,7 @@ import {
   Loader2,
   CheckCircle2,
 } from "lucide-react";
+import { api, BackendCategory } from "@/lib/api";
 import { BlogCategoryItem } from "@/types";
 
 export default function AdminCategoriesPage() {
@@ -28,10 +29,17 @@ export default function AdminCategoriesPage() {
   const fetchCategories = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/categories");
-      if (res.ok) {
-        const data = await res.json();
-        setCategories(data);
+      const res = await api.categories.getCategories();
+      if (res.success && Array.isArray(res.data)) {
+        const mapped = res.data.map((c: BackendCategory) => ({
+          id: c.id,
+          name: c.name,
+          slug: c.slug,
+          description: c.description || "",
+          postCount: c._count?.blogs ?? c.postCount ?? 0,
+          createdAt: c.createdAt,
+        }));
+        setCategories(mapped);
       }
     } catch (error) {
       console.error("Fetch categories error:", error);
@@ -68,22 +76,21 @@ export default function AdminCategoriesPage() {
     setErrorMessage(null);
 
     try {
-      const url = editingCategory ? `/api/admin/categories/${editingCategory.id}` : "/api/admin/categories";
-      const method = editingCategory ? "PUT" : "POST";
+      let res;
+      if (editingCategory) {
+        res = await api.categories.updateCategory(editingCategory.id, {
+          name: formName.trim(),
+          description: formDescription.trim(),
+        });
+      } else {
+        res = await api.categories.createCategory({
+          name: formName.trim(),
+          description: formDescription.trim(),
+        });
+      }
 
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formName,
-          description: formDescription,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setErrorMessage(data.error || "Failed to save category.");
+      if (!res.success) {
+        setErrorMessage(res.message || "Failed to save category.");
       } else {
         setModalOpen(false);
         fetchCategories();
@@ -100,14 +107,10 @@ export default function AdminCategoriesPage() {
     if (!confirm(`Are you sure you want to delete category "${name}"?`)) return;
 
     try {
-      const res = await fetch(`/api/admin/categories/${id}`, {
-        method: "DELETE",
-      });
+      const res = await api.categories.deleteCategory(id);
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        alert(data.error || "Cannot delete category.");
+      if (!res.success) {
+        alert(res.message || "Cannot delete category.");
       } else {
         fetchCategories();
       }

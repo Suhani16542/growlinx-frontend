@@ -22,7 +22,7 @@ import {
   FileText,
   Layers,
 } from "lucide-react";
-import { ExtendedBlogPost } from "@/lib/server/storage";
+import { api, BackendBlog, BackendCategory } from "@/lib/api";
 import { BlogCategoryItem } from "@/types";
 
 const defaultImageOptions = [
@@ -38,8 +38,9 @@ const defaultImageOptions = [
 ];
 
 export default function AdminBlogManagementPage() {
-  const [blogs, setBlogs] = useState<ExtendedBlogPost[]>([]);
+  const [blogs, setBlogs] = useState<any[]>([]);
   const [categories, setCategories] = useState<BlogCategoryItem[]>([]);
+  const [rawCategories, setRawCategories] = useState<BackendCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -47,8 +48,9 @@ export default function AdminBlogManagementPage() {
 
   // Modal State
   const [editorOpen, setEditorOpen] = useState(false);
-  const [editingBlog, setEditingBlog] = useState<Partial<ExtendedBlogPost> | null>(null);
+  const [editingBlog, setEditingBlog] = useState<any | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   // Form Fields
@@ -70,19 +72,60 @@ export default function AdminBlogManagementPage() {
     setLoading(true);
     try {
       const [blogsRes, catsRes] = await Promise.all([
-        fetch("/api/admin/blogs"),
-        fetch("/api/admin/categories"),
+        api.blogs.getAdminBlogs({ limit: 100 }),
+        api.categories.getCategories(),
       ]);
 
-      if (blogsRes.ok) {
-        const blogsData = await blogsRes.json();
-        setBlogs(blogsData);
-      }
+      const rawCats: BackendCategory[] =
+        catsRes.success && Array.isArray(catsRes.data) ? catsRes.data : [];
+      setRawCategories(rawCats);
 
-      if (catsRes.ok) {
-        const catsData = await catsRes.json();
-        setCategories(catsData);
-      }
+      const mappedCats: BlogCategoryItem[] = rawCats.map((c) => ({
+        id: c.id,
+        name: c.name,
+        slug: c.slug,
+        description: c.description || "",
+        postCount: c._count?.blogs ?? c.postCount ?? 0,
+        createdAt: c.createdAt,
+      }));
+      setCategories(mappedCats);
+
+      const rawBlogs: BackendBlog[] =
+        blogsRes.success && blogsRes.data?.blogs ? blogsRes.data.blogs : [];
+
+      const mappedBlogs = rawBlogs.map((b) => {
+        const catName =
+          typeof b.category === "object" && b.category !== null
+            ? (b.category as any).name
+            : "General Growth";
+        const authorName =
+          typeof b.author === "object" && b.author !== null
+            ? (b.author as any).name
+            : "Growlinqs Team";
+
+        return {
+          id: b.id,
+          title: b.title,
+          slug: b.slug,
+          category: catName,
+          categoryId:
+            typeof b.category === "object" && b.category !== null
+              ? (b.category as any).id
+              : b.category,
+          excerpt: b.excerpt || "",
+          content: [b.content],
+          takeaways: [],
+          status: b.status.toLowerCase(),
+          publishedAt: b.publishedAt || b.createdAt,
+          author: { name: authorName, role: "Growth Strategist" },
+          imageSrc: b.featuredImage || "/images/service-seo-dashboard.jpg",
+          readTime: "5 min read",
+          seoTitle: b.title,
+          seoDescription: b.excerpt || "",
+        };
+      });
+
+      setBlogs(mappedBlogs);
     } catch (error) {
       console.error("Failed to load blog data:", error);
     } finally {
@@ -110,25 +153,27 @@ export default function AdminBlogManagementPage() {
     setFormStatus("published");
     setFormSeoTitle("");
     setFormSeoDesc("");
+    setErrorMessage(null);
     setEditorOpen(true);
   };
 
   // Open Edit Modal
-  const handleOpenEdit = (blog: ExtendedBlogPost) => {
+  const handleOpenEdit = (blog: any) => {
     setEditingBlog(blog);
     setFormTitle(blog.title);
     setFormSlug(blog.slug);
     setFormCategory(blog.category);
     setFormExcerpt(blog.excerpt);
-    setFormContentText(blog.content ? blog.content.join("\n\n") : "");
-    setFormTakeawaysText(blog.takeaways ? blog.takeaways.join("\n") : "");
+    setFormContentText(Array.isArray(blog.content) ? blog.content.join("\n\n") : blog.content || "");
+    setFormTakeawaysText(Array.isArray(blog.takeaways) ? blog.takeaways.join("\n") : "");
     setFormAuthorName(blog.author?.name || "Growlinqs Team");
     setFormAuthorRole(blog.author?.role || "Growth Strategist");
     setFormReadTime(blog.readTime || "5 min read");
     setFormImageSrc(blog.imageSrc || "/images/service-seo-dashboard.jpg");
-    setFormStatus(blog.status || "published");
+    setFormStatus(blog.status === "draft" ? "draft" : "published");
     setFormSeoTitle(blog.seoTitle || blog.title);
     setFormSeoDesc(blog.seoDescription || blog.excerpt);
+    setErrorMessage(null);
     setEditorOpen(true);
   };
 
@@ -138,51 +183,67 @@ export default function AdminBlogManagementPage() {
     if (!formTitle.trim()) return;
 
     setIsSaving(true);
-    try {
-      const contentArray = formContentText
-        .split("\n\n")
-        .map((p) => p.trim())
-        .filter((p) => p.length > 0);
+    setErrorMessage(null);
 
-      const takeawaysArray = formTakeawaysText
-        .split("\n")
-        .map((t) => t.trim())
-        .filter((t) => t.length > 0);
+    try {
+      // Find category ID
+      let matchedCat = rawCategories.find(
+        (c) => c.name.toLowerCase() === formCategory.toLowerCase()
+      );
+
+      // If no category exists in backend, create one dynamically
+      if (!matchedCat) {
+        if (rawCategories.length > 0) {
+          matchedCat = rawCategories[0];
+        } else {
+          const createCatRes = await api.categories.createCategory({
+            name: formCategory || "Growth Strategy",
+            description: "Default Category",
+          });
+          if (createCatRes.success && createCatRes.data) {
+            matchedCat = createCatRes.data;
+          }
+        }
+      }
+
+      if (!matchedCat) {
+        setErrorMessage("Please create a Category before creating an article.");
+        setIsSaving(false);
+        return;
+      }
+
+      const generatedSlug = (formSlug || formTitle)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+      const contentString = formContentText.trim() || `${formTitle} - full article breakdown.`;
 
       const payload = {
-        id: editingBlog?.id,
-        title: formTitle,
-        slug: formSlug || formTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-        category: formCategory,
-        excerpt: formExcerpt,
-        content: contentArray,
-        takeaways: takeawaysArray,
-        author: {
-          name: formAuthorName,
-          role: formAuthorRole,
-        },
-        readTime: formReadTime,
-        imageSrc: formImageSrc,
-        status: formStatus,
-        seoTitle: formSeoTitle || formTitle,
-        seoDescription: formSeoDesc || formExcerpt,
+        title: formTitle.trim(),
+        slug: generatedSlug,
+        excerpt: formExcerpt.trim() || undefined,
+        content: contentString,
+        featuredImage: formImageSrc.startsWith("http") ? formImageSrc : undefined,
+        categoryId: matchedCat.id,
+        status: formStatus === "draft" ? ("DRAFT" as const) : ("PUBLISHED" as const),
       };
 
-      const url = editingBlog?.id ? `/api/admin/blogs/${editingBlog.id}` : "/api/admin/blogs";
-      const method = editingBlog?.id ? "PUT" : "POST";
+      let res;
+      if (editingBlog?.id) {
+        res = await api.blogs.updateBlog(editingBlog.id, payload);
+      } else {
+        res = await api.blogs.createBlog(payload);
+      }
 
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (res.ok) {
+      if (res.success) {
         setEditorOpen(false);
         fetchData();
+      } else {
+        setErrorMessage(res.message || "Failed to save article.");
       }
-    } catch (error) {
-      console.error("Save blog error:", error);
+    } catch (error: any) {
+      setErrorMessage(error?.message || "Error saving blog post.");
     } finally {
       setIsSaving(false);
     }
@@ -191,8 +252,10 @@ export default function AdminBlogManagementPage() {
   // Toggle Publish / Draft
   const handleTogglePublish = async (id: string) => {
     try {
-      const res = await fetch(`/api/admin/blogs/${id}`, { method: "PATCH" });
-      if (res.ok) {
+      const current = blogs.find((b) => b.id === id);
+      const nextStatus = current?.status === "published" ? "DRAFT" : "PUBLISHED";
+      const res = await api.blogs.updateBlog(id, { status: nextStatus });
+      if (res.success) {
         fetchData();
       }
     } catch (error) {
@@ -203,8 +266,8 @@ export default function AdminBlogManagementPage() {
   // Delete Blog
   const handleDeleteBlog = async (id: string) => {
     try {
-      const res = await fetch(`/api/admin/blogs/${id}`, { method: "DELETE" });
-      if (res.ok) {
+      const res = await api.blogs.deleteBlog(id);
+      if (res.success) {
         setDeleteConfirmId(null);
         fetchData();
       }
@@ -440,6 +503,11 @@ export default function AdminBlogManagementPage() {
 
             {/* Form */}
             <form onSubmit={handleSaveBlog} className="space-y-5">
+              {errorMessage && (
+                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-400">
+                  {errorMessage}
+                </div>
+              )}
               {/* Title & Slug */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
