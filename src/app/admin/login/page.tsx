@@ -18,8 +18,8 @@ import {
 
 export default function AdminLoginPage() {
   const { login } = useAdminAuth();
-  const [email, setEmail] = useState("admin@growlinx.com");
-  const [password, setPassword] = useState("admin@growlinx2026");
+  const [email, setEmail] = useState("admin@growlinqs.com");
+  const [password, setPassword] = useState("admin@growlinqs2026");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -38,8 +38,8 @@ export default function AdminLoginPage() {
   };
 
   const handleFillDemo = () => {
-    setEmail("admin@growlinx.com");
-    setPassword("admin@growlinx2026");
+    setEmail("admin@growlinqs.com");
+    setPassword("admin@growlinqs2026");
     setError(null);
   };
 
@@ -58,7 +58,7 @@ export default function AdminLoginPage() {
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-widest bg-white/[0.06] text-[#FF5E3A] border border-[#FF5E3A]/30">
             <ShieldCheck className="h-3.5 w-3.5" />
-            <span>GROWLINX CONTROL PORTAL</span>
+            <span>GROWLINQS CONTROL PORTAL</span>
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-black text-[#FAF6F0] tracking-tight">
@@ -90,7 +90,7 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@growlinx.com"
+                  placeholder="admin@growlinqs.com"
                   className="w-full rounded-xl border border-white/15 bg-white/[0.04] py-3 pl-10 pr-4 text-sm text-[#FAF6F0] placeholder-slate-500 focus:border-[#FF5E3A] focus:bg-white/[0.08] focus:outline-none focus:ring-1 focus:ring-[#FF5E3A] transition-all font-medium"
                 />
                 <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -160,8 +160,8 @@ export default function AdminLoginPage() {
               </button>
             </div>
             <div className="text-[11px] text-slate-400 font-mono space-y-0.5">
-              <div>Email: <span className="text-[#FAF6F0]">admin@growlinx.com</span></div>
-              <div>Password: <span className="text-[#FAF6F0]">admin@growlinx2026</span></div>
+              <div>Email: <span className="text-[#FAF6F0]">admin@growlinqs.com</span></div>
+              <div>Password: <span className="text-[#FAF6F0]">admin@growlinqs2026</span></div>
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@ export default function AdminLoginPage() {
             href="/"
             className="text-xs text-slate-400 hover:text-[#FF5E3A] font-semibold transition-colors"
           >
-            ← Return to Growlinx Public Website
+            ← Return to Growlinqs Public Website
           </Link>
         </div>
       </div>

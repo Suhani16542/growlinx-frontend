@@ -70,10 +70,10 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { name: "LinkedIn", href: "https://linkedin.com/company/growlinx", icon: LinkedinIcon },
-    { name: "Instagram", href: "https://instagram.com/growlinx", icon: InstagramIcon },
-    { name: "YouTube", href: "https://youtube.com/@growlinx", icon: YoutubeIcon },
-    { name: "Facebook", href: "https://facebook.com/growlinx", icon: FacebookIcon },
+    { name: "LinkedIn", href: "https://linkedin.com/company/growlinqs", icon: LinkedinIcon },
+    { name: "Instagram", href: "https://instagram.com/growlinqs", icon: InstagramIcon },
+    { name: "YouTube", href: "https://youtube.com/@growlinqs", icon: YoutubeIcon },
+    { name: "Facebook", href: "https://facebook.com/growlinqs", icon: FacebookIcon },
   ];
 
   return (
@@ -88,7 +88,7 @@ export function Footer() {
           <div className="space-y-4 lg:col-span-5">
             <Logo variant="dark" />
             <p className="text-xs sm:text-sm leading-relaxed text-slate-400 max-w-sm font-normal">
-              Growlinx engineers high-performance digital marketing campaigns that elevate brand authority, multiply inbound traffic, and generate predictable business revenue.
+              Growlinqs engineers high-performance digital marketing campaigns that elevate brand authority, multiply inbound traffic, and generate predictable business revenue.
             </p>
           </div>
 
@@ -155,7 +155,7 @@ export function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Growlinx on ${item.name}`}
+                    aria-label={`Growlinqs on ${item.name}`}
                     className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 hover:text-[#FF5E3A] hover:border-[#FF5E3A]/40 hover:bg-[#FF5E3A]/10 transition-all duration-200"
                   >
                     <Icon className="h-4 w-4" />
@@ -166,7 +166,7 @@ export function Footer() {
           </div>
 
           <div className="mt-4 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500">
-            <p>© {currentYear} Growlinx. All rights reserved.</p>
+            <p>© {currentYear} Growlinqs. All rights reserved.</p>
             <div className="flex items-center gap-4 mt-2 sm:mt-0">
               <Link href="/refund-policy" className="hover:text-[#FF5E3A] transition-colors">Refund Policy</Link>
               <Link href="/terms-and-conditions" className="hover:text-[#FF5E3A] transition-colors">Terms & Conditions</Link>

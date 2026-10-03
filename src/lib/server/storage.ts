@@ -87,7 +87,7 @@ function ensureStorage() {
     const initialBlogs: ExtendedBlogPost[] = blogData.map((b) => ({
       ...b,
       status: "published" as const,
-      seoTitle: `${b.title} | Growlinx Growth Insights`,
+      seoTitle: `${b.title} | Growlinqs Growth Insights`,
       seoDescription: b.excerpt,
       updatedAt: b.publishedAt,
     }));
@@ -116,8 +116,8 @@ function ensureStorage() {
   // Seed settings if not exists
   if (!fs.existsSync(SETTINGS_FILE)) {
     const defaultSettings = {
-      agencyName: "Growlinx Growth Agency",
-      contactEmail: "hello@growlinx.com",
+      agencyName: "Growlinqs Growth Agency",
+      contactEmail: "hello@growlinqs.com",
       phone: "+1 (800) 555-GROW",
       emailNotifications: true,
       autoAssignLead: true,
@@ -168,14 +168,14 @@ export function saveStoredBlog(blogData: Partial<ExtendedBlogPost> & { title: st
     readTime: blogData.readTime || "5 min read",
     publishedAt: blogData.publishedAt || new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }),
     author: blogData.author || {
-      name: "Growlinx Team",
+      name: "Growlinqs Team",
       role: "Senior Growth Strategist",
     },
     content: blogData.content || [],
     takeaways: blogData.takeaways || [],
     imageSrc: blogData.imageSrc || "/images/service-seo-dashboard.jpg",
     status: blogData.status || "published",
-    seoTitle: blogData.seoTitle || `${blogData.title} | Growlinx`,
+    seoTitle: blogData.seoTitle || `${blogData.title} | Growlinqs`,
     seoDescription: blogData.seoDescription || blogData.excerpt || "",
     updatedAt: new Date().toISOString(),
   };

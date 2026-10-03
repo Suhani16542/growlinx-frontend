@@ -19,7 +19,7 @@ export function AboutAgencySection() {
             {/* Small Label */}
             <div className="inline-block">
               <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#FF5E3A]">
-                WHY LEADING BRANDS CHOOSE GROWLINX
+                WHY LEADING BRANDS CHOOSE GROWLINQS
               </span>
             </div>
 
@@ -94,7 +94,7 @@ export function AboutAgencySection() {
                 <div className="relative w-full h-full rounded-t-[160px] rounded-b-3xl overflow-hidden z-10 shadow-2xl">
                   <Image
                     src="/images/strategist-laptop.jpg"
-                    alt="Growlinx Senior Digital Marketing Strategist Analyzing Growth Campaigns"
+                    alt="Growlinqs Senior Digital Marketing Strategist Analyzing Growth Campaigns"
                     fill
                     className="object-cover object-center transition-transform duration-500 hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 500px"

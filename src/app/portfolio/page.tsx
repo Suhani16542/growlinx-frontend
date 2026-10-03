@@ -135,7 +135,7 @@ export default function PortfolioPage() {
                     <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
                       <Image
                         src="/images/case-study-saas.jpg"
-                        alt="Growlinx Verified Client Growth"
+                        alt="Growlinqs Verified Client Growth"
                         fill
                         priority
                         className="object-cover object-center transition-transform duration-700 hover:scale-105"

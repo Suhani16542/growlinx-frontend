@@ -19,8 +19,8 @@ export default function AdminSettingsPage() {
   const { user } = useAdminAuth();
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  const [agencyName, setAgencyName] = useState("Growlinx Growth Agency");
-  const [contactEmail, setContactEmail] = useState(user?.email || "admin@growlinx.com");
+  const [agencyName, setAgencyName] = useState("Growlinqs Growth Agency");
+  const [contactEmail, setContactEmail] = useState(user?.email || "admin@growlinqs.com");
   const [emailAlerts, setEmailAlerts] = useState(true);
   const [autoAssign, setAutoAssign] = useState(true);
 
@@ -72,7 +72,7 @@ export default function AdminSettingsPage() {
               </label>
               <input
                 type="text"
-                defaultValue={user?.name || "Growlinx Administrator"}
+                defaultValue={user?.name || "Growlinqs Administrator"}
                 className="w-full rounded-xl border border-white/15 bg-white/[0.04] p-3 text-xs text-[#FAF6F0] focus:border-[#FF5E3A] focus:outline-none font-medium"
               />
             </div>

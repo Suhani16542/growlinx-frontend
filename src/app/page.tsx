@@ -34,7 +34,7 @@ export default function HomePage() {
       {/* 3. SECTION 3 (LIGHT + THREE.JS): Full-Funnel Digital Marketing Solutions Hub */}
       <ServicesSection />
 
-      {/* 4. SECTION 4 (DARK + THREE.JS): The Growlinx Strategic Advantage & 3D Growth Curve */}
+      {/* 4. SECTION 4 (DARK + THREE.JS): The Growlinqs Strategic Advantage & 3D Growth Curve */}
       <WhyChooseUs />
 
       {/* 5. SECTION 5 (LIGHT + THREE.JS): How We Scale Your Revenue (4-Step Process & 3D Flow) */}

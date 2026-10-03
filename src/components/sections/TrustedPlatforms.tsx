@@ -22,7 +22,7 @@ export function TrustedPlatforms() {
               Where Your Customers Spend Their Time
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-slate-400">
-              Growlinx brings your digital marketing channels together into one focused growth strategy.
+              Growlinqs brings your digital marketing channels together into one focused growth strategy.
             </p>
           </div>
         </ScrollReveal>

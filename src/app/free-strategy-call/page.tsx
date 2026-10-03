@@ -170,7 +170,7 @@ export default function FreeStrategyCallPage() {
                         Strategy Call Requested!
                       </h3>
                       <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-                        Thank you for booking with Growlinx. A senior growth strategist will review your domain and confirm your session time via email within 24 hours.
+                        Thank you for booking with Growlinqs. A senior growth strategist will review your domain and confirm your session time via email within 24 hours.
                       </p>
                       <div className="pt-3">
                         <button

@@ -122,7 +122,7 @@ export default function AdminBlogManagementPage() {
     setFormExcerpt(blog.excerpt);
     setFormContentText(blog.content ? blog.content.join("\n\n") : "");
     setFormTakeawaysText(blog.takeaways ? blog.takeaways.join("\n") : "");
-    setFormAuthorName(blog.author?.name || "Growlinx Team");
+    setFormAuthorName(blog.author?.name || "Growlinqs Team");
     setFormAuthorRole(blog.author?.role || "Growth Strategist");
     setFormReadTime(blog.readTime || "5 min read");
     setFormImageSrc(blog.imageSrc || "/images/service-seo-dashboard.jpg");
@@ -350,7 +350,7 @@ export default function AdminBlogManagementPage() {
 
                     {/* Author */}
                     <td className="py-3.5 px-4 text-slate-300 whitespace-nowrap font-medium">
-                      {blog.author?.name || "Growlinx Team"}
+                      {blog.author?.name || "Growlinqs Team"}
                     </td>
 
                     {/* Date */}

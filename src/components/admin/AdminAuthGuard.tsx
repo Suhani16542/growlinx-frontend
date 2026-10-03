@@ -20,7 +20,7 @@ export function AdminAuthGuard({ children }: { children: React.ReactNode }) {
           </div>
           <div className="text-center">
             <p className="text-sm font-bold text-[#FAF6F0]">Authenticating Admin Session...</p>
-            <p className="text-xs text-slate-400 mt-1">Securing Growlinx Management Portal</p>
+            <p className="text-xs text-slate-400 mt-1">Securing Growlinqs Management Portal</p>
           </div>
         </div>
       </div>

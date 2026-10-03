@@ -9,7 +9,7 @@ export function generateOrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: siteConfig.name,
-    legalName: "Growlinx Growth Agency",
+    legalName: "Growlinqs Growth Agency",
     url: siteConfig.url,
     logo: `${siteConfig.url}/images/logo-growlinx.png`,
     image: `${siteConfig.url}/images/hero-marketing-agency.jpg`,
@@ -112,7 +112,7 @@ export function generateArticleSchema(post: BlogPostItem, url: string) {
     },
     image: `${siteConfig.url}/images/og-default.png`,
     articleSection: post.category,
-    keywords: [post.category, "Growth Marketing", "Growlinx Playbook"],
+    keywords: [post.category, "Growth Marketing", "Growlinqs Playbook"],
   };
 }
 

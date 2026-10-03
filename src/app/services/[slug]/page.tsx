@@ -563,9 +563,9 @@ export async function generateMetadata({
   }
 
   return constructMetadata({
-    title: `${service.title} | Growlinx Growth Agency`,
+    title: `${service.title} | Growlinqs Growth Agency`,
     description: service.shortDescription,
-    canonicalUrl: `https://growlinx.com/services/${service.slug}`,
+    canonicalUrl: `https://growlinqs.com/services/${service.slug}`,
   });
 }
 
@@ -614,7 +614,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     { name: "Services", url: "/services" },
     { name: service.title, url: `/services/${service.slug}` },
   ]);
-  const serviceSchema = generateServiceSchema(service, `https://growlinx.com/services/${service.slug}`);
+  const serviceSchema = generateServiceSchema(service, `https://growlinqs.com/services/${service.slug}`);
 
   return (
     <div className="flex flex-col w-full overflow-hidden cream-surface">
@@ -1242,7 +1242,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       )}
 
       {/* =========================================================================
-          SECTION 7: WHY CHOOSE GROWLINX (LIGHT: 4 Feature Pillar Cards)
+          SECTION 7: WHY CHOOSE GROWLINQS (LIGHT: 4 Feature Pillar Cards)
           ========================================================================= */}
       <section className="py-16 sm:py-20 lg:py-24 cream-surface overflow-hidden border-b border-[#EADECE]">
         <Container>
@@ -1250,12 +1250,12 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <div className="text-center max-w-2xl mx-auto space-y-3.5 mb-12">
               <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-widest bg-white border border-[#EADECE] text-[#FF5E3A] shadow-xs">
                 <Award className="h-3.5 w-3.5" />
-                <span>THE GROWLINX ADVANTAGE</span>
+                <span>THE GROWLINQS ADVANTAGE</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#0A0F1D] leading-tight">
                 Why High-Growth Brands <br />
-                <span className="text-[#FF5E3A]">Partner With Growlinx</span>
+                <span className="text-[#FF5E3A]">Partner With Growlinqs</span>
               </h2>
 
               <p className="text-xs sm:text-sm text-[#5A6578] font-medium leading-relaxed">

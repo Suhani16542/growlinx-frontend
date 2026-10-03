@@ -99,7 +99,7 @@ export function MarketingAnalyticsSection() {
                   Real-Time Marketing Telemetry
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Every Growlinx partner gets direct 24/7 access to live reporting dashboards tracking spend, lead quality, conversion value, and multi-touch channel attribution.
+                  Every Growlinqs partner gets direct 24/7 access to live reporting dashboards tracking spend, lead quality, conversion value, and multi-touch channel attribution.
                 </p>
               </div>
 

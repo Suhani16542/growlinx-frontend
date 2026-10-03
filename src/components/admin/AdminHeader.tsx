@@ -41,7 +41,7 @@ export function AdminHeader({ onOpenMobileSidebar, unreadCount = 0 }: AdminHeade
             <span>{getPageTitle()}</span>
           </h1>
           <p className="hidden sm:block text-[11px] text-slate-400 font-medium">
-            Growlinx High-Growth Agency Management Panel
+            Growlinqs High-Growth Agency Management Panel
           </p>
         </div>
       </div>

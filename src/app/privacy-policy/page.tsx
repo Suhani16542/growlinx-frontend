@@ -5,8 +5,8 @@ import { ShieldCheck, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Privacy Policy | Growlinx Digital Marketing",
-  description: "Privacy Policy and data governance standards of Growlinx Digital Marketing Agency.",
+  title: "Privacy Policy | Growlinqs Digital Marketing",
+  description: "Privacy Policy and data governance standards of Growlinqs Digital Marketing Agency.",
 });
 
 export default function PrivacyPolicyPage() {
@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
             <section className="space-y-2">
               <h2 className="text-base font-bold text-[#0A0F1D]">1. Information We Collect</h2>
               <p>
-                Growlinx ("we," "our," or "us") collects information you provide directly through our strategy request forms, contact inquiries, and communication channels. This may include your full name, work email address, phone number, company name, website URL, and details concerning your marketing goals.
+                Growlinqs ("we," "our," or "us") collects information you provide directly through our strategy request forms, contact inquiries, and communication channels. This may include your full name, work email address, phone number, company name, website URL, and details concerning your marketing goals.
               </p>
             </section>
 
@@ -68,8 +68,8 @@ export default function PrivacyPolicyPage() {
               <h2 className="text-base font-bold text-[#0A0F1D]">5. Contact Our Privacy Team</h2>
               <p>
                 If you have questions regarding this Privacy Policy, please reach out to our team at{" "}
-                <a href="mailto:privacy@growlinx.com" className="text-[#FF5E3A] font-bold hover:underline">
-                  privacy@growlinx.com
+                <a href="mailto:privacy@growlinqs.com" className="text-[#FF5E3A] font-bold hover:underline">
+                  privacy@growlinqs.com
                 </a>.
               </p>
             </section>

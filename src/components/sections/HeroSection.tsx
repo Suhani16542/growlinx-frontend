@@ -86,7 +86,7 @@ export function HeroSection() {
                   <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
                     <Image
                       src="/images/hero-marketing-agency.jpg"
-                      alt="Growlinx Digital Marketing & Growth Strategy Team"
+                      alt="Growlinqs Digital Marketing & Growth Strategy Team"
                       fill
                       priority
                       className="object-cover object-center transition-transform duration-700 hover:scale-105"

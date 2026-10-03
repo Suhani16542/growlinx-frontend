@@ -44,9 +44,9 @@ export async function generateMetadata({
   }
 
   return constructMetadata({
-    title: `${post.title} | Growlinx Insights`,
+    title: `${post.title} | Growlinqs Insights`,
     description: post.excerpt,
-    canonicalUrl: `https://growlinx.com/blog/${post.slug}`,
+    canonicalUrl: `https://growlinqs.com/blog/${post.slug}`,
   });
 }
 
@@ -59,7 +59,7 @@ export default async function BlogPostDetailPage({ params }: BlogPageProps) {
   }
 
   const relatedPosts = blogData.filter((p) => p.id !== post.id).slice(0, 3);
-  const currentUrl = `https://growlinx.com/blog/${post.slug}`;
+  const currentUrl = `https://growlinqs.com/blog/${post.slug}`;
   const articleSchema = generateArticleSchema(post, currentUrl);
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: "/" },
@@ -170,7 +170,7 @@ export default async function BlogPostDetailPage({ params }: BlogPageProps) {
                   Written by {post.author.name}
                 </h4>
                 <p className="text-xs text-[#5A6578] font-medium mt-0.5">
-                  {post.author.role} at Growlinx Growth Consultancy.
+                  {post.author.role} at Growlinqs Growth Consultancy.
                 </p>
               </div>
               <Link

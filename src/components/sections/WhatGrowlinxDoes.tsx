@@ -57,7 +57,7 @@ export function WhatGrowlinxDoes() {
             <ScrollReveal animation="fade-up" duration={500}>
               <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold glow-badge">
                 <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-                <span>About Growlinx Methodology</span>
+                <span>About Growlinqs Methodology</span>
               </div>
 
               <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-[1.12]">
@@ -66,7 +66,7 @@ export function WhatGrowlinxDoes() {
               </h2>
 
               <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-                Most agencies obsess over vanity impressions. At Growlinx, we engineer full-funnel acquisition infrastructure designed specifically for qualified revenue and predictable unit economics.
+                Most agencies obsess over vanity impressions. At Growlinqs, we engineer full-funnel acquisition infrastructure designed specifically for qualified revenue and predictable unit economics.
               </p>
 
               <p className="text-sm text-slate-400 leading-relaxed">

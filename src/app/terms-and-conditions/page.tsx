@@ -21,9 +21,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Terms & Conditions | Growlinx",
+  title: "Terms & Conditions | Growlinqs",
   description:
-    "Review the commercial Terms & Conditions governing digital marketing, advertising management, SEO, and consulting services provided by Growlinx.",
+    "Review the commercial Terms & Conditions governing digital marketing, advertising management, SEO, and consulting services provided by Growlinqs.",
   canonicalUrl: `${siteConfig.url}/terms-and-conditions`,
 });
 
@@ -83,7 +83,7 @@ export default function TermsAndConditionsPage() {
 
               {/* Supporting text */}
               <p className="mt-5 text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-normal">
-                Please review these terms carefully before using Growlinx services. These terms set forth the rights, responsibilities, and standards governing our digital marketing, advertising, and growth advisory partnerships.
+                Please review these terms carefully before using Growlinqs services. These terms set forth the rights, responsibilities, and standards governing our digital marketing, advertising, and growth advisory partnerships.
               </p>
 
               {/* Meta Chips */}
@@ -220,7 +220,7 @@ export default function TermsAndConditionsPage() {
                   href="/contact"
                   className="orange-btn w-full inline-flex items-center justify-center gap-1.5 font-bold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider mt-2 shadow-md"
                 >
-                  <span>Contact Growlinx</span>
+                  <span>Contact Growlinqs</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
@@ -239,7 +239,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Welcome to Growlinx. These Terms and Conditions (&quot;Terms,&quot; &quot;Agreement&quot;) constitute a legally binding agreement between you or the entity you represent (&quot;Client,&quot; &quot;you,&quot; or &quot;your&quot;) and Growlinx (&quot;Growlinx,&quot; &quot;Agency,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).
+                  Welcome to Growlinqs. These Terms and Conditions (&quot;Terms,&quot; &quot;Agreement&quot;) constitute a legally binding agreement between you or the entity you represent (&quot;Client,&quot; &quot;you,&quot; or &quot;your&quot;) and Growlinqs (&quot;Growlinqs,&quot; &quot;Agency,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).
                 </p>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
                   These Terms govern your access to and use of our digital marketing, advertising management, search engine optimization, content strategy, brand acquisition, and growth consulting services, whether accessed via our website ({siteConfig.url}) or executed through a separate Statement of Work (SOW) or proposal.
@@ -298,7 +298,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Growlinx provides digital growth services designed to expand online visibility, improve acquisition efficiency, and scale commercial performance. Services are provided on a professional consulting and execution basis and include:
+                  Growlinqs provides digital growth services designed to expand online visibility, improve acquisition efficiency, and scale commercial performance. Services are provided on a professional consulting and execution basis and include:
                 </p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-bold text-[#0A0F1D]">
                   <li className="flex items-center gap-2 p-3 rounded-xl bg-[#FAF6F0] border border-[#EADECE]">
@@ -344,7 +344,7 @@ export default function TermsAndConditionsPage() {
                 <ul className="space-y-2.5 text-xs text-[#5A6578] font-normal pl-4 list-disc">
                   <li>Provide timely access to necessary advertising platforms, analytics consoles, content management systems (CMS), and domain configurations.</li>
                   <li>Designate a primary point of contact with decision-making authority for milestone reviews and campaign approvals.</li>
-                  <li>Ensure all assets, logos, trademarks, claims, and product information provided to Growlinx comply with all applicable advertising and consumer protection laws.</li>
+                  <li>Ensure all assets, logos, trademarks, claims, and product information provided to Growlinqs comply with all applicable advertising and consumer protection laws.</li>
                   <li>Maintain active and funded payment methods on all linked third-party ad accounts to prevent campaign disruption.</li>
                 </ul>
               </section>
@@ -396,7 +396,7 @@ export default function TermsAndConditionsPage() {
                   <li>Fixed-fee project milestones and monthly retainer fees are invoiced and payable in advance of service commencement.</li>
                   <li>Invoices are due upon receipt or according to net payment terms specified in your SOW.</li>
                   <li>Overdue balances may incur a monthly late fee equal to 1.5% per month or the maximum rate permissible by applicable law.</li>
-                  <li>Growlinx reserves the right to suspend active campaign management and deliverable production if accounts remain delinquent.</li>
+                  <li>Growlinqs reserves the right to suspend active campaign management and deliverable production if accounts remain delinquent.</li>
                 </ul>
               </section>
 
@@ -411,7 +411,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Agency management fees paid to Growlinx are strictly separate from direct advertising spend paid to platform networks (such as Google, Meta, Apple, TikTok, or LinkedIn). All media budgets are billed directly by the ad networks to the Client&apos;s designated billing account unless a consolidated enterprise billing arrangement is established in writing.
+                  Agency management fees paid to Growlinqs are strictly separate from direct advertising spend paid to platform networks (such as Google, Meta, Apple, TikTok, or LinkedIn). All media budgets are billed directly by the ad networks to the Client&apos;s designated billing account unless a consolidated enterprise billing arrangement is established in writing.
                 </p>
               </section>
 
@@ -426,13 +426,13 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Growlinx employs high-standard marketing methodologies, predictive modeling, rigorous testing, and continuous algorithmic optimization.
+                  Growlinqs employs high-standard marketing methodologies, predictive modeling, rigorous testing, and continuous algorithmic optimization.
                 </p>
                 <div className="p-4 rounded-2xl bg-[#FFEBE5] border border-[#FF5E3A]/30 text-xs text-[#0A0F1D] leading-relaxed">
                   <strong className="block font-black text-[#FF5E3A] mb-1 uppercase tracking-wider">
                     Clear Distinction: Strategic Effort vs. Guaranteed Outcomes
                   </strong>
-                  Because search engine ranking algorithms, ad auction volatility, competitor bid maneuvers, and consumer market behaviors are external variables beyond direct human control, Growlinx does NOT guarantee specific keyword rankings, guaranteed Return on Ad Spend (ROAS), guaranteed sales conversion counts, guaranteed followers, or viral outcomes. All case studies, historical results, and strategic forecasts presented by Growlinx represent past performance or strategic modeling and do not constitute an express or implied guarantee of identical results for any specific campaign.
+                  Because search engine ranking algorithms, ad auction volatility, competitor bid maneuvers, and consumer market behaviors are external variables beyond direct human control, Growlinqs does NOT guarantee specific keyword rankings, guaranteed Return on Ad Spend (ROAS), guaranteed sales conversion counts, guaranteed followers, or viral outcomes. All case studies, historical results, and strategic forecasts presented by Growlinqs represent past performance or strategic modeling and do not constitute an express or implied guarantee of identical results for any specific campaign.
                 </div>
               </section>
 
@@ -450,7 +450,7 @@ export default function TermsAndConditionsPage() {
                   <strong>Client Deliverables:</strong> Upon receipt of full payment for all corresponding fees, all final custom creative assets, marketing copy, and strategy documents created specifically for the Client shall become the intellectual property of the Client.
                 </p>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  <strong>Agency Pre-Existing Materials:</strong> Growlinx retains all right, title, and interest in and to its pre-existing proprietary methodologies, software tooling, internal attribution frameworks, automated workflows, templates, and general marketing architectures.
+                  <strong>Agency Pre-Existing Materials:</strong> Growlinqs retains all right, title, and interest in and to its pre-existing proprietary methodologies, software tooling, internal attribution frameworks, automated workflows, templates, and general marketing architectures.
                 </p>
               </section>
 
@@ -465,7 +465,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  The Client grants Growlinx a non-exclusive, worldwide license to use, display, and distribute Client logos, product assets, and brand content solely for the purpose of executing the agreed marketing deliverables. The Client represents and warrants that all materials provided do not infringe upon any third-party intellectual property or privacy rights.
+                  The Client grants Growlinqs a non-exclusive, worldwide license to use, display, and distribute Client logos, product assets, and brand content solely for the purpose of executing the agreed marketing deliverables. The Client represents and warrants that all materials provided do not infringe upon any third-party intellectual property or privacy rights.
                 </p>
               </section>
 
@@ -495,7 +495,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Growlinx processes information in compliance with recognized privacy standards and data governance best practices. For detailed information regarding our data collection, tracking protocols, and security practices, please review our{" "}
+                  Growlinqs processes information in compliance with recognized privacy standards and data governance best practices. For detailed information regarding our data collection, tracking protocols, and security practices, please review our{" "}
                   <Link href="/privacy" className="text-[#FF5E3A] font-bold hover:underline">
                     Privacy Policy
                   </Link>.
@@ -513,7 +513,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Campaigns rely on third-party networks (including Google, Meta, TikTok, Apple, and LinkedIn) governed by their independent policies and terms. Growlinx is not responsible for policy shifts, account rejections, review delays, or platform outages instituted by these third-party platforms.
+                  Campaigns rely on third-party networks (including Google, Meta, TikTok, Apple, and LinkedIn) governed by their independent policies and terms. Growlinqs is not responsible for policy shifts, account rejections, review delays, or platform outages instituted by these third-party platforms.
                 </p>
               </section>
 
@@ -528,7 +528,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  While Growlinx strives for continuous execution during standard business hours, services may be subject to scheduled maintenance or unforeseen technical interruptions. We make commercially reasonable efforts to notify clients of any planned downtime affecting campaign monitoring tools.
+                  While Growlinqs strives for continuous execution during standard business hours, services may be subject to scheduled maintenance or unforeseen technical interruptions. We make commercially reasonable efforts to notify clients of any planned downtime affecting campaign monitoring tools.
                 </p>
               </section>
 
@@ -543,10 +543,10 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  To the maximum extent permitted by applicable law, in no event shall Growlinx, its officers, directors, employees, or contractors be liable for any indirect, incidental, special, consequential, or punitive damages (including loss of profits, data, goodwill, or business interruption) arising out of or related to our services.
+                  To the maximum extent permitted by applicable law, in no event shall Growlinqs, its officers, directors, employees, or contractors be liable for any indirect, incidental, special, consequential, or punitive damages (including loss of profits, data, goodwill, or business interruption) arising out of or related to our services.
                 </p>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Growlinx&apos;s aggregate liability for all claims arising under any engagement shall not exceed the total agency fees actually received by Growlinx from the Client during the three (3) month period immediately preceding the event giving rise to liability.
+                  Growlinqs&apos;s aggregate liability for all claims arising under any engagement shall not exceed the total agency fees actually received by Growlinqs from the Client during the three (3) month period immediately preceding the event giving rise to liability.
                 </p>
               </section>
 
@@ -561,7 +561,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  The Client agrees to defend, indemnify, and hold harmless Growlinx from and against any third-party claims, damages, losses, liabilities, and expenses (including reasonable attorney fees) arising from: (a) Client-provided products, services, or marketing claims; (b) Client breach of these Terms; or (c) infringement of any third-party intellectual property in Client-supplied materials.
+                  The Client agrees to defend, indemnify, and hold harmless Growlinqs from and against any third-party claims, damages, losses, liabilities, and expenses (including reasonable attorney fees) arising from: (a) Client-provided products, services, or marketing claims; (b) Client breach of these Terms; or (c) infringement of any third-party intellectual property in Client-supplied materials.
                 </p>
               </section>
 
@@ -625,7 +625,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Growlinx reserves the right to modify these Terms at any time. When modifications occur, we will update the &quot;Last Updated&quot; timestamp at the top of this document. Continued use of our website or services following posted updates signifies your acceptance of the revised Terms.
+                  Growlinqs reserves the right to modify these Terms at any time. When modifications occur, we will update the &quot;Last Updated&quot; timestamp at the top of this document. Continued use of our website or services following posted updates signifies your acceptance of the revised Terms.
                 </p>
               </section>
 
@@ -705,7 +705,7 @@ export default function TermsAndConditionsPage() {
                   href="/contact"
                   className="orange-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 font-extrabold px-8 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg shadow-[#FF5E3A]/25"
                 >
-                  <span>Contact Growlinx</span>
+                  <span>Contact Growlinqs</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
 

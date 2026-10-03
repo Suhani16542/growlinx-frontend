@@ -2,9 +2,9 @@ import { cookies } from "next/headers";
 import { AdminUser } from "@/types";
 
 const AUTH_COOKIE_NAME = "growlinx_admin_token";
-const DEFAULT_ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@growlinx.com";
-const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin@growlinx2026";
-const AUTH_SECRET = process.env.ADMIN_AUTH_SECRET || "growlinx_super_secret_auth_key_2026";
+const DEFAULT_ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@growlinqs.com";
+const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin@growlinqs2026";
+const AUTH_SECRET = process.env.ADMIN_AUTH_SECRET || "growlinqs_super_secret_auth_key_2026";
 
 // Simple signature-based token for zero-dependency secure session
 export function createSessionToken(user: AdminUser): string {
@@ -56,7 +56,7 @@ export function validateCredentials(email: string, pass: string): AdminUser | nu
   if (trimmedEmail === validEmail && trimmedPass === validPass) {
     return {
       id: "admin-1",
-      name: "Growlinx Administrator",
+      name: "Growlinqs Administrator",
       email: validEmail,
       role: "admin",
     };

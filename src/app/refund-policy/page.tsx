@@ -22,9 +22,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Refund Policy | Growlinx",
+  title: "Refund Policy | Growlinqs",
   description:
-    "Review Growlinx's comprehensive Refund Policy, cancellation guidelines, milestone billing terms, and third-party ad spend rules.",
+    "Review Growlinqs's comprehensive Refund Policy, cancellation guidelines, milestone billing terms, and third-party ad spend rules.",
   canonicalUrl: `${siteConfig.url}/refund-policy`,
 });
 
@@ -77,7 +77,7 @@ export default function RefundPolicyPage() {
 
               {/* Supporting Text */}
               <p className="mt-5 text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-normal">
-                This document outlines Growlinx&apos;s refund guidelines, project cancellation terms, milestone billing structures, and client accountability framework across all digital marketing and growth consulting engagements.
+                This document outlines Growlinqs&apos;s refund guidelines, project cancellation terms, milestone billing structures, and client accountability framework across all digital marketing and growth consulting engagements.
               </p>
 
               {/* Meta information chips */}
@@ -131,7 +131,7 @@ export default function RefundPolicyPage() {
                   Pass-Through Ad Spend
                 </h4>
                 <p className="text-xs text-[#5A6578] mt-1 leading-relaxed">
-                  Third-party ad spends paid directly to Google, Meta, or TikTok are non-refundable by Growlinx.
+                  Third-party ad spends paid directly to Google, Meta, or TikTok are non-refundable by Growlinqs.
                 </p>
               </div>
             </div>
@@ -233,7 +233,7 @@ export default function RefundPolicyPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Growlinx (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) delivers professional digital marketing, search engine optimization (SEO), paid media management, mobile application user acquisition, creator and influencer campaign management, and digital growth consulting services.
+                  Growlinqs (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) delivers professional digital marketing, search engine optimization (SEO), paid media management, mobile application user acquisition, creator and influencer campaign management, and digital growth consulting services.
                 </p>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
                   Because digital marketing engagements involve dedicated strategist hours, proprietary research, customized creative deliverables, software tooling allocations, and third-party media buys, this Refund Policy defines the clear, transparent conditions under which refunds, prorations, or credits may be considered.
@@ -251,7 +251,7 @@ export default function RefundPolicyPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  This policy applies to all services and deliverables provided by Growlinx pursuant to executed client agreements, Statements of Work (SOW), master service agreements (MSA), or digital onboarding orders, including:
+                  This policy applies to all services and deliverables provided by Growlinqs pursuant to executed client agreements, Statements of Work (SOW), master service agreements (MSA), or digital onboarding orders, including:
                 </p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-bold text-[#0A0F1D]">
                   <li className="flex items-center gap-2 p-3 rounded-xl bg-[#FAF6F0] border border-[#EADECE]">
@@ -305,7 +305,7 @@ export default function RefundPolicyPage() {
                   </div>
                   <div className="p-4 rounded-2xl bg-[#FAF6F0] border border-[#EADECE] text-xs text-[#5A6578] space-y-1">
                     <strong className="text-[#0A0F1D] block">3. Inability to Fulfill Core Deliverables:</strong>
-                    <span>Where Growlinx is demonstrably unable to initiate the scope outlined in an executed Statement of Work due to internal constraints.</span>
+                    <span>Where Growlinqs is demonstrably unable to initiate the scope outlined in an executed Statement of Work due to internal constraints.</span>
                   </div>
                 </div>
               </section>
@@ -367,7 +367,7 @@ export default function RefundPolicyPage() {
                   </a>. Verbal cancellations or direct messages on chat channels are not recognized as formal notices of termination.
                 </p>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  The effective cancellation date shall be the date on which written receipt is acknowledged by Growlinx management during standard business operating hours.
+                  The effective cancellation date shall be the date on which written receipt is acknowledged by Growlinqs management during standard business operating hours.
                 </p>
               </section>
 
@@ -406,7 +406,7 @@ export default function RefundPolicyPage() {
                 <div className="space-y-3 pt-2 text-xs text-[#5A6578]">
                   <div className="p-4 rounded-2xl bg-[#FAF6F0] border border-[#EADECE]">
                     <strong className="text-[#0A0F1D] block mb-1">Prorated Work Reconciliation:</strong>
-                    <span>Growlinx will calculate the exact percentage of completed milestones and accrued billable hours through the verified effective date of cancellation.</span>
+                    <span>Growlinqs will calculate the exact percentage of completed milestones and accrued billable hours through the verified effective date of cancellation.</span>
                   </div>
                   <div className="p-4 rounded-2xl bg-[#FAF6F0] border border-[#EADECE]">
                     <strong className="text-[#0A0F1D] block mb-1">Final Settlement & Deliverables Transfer:</strong>
@@ -446,13 +446,13 @@ export default function RefundPolicyPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Growlinx charges professional management fees for campaign architecture, creative production, bid optimization, and analytics attribution.
+                  Growlinqs charges professional management fees for campaign architecture, creative production, bid optimization, and analytics attribution.
                 </p>
                 <div className="p-4 rounded-2xl bg-[#FFEBE5] border border-[#FF5E3A]/30 text-xs text-[#0A0F1D] leading-relaxed">
                   <strong className="block font-black text-[#FF5E3A] mb-1 uppercase tracking-wider">
                     Crucial Advertising Network Disclaimer
                   </strong>
-                  Ad platform spend (including Google Ads, Meta Ads, TikTok Ads, Apple Search Ads, LinkedIn Marketing Solutions) is disbursed directly from your linked credit card or billing profile to the ad networks. Growlinx does not hold or control these platform funds. Platform spend consumed by active ad auctions is entirely non-refundable by Growlinx under all circumstances.
+                  Ad platform spend (including Google Ads, Meta Ads, TikTok Ads, Apple Search Ads, LinkedIn Marketing Solutions) is disbursed directly from your linked credit card or billing profile to the ad networks. Growlinqs does not hold or control these platform funds. Platform spend consumed by active ad auctions is entirely non-refundable by Growlinqs under all circumstances.
                 </div>
               </section>
 
@@ -467,7 +467,7 @@ export default function RefundPolicyPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Out-of-pocket expenses incurred by Growlinx on behalf of the client—including third-party stock media licenses, commercial audio synchronization, specialized font licenses, external development APIs, specialized research data sets, and contracted creator fees—are strictly non-refundable once committed or incurred.
+                  Out-of-pocket expenses incurred by Growlinqs on behalf of the client—including third-party stock media licenses, commercial audio synchronization, specialized font licenses, external development APIs, specialized research data sets, and contracted creator fees—are strictly non-refundable once committed or incurred.
                 </p>
               </section>
 
@@ -488,7 +488,7 @@ export default function RefundPolicyPage() {
                   <div className="p-4 rounded-2xl bg-[#FAF6F0] border border-[#EADECE] space-y-1.5">
                     <span className="text-xs font-mono font-bold text-[#FF5E3A]">Step 01</span>
                     <h4 className="text-xs font-bold text-[#0A0F1D]">Submit Written Notice</h4>
-                    <p className="text-xs text-[#5A6578]">Email billing details, company name, and invoice ID to billing@growlinx.com.</p>
+                    <p className="text-xs text-[#5A6578]">Email billing details, company name, and invoice ID to billing@growlinqs.com.</p>
                   </div>
                   <div className="p-4 rounded-2xl bg-[#FAF6F0] border border-[#EADECE] space-y-1.5">
                     <span className="text-xs font-mono font-bold text-[#FF5E3A]">Step 02</span>
@@ -537,9 +537,9 @@ export default function RefundPolicyPage() {
                   Once an adjustment or refund is formally authorized in writing:
                 </p>
                 <ul className="space-y-2 text-xs text-[#5A6578] font-normal pl-4 list-disc">
-                  <li>Growlinx initiates the electronic refund authorization within five to seven (5–7) business days.</li>
+                  <li>Growlinqs initiates the electronic refund authorization within five to seven (5–7) business days.</li>
                   <li>Depending on your financial institution, merchant bank, or credit card issuer, funds typically reflect in your bank statement within an additional 5 to 10 business days.</li>
-                  <li>Growlinx will provide an official refund transaction receipt and reference identifier for tracking with your banking provider.</li>
+                  <li>Growlinqs will provide an official refund transaction receipt and reference identifier for tracking with your banking provider.</li>
                 </ul>
               </section>
 
@@ -587,7 +587,7 @@ export default function RefundPolicyPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Both Growlinx and the client agree to prioritize open, good-faith dialogue to resolve any billing misunderstandings or deliverable concerns. Before initiating any payment dispute, chargeback, or legal action, the client agrees to notify Growlinx in writing and allow a minimum thirty (30) day informal dispute resolution period to achieve an amicable business solution.
+                  Both Growlinqs and the client agree to prioritize open, good-faith dialogue to resolve any billing misunderstandings or deliverable concerns. Before initiating any payment dispute, chargeback, or legal action, the client agrees to notify Growlinqs in writing and allow a minimum thirty (30) day informal dispute resolution period to achieve an amicable business solution.
                 </p>
               </section>
 
@@ -602,7 +602,7 @@ export default function RefundPolicyPage() {
                   </h2>
                 </div>
                 <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                  Growlinx reserves the right to modify, amend, or update this Refund Policy periodically to reflect evolving service offerings, technical processes, or legal requirements. Updated versions will be published on this page with an updated &quot;Last Updated&quot; revision timestamp. Existing client agreements active prior to policy updates will remain governed by their specific executed Statement of Work.
+                  Growlinqs reserves the right to modify, amend, or update this Refund Policy periodically to reflect evolving service offerings, technical processes, or legal requirements. Updated versions will be published on this page with an updated &quot;Last Updated&quot; revision timestamp. Existing client agreements active prior to policy updates will remain governed by their specific executed Statement of Work.
                 </p>
               </section>
 

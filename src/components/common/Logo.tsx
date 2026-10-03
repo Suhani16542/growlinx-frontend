@@ -18,7 +18,7 @@ export function Logo({ className, variant = "header", priority = false }: LogoPr
         "group inline-flex items-center gap-3 shrink-0 transition-transform duration-200 hover:scale-[1.02] focus:outline-none",
         className
       )}
-      aria-label="Growlinx Official Brand"
+      aria-label="Growlinqs Official Brand"
     >
       {/* Official Exact Uploaded Logo Image */}
       <div
@@ -31,7 +31,7 @@ export function Logo({ className, variant = "header", priority = false }: LogoPr
       >
         <Image
           src="/logo/growlinx-logo.jpg"
-          alt="Growlinx Official Brand Logo"
+          alt="Growlinqs Official Brand Logo"
           width={512}
           height={512}
           priority={priority || !isFooter}
@@ -49,7 +49,7 @@ export function Logo({ className, variant = "header", priority = false }: LogoPr
               : "text-[#0A0F1D] group-hover:text-[#FF5E3A]"
           )}
         >
-          Growlinx
+          Growlinqs
         </span>
         <span
           className={cn(

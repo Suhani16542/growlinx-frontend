@@ -125,7 +125,7 @@ export default function AboutUsPage() {
               <ScrollReveal animation="fade-left" duration={800} className="space-y-5">
                 <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-widest bg-white border border-[#EADECE] text-[#FF5E3A] shadow-xs">
                   <Sparkles className="h-3.5 w-3.5" />
-                  <span>THE GROWLINX STORY</span>
+                  <span>THE GROWLINQS STORY</span>
                 </div>
 
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] text-[#0A0F1D]">
@@ -134,7 +134,7 @@ export default function AboutUsPage() {
                 </h1>
 
                 <p className="text-sm sm:text-base text-[#5A6578] leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  Growlinx was founded to bridge the divide between creative branding and rigorous mathematical performance marketing. We replace agency vanity metrics with verified commercial revenue.
+                  Growlinqs was founded to bridge the divide between creative branding and rigorous mathematical performance marketing. We replace agency vanity metrics with verified commercial revenue.
                 </p>
 
                 {/* CTAs */}
@@ -166,7 +166,7 @@ export default function AboutUsPage() {
                     <div className="relative w-full h-full rounded-[1.6rem] overflow-hidden">
                       <Image
                         src="/images/hero-agency-studio.jpg"
-                        alt="Growlinx Agency Strategy Team"
+                        alt="Growlinqs Agency Strategy Team"
                         fill
                         priority
                         className="object-cover object-center"
@@ -263,7 +263,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 3: WHY BUSINESSES CHOOSE GROWLINX (LIGHT: Verified Metric Cards)
+          SECTION 3: WHY BUSINESSES CHOOSE GROWLINQS (LIGHT: Verified Metric Cards)
           ========================================================================= */}
       <section className="py-16 sm:py-20 lg:py-24 cream-surface overflow-hidden border-b border-[#EADECE]">
         <Container>
@@ -275,7 +275,7 @@ export default function AboutUsPage() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#0A0F1D] leading-tight">
-                Why Businesses Choose <span className="text-[#FF5E3A]">Growlinx</span>
+                Why Businesses Choose <span className="text-[#FF5E3A]">Growlinqs</span>
               </h2>
 
               <p className="text-xs sm:text-sm text-[#5A6578] font-medium leading-relaxed">

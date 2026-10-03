@@ -242,7 +242,7 @@ export default function ServicesPage() {
                     <div className="relative w-full h-full rounded-[1.6rem] overflow-hidden">
                       <Image
                         src="/images/service-paid-ads.jpg"
-                        alt="Growlinx Digital Marketing Solutions Hub"
+                        alt="Growlinqs Digital Marketing Solutions Hub"
                         fill
                         priority
                         className="object-cover object-center transition-transform duration-700 hover:scale-105"
@@ -624,7 +624,7 @@ export default function ServicesPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 6: WHY GROWLINX FOR SERVICES (LIGHT: 4 Value Pillars)
+          SECTION 6: WHY GROWLINQS FOR SERVICES (LIGHT: 4 Value Pillars)
           ========================================================================= */}
       <section className="py-16 sm:py-20 lg:py-24 cream-surface overflow-hidden border-b border-[#EADECE]">
         <Container>
@@ -632,7 +632,7 @@ export default function ServicesPage() {
             <div className="text-center max-w-2xl mx-auto space-y-3.5 mb-12">
               <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-widest bg-white border border-[#EADECE] text-[#FF5E3A] shadow-xs">
                 <Award className="h-3.5 w-3.5" />
-                <span>THE GROWLINX STANDARD</span>
+                <span>THE GROWLINQS STANDARD</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#0A0F1D] leading-tight">

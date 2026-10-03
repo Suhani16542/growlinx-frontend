@@ -1,19 +1,19 @@
 import { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Growlinx",
-  title: "Growlinx — Digital Marketing & Growth Agency",
+  name: "Growlinqs",
+  title: "Growlinqs — Digital Marketing & Growth Agency",
   description:
-    "Growlinx is a high-impact digital marketing & growth agency accelerating businesses with SEO, Paid Advertising, Social Media, App Growth, and Influencer Marketing.",
-  url: "https://growlinx.com",
+    "Growlinqs is a high-impact digital marketing & growth agency accelerating businesses with SEO, Paid Advertising, Social Media, App Growth, and Influencer Marketing.",
+  url: "https://www.growlinqs.com",
   ogImage: "/images/og-default.png",
   links: {
-    twitter: "https://twitter.com/growlinx",
-    linkedin: "https://linkedin.com/company/growlinx",
-    instagram: "https://instagram.com/growlinx",
+    twitter: "https://twitter.com/growlinqs",
+    linkedin: "https://linkedin.com/company/growlinqs",
+    instagram: "https://instagram.com/growlinqs",
   },
   contact: {
-    email: "contact@growlinx.com",
+    email: "contact@growlinqs.com",
     phone: "+1 (800) 555-GROW",
     address: "750 Lexington Ave, New York, NY 10022",
   },
@@ -58,7 +58,7 @@ export function constructMetadata({
       title,
       description,
       images: [image],
-      creator: "@growlinx",
+      creator: "@growlinqs",
     },
     robots: {
       index: !noIndex,

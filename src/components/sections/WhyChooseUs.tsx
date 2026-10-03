@@ -88,7 +88,7 @@ export function WhyChooseUs() {
           <div className="text-center max-w-3xl mx-auto space-y-5 mb-16 lg:mb-20">
             <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest bg-white/[0.06] border border-[#FF5E3A]/30 text-[#FF5E3A] shadow-xs">
               <Sparkles className="h-3.5 w-3.5" />
-              <span>THE GROWLINX ADVANTAGE</span>
+              <span>THE GROWLINQS ADVANTAGE</span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#FAF6F0] leading-[1.08]">

@@ -423,7 +423,7 @@ export default function AdminEnquiriesPage() {
             <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10">
               <div className="flex items-center gap-2">
                 <a
-                  href={`mailto:${selectedEnquiry.email}?subject=Re: Your Growlinx Growth Consultation`}
+                  href={`mailto:${selectedEnquiry.email}?subject=Re: Your Growlinqs Growth Consultation`}
                   className="px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-[#FF5E3A] text-white hover:bg-[#ff7252] transition-colors flex items-center gap-1.5"
                 >
                   <Mail className="h-3.5 w-3.5" />

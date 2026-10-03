@@ -33,7 +33,7 @@ export const metadata: Metadata = constructMetadata({
   title: "APIs & Products | Fintech, Verification & Payment APIs",
   description:
     "Production-ready fintech APIs for payments, identity verification, DigiLocker, BBPS, and agent banking — built for India's digital economy.",
-  canonicalUrl: "https://growlinx.com/services/apis-and-products",
+  canonicalUrl: "https://growlinqs.com/services/apis-and-products",
 });
 
 export default function ApisAndProductsPage() {
@@ -52,11 +52,11 @@ export default function ApisAndProductsPage() {
       "Production-ready fintech APIs for payments, verification, and agent banking — built for India's digital economy.",
     provider: {
       "@type": "ProfessionalService",
-      name: "Growlinx",
-      url: "https://growlinx.com",
+      name: "Growlinqs",
+      url: "https://growlinqs.com",
     },
     areaServed: "IN",
-    url: "https://growlinx.com/services/apis-and-products",
+    url: "https://growlinqs.com/services/apis-and-products",
   };
 
   return (
@@ -297,7 +297,7 @@ export default function ApisAndProductsPage() {
       </section>
 
       {/* =========================================================================
-          5. FINAL CTA SECTION (Growlinx Style)
+          5. FINAL CTA SECTION (Growlinqs Style)
           ========================================================================= */}
       <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden bg-[#0A0F1D] text-[#FAF6F0]">
         {/* Subtle Orange Glow Backdrop */}
@@ -314,7 +314,7 @@ export default function ApisAndProductsPage() {
 
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#FAF6F0] leading-snug">
                   Build Smarter Digital Solutions with{" "}
-                  <span className="text-[#FF5E3A]">Growlinx</span>
+                  <span className="text-[#FF5E3A]">Growlinqs</span>
                 </h2>
 
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl mx-auto font-normal">

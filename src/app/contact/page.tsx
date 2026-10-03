@@ -248,7 +248,7 @@ export default function ContactPage() {
                           Inquiry Received!
                         </h3>
                         <p className="text-sm text-[#5A6578] max-w-md mx-auto leading-relaxed">
-                          Thank you for reaching out to Growlinx. One of our senior marketing strategists is reviewing your submission and will contact you within 24 hours.
+                          Thank you for reaching out to Growlinqs. One of our senior marketing strategists is reviewing your submission and will contact you within 24 hours.
                         </p>
                       </div>
                       <div className="pt-4">
@@ -513,7 +513,7 @@ export default function ContactPage() {
                 Frequently Asked Questions
               </h2>
               <p className="mt-3 text-sm text-[#5A6578]">
-                Everything you need to know about initiating a partnership with Growlinx.
+                Everything you need to know about initiating a partnership with Growlinqs.
               </p>
             </div>
           </ScrollReveal>

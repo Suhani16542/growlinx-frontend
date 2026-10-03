@@ -112,7 +112,7 @@ export function LeadContactPreview() {
                       Strategy Request Received!
                     </h3>
                     <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-                      Thank you for reaching out to Growlinx. One of our growth strategists will review your domain and respond within 24 business hours.
+                      Thank you for reaching out to Growlinqs. One of our growth strategists will review your domain and respond within 24 business hours.
                     </p>
                     <div className="pt-4">
                       <button

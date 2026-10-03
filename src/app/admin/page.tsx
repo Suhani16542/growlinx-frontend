@@ -406,7 +406,7 @@ export default function AdminDashboardPage() {
             <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/10">
               <div className="flex items-center gap-2">
                 <a
-                  href={`mailto:${selectedEnquiry.email}?subject=Growlinx Strategy Consultation`}
+                  href={`mailto:${selectedEnquiry.email}?subject=Growlinqs Strategy Consultation`}
                   className="px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-white/[0.08] border border-white/15 text-white hover:bg-[#FF5E3A] hover:border-[#FF5E3A] transition-colors flex items-center gap-1.5"
                 >
                   <Mail className="h-3.5 w-3.5" />

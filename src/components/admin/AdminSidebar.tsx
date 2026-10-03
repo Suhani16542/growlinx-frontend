@@ -90,7 +90,7 @@ export function AdminSidebar({ mobileOpen = false, onCloseMobile, unreadCount = 
             {user?.name ? user.name.slice(0, 2).toUpperCase() : "AD"}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-bold text-[#FAF6F0] truncate">{user?.name || "Growlinx Admin"}</p>
+            <p className="text-xs font-bold text-[#FAF6F0] truncate">{user?.name || "Growlinqs Admin"}</p>
             <p className="text-[10px] text-[#FF5E3A] font-semibold truncate uppercase tracking-wider">
               {user?.role || "Administrator"}
             </p>
@@ -165,7 +165,7 @@ export function AdminSidebar({ mobileOpen = false, onCloseMobile, unreadCount = 
         </button>
 
         <div className="pt-2 px-2 text-[10px] text-slate-500 flex items-center justify-between font-mono">
-          <span>Growlinx v2.4</span>
+          <span>Growlinqs v2.4</span>
           <span className="flex items-center gap-1 text-emerald-400">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Live

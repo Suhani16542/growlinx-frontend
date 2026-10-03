@@ -4,7 +4,7 @@ export const faqData: FAQItem[] = [
   {
     id: "services-overview",
     question: "What digital marketing services do you provide?",
-    answer: "GrowlinX provides full-funnel digital marketing services including Search Engine Optimization (SEO), App Marketing & User Acquisition, Influencer & Celebrity Management, Social Media Management, YouTube Monetization Services, and Paid Advertising & Performance Marketing across Google and Meta platforms.",
+    answer: "Growlinqs provides full-funnel digital marketing services including Search Engine Optimization (SEO), App Marketing & User Acquisition, Influencer & Celebrity Management, Social Media Management, YouTube Monetization Services, and Paid Advertising & Performance Marketing across Google and Meta platforms.",
     category: "General",
   },
   {

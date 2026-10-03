@@ -28,17 +28,17 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "customer acquisition cost",
     ],
     searchIntent: "Commercial",
-    title: "Growlinx | Performance Digital Marketing & Growth Agency",
+    title: "Growlinqs | Performance Digital Marketing & Growth Agency",
     description:
-      "Growlinx is an elite performance digital marketing agency accelerating brands with full-funnel SEO, high-ROAS paid media, and multi-touch revenue attribution.",
+      "Growlinqs is an elite performance digital marketing agency accelerating brands with full-funnel SEO, high-ROAS paid media, and multi-touch revenue attribution.",
     h1: "Turn Digital Attention Into Real Revenue Growth.",
-    canonicalUrl: "https://growlinx.com",
+    canonicalUrl: "https://www.growlinqs.com",
   },
   about: {
     path: "/about-us",
     primaryKeyword: "growth marketing consultants",
     secondaryKeywords: [
-      "about growlinx agency",
+      "about growlinqs agency",
       "performance marketing team",
       "digital growth architects",
       "data-driven marketing agency",
@@ -53,9 +53,9 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
     searchIntent: "Informational",
     title: "About Us | Full-Stack Performance Digital Marketing Agency",
     description:
-      "Discover the story and leadership behind Growlinx—an elite performance marketing agency engineering full-funnel customer acquisition and verified revenue.",
+      "Discover the story and leadership behind Growlinqs—an elite performance marketing agency engineering full-funnel customer acquisition and verified revenue.",
     h1: "We Engineer Growth Engines for Market Leaders.",
-    canonicalUrl: "https://growlinx.com/about-us",
+    canonicalUrl: "https://www.growlinqs.com/about-us",
   },
   services: {
     path: "/services",
@@ -74,11 +74,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "YouTube channel monetization",
     ],
     searchIntent: "Commercial",
-    title: "Digital Marketing Services & Growth Solutions | Growlinx",
+    title: "Digital Marketing Services & Growth Solutions | Growlinqs",
     description:
-      "Explore Growlinx's full-spectrum growth services: Enterprise SEO, High-ROAS Paid Ads, App User Acquisition, Social Media, and Influencer Marketing.",
+      "Explore Growlinqs's full-spectrum growth services: Enterprise SEO, High-ROAS Paid Ads, App User Acquisition, Social Media, and Influencer Marketing.",
     h1: "High-Impact Growth Marketing Solutions.",
-    canonicalUrl: "https://growlinx.com/services",
+    canonicalUrl: "https://www.growlinqs.com/services",
   },
   serviceSEO: {
     path: "/services/seo",
@@ -97,11 +97,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "AI answer engine optimization",
     ],
     searchIntent: "Commercial",
-    title: "Enterprise SEO Services & Organic Revenue Growth | Growlinx",
+    title: "Enterprise SEO Services & Organic Revenue Growth | Growlinqs",
     description:
-      "Dominate search rankings with Growlinx's enterprise SEO services. Technical audits, semantic content architecture, and authority link acquisition.",
+      "Dominate search rankings with Growlinqs's enterprise SEO services. Technical audits, semantic content architecture, and authority link acquisition.",
     h1: "Enterprise Search Engine Optimization",
-    canonicalUrl: "https://growlinx.com/services/seo",
+    canonicalUrl: "https://www.growlinqs.com/services/seo",
   },
   servicePaidAds: {
     path: "/services/paid-advertising",
@@ -120,11 +120,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "conversion funnel optimization",
     ],
     searchIntent: "Transactional",
-    title: "Paid Advertising Agency | Meta, Google & TikTok Ads | Growlinx",
+    title: "Paid Advertising Agency | Meta, Google & TikTok Ads | Growlinqs",
     description:
       "Scale profitable customer acquisition with high-ROAS paid advertising across Meta, Google Ads, and TikTok with strict unit economics discipline.",
     h1: "Performance Paid Advertising & Media Buying",
-    canonicalUrl: "https://growlinx.com/services/paid-advertising",
+    canonicalUrl: "https://www.growlinqs.com/services/paid-advertising",
   },
   serviceSocialMedia: {
     path: "/services/social-media-management",
@@ -143,11 +143,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "organic viral reach",
     ],
     searchIntent: "Commercial",
-    title: "Social Media Management & Growth Agency | Growlinx",
+    title: "Social Media Management & Growth Agency | Growlinqs",
     description:
       "Transform social channels into high-converting revenue assets with bespoke creative storytelling, active community management, and algorithmic distribution.",
     h1: "Strategic Social Media Management & Distribution",
-    canonicalUrl: "https://growlinx.com/services/social-media-management",
+    canonicalUrl: "https://www.growlinqs.com/services/social-media-management",
   },
   serviceAppMarketing: {
     path: "/services/app-marketing",
@@ -166,11 +166,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "ROAS per install",
     ],
     searchIntent: "Commercial",
-    title: "Mobile App Marketing & ASO Growth Agency | Growlinx",
+    title: "Mobile App Marketing & ASO Growth Agency | Growlinqs",
     description:
       "Drive qualified app installs and long-term user retention with data-backed App Store Optimization (ASO) and precision paid acquisition funnels.",
     h1: "Mobile App Marketing & User Acquisition",
-    canonicalUrl: "https://growlinx.com/services/app-marketing",
+    canonicalUrl: "https://www.growlinqs.com/services/app-marketing",
   },
   serviceInfluencer: {
     path: "/services/influencer-management",
@@ -189,11 +189,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "tiered influencer matchmaking",
     ],
     searchIntent: "Commercial",
-    title: "Performance Influencer Marketing Agency | Growlinx",
+    title: "Performance Influencer Marketing Agency | Growlinqs",
     description:
       "Launch high-ROI influencer campaigns with verified creator partnerships, paid whitelisting, and multi-touch conversion attribution.",
     h1: "Performance Influencer & Creator Marketing",
-    canonicalUrl: "https://growlinx.com/services/influencer-management",
+    canonicalUrl: "https://www.growlinqs.com/services/influencer-management",
   },
   serviceYouTube: {
     path: "/services/youtube-monetization",
@@ -212,11 +212,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "YouTube algorithm mastery",
     ],
     searchIntent: "Commercial",
-    title: "YouTube Growth & Video Monetization Agency | Growlinx",
+    title: "YouTube Growth & Video Monetization Agency | Growlinqs",
     description:
       "Scale channel subscribers, maximize watch time, and optimize multi-stream video monetization with algorithmic YouTube growth strategies.",
     h1: "YouTube Growth & Channel Monetization",
-    canonicalUrl: "https://growlinx.com/services/youtube-monetization",
+    canonicalUrl: "https://www.growlinqs.com/services/youtube-monetization",
   },
   portfolio: {
     path: "/portfolio",
@@ -235,11 +235,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "app install metrics",
     ],
     searchIntent: "Commercial",
-    title: "Case Studies & Proven Client Results | Growlinx",
+    title: "Case Studies & Proven Client Results | Growlinqs",
     description:
-      "Explore verified case studies and performance benchmarks demonstrating how Growlinx accelerates pipeline velocity and revenue for ambitious brands.",
+      "Explore verified case studies and performance benchmarks demonstrating how Growlinqs accelerates pipeline velocity and revenue for ambitious brands.",
     h1: "Proven Growth Outcomes & Client Case Studies",
-    canonicalUrl: "https://growlinx.com/portfolio",
+    canonicalUrl: "https://www.growlinqs.com/portfolio",
   },
   blog: {
     path: "/blog",
@@ -258,11 +258,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "ASO tactics",
     ],
     searchIntent: "Informational",
-    title: "Growth Marketing Insights, Strategies & Playbooks | Growlinx",
+    title: "Growth Marketing Insights, Strategies & Playbooks | Growlinqs",
     description:
       "Tactical playbooks, data studies, and actionable frameworks from senior growth practitioners on SEO, paid ads, creator marketing, and conversion scaling.",
     h1: "Growth Marketing Insights & Frameworks",
-    canonicalUrl: "https://growlinx.com/blog",
+    canonicalUrl: "https://www.growlinqs.com/blog",
   },
   contact: {
     path: "/contact",
@@ -281,11 +281,11 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "marketing retainers",
     ],
     searchIntent: "Transactional",
-    title: "Contact Our Growth Marketing Team | Growlinx",
+    title: "Contact Our Growth Marketing Team | Growlinqs",
     description:
-      "Connect with Growlinx's senior growth architects to request a custom channel audit, growth forecast, and full-funnel acquisition blueprint.",
+      "Connect with Growlinqs's senior growth architects to request a custom channel audit, growth forecast, and full-funnel acquisition blueprint.",
     h1: "Initiate Your Growth Transformation",
-    canonicalUrl: "https://growlinx.com/contact",
+    canonicalUrl: "https://www.growlinqs.com/contact",
   },
   strategyCall: {
     path: "/free-strategy-call",
@@ -304,10 +304,10 @@ export const siteSEOConfig: Record<string, PageSEOConfig> = {
       "revenue opportunity analysis",
     ],
     searchIntent: "Transactional",
-    title: "Book a Free 30-Minute Growth Strategy Session | Growlinx",
+    title: "Book a Free 30-Minute Growth Strategy Session | Growlinqs",
     description:
       "Schedule a complimentary 30-minute growth strategy session with a senior partner. Receive a custom channel audit and actionable acquisition roadmap.",
     h1: "Reserve Your 30-Minute Growth Strategy Session",
-    canonicalUrl: "https://growlinx.com/free-strategy-call",
+    canonicalUrl: "https://www.growlinqs.com/free-strategy-call",
   },
 };
