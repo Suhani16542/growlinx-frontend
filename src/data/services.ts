@@ -520,4 +520,89 @@ export const servicesData: ServiceItem[] = [
       },
     ],
   },
+  {
+    id: "apis-and-products",
+    slug: "apis-and-products",
+    title: "APIs & Products",
+    tagline: "Production-Ready Fintech & Verification APIs",
+    shortDescription: "Production-ready fintech APIs for payments, verification, and agent banking — built for India's digital economy.",
+    fullDescription: "Production-ready fintech APIs for identity verification, document fetching, payments, BBPS, and agent banking infrastructure built for scale.",
+    iconName: "Code2",
+    tag: "Fintech & APIs",
+    ctaText: "Explore APIs & Products",
+    features: [
+      "20+ Real-Time Verification APIs (PAN, GST, DigiLocker, Bank)",
+      "Bharat Bill Payment System (BBPS) Integration",
+      "BC Agent Banking APIs (DMT & AePS Cashout)",
+      "Sub-Second Latency & 99.95% Availability SLA",
+      "Plug & Play REST APIs with JSON Payloads",
+      "Bank-Grade Encryption & Compliance",
+    ],
+    deliverables: [
+      "Verification APIs",
+      "PAN & GST Verification",
+      "Bank Account Verification",
+      "DigiLocker Integration",
+      "Payment APIs (BBPS)",
+      "BC Agent APIs (DMT & AePS)",
+      "Developer SDKs & Postman Collections",
+      "Webhook Infrastructure",
+    ],
+    benefits: [
+      {
+        title: "Sub-Second Latency",
+        description: "Optimized server architecture ensures instant responses for real-time verification and onboarding.",
+      },
+      {
+        title: "99.95% Availability",
+        description: "Enterprise-grade high availability guarantees your mission-critical financial flows never stop.",
+      },
+      {
+        title: "Bank-Grade Security",
+        description: "Compliant with regulatory frameworks with TLS 1.3 encryption and secure tokenization.",
+      },
+      {
+        title: "Developer Simplicity",
+        description: "Clean REST architecture, detailed documentation, and instant sandbox keys for quick launch.",
+      },
+    ],
+    process: [
+      {
+        step: "01",
+        title: "Sandbox Key Generation",
+        description: "Get instant access to developer test environments and interactive Postman collections.",
+      },
+      {
+        step: "02",
+        title: "API Integration & Testing",
+        description: "Integrate REST endpoints with sample code libraries across Node.js, Python, and Java.",
+      },
+      {
+        step: "03",
+        title: "Security & UAT Sign-off",
+        description: "Validate webhooks, payload encryption, and error handling in staging.",
+      },
+      {
+        step: "04",
+        title: "Production Go-Live",
+        description: "Switch to live credentials with 24/7 technical monitoring and dedicated SLA support.",
+      },
+    ],
+    metrics: [
+      { label: "Verification APIs", value: "20+" },
+      { label: "API Availability SLA", value: "99.95%" },
+      { label: "Average Response Time", value: "< 500ms" },
+    ],
+    faqs: [
+      {
+        question: "How do I get API access keys?",
+        answer: "You can request sandbox API credentials by reaching out to our team or scheduling an integration consultation. Test keys are generated instantly.",
+      },
+      {
+        question: "Are the verification APIs compliant with Indian regulations?",
+        answer: "Yes, all APIs strictly comply with UIDAI, NPCI, RBI, and MCA data privacy guidelines with end-to-end data encryption.",
+      },
+    ],
+  },
 ];
+

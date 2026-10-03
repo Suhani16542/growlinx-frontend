@@ -13,6 +13,7 @@ import {
   Smartphone,
   Users,
   Video,
+  Code2,
   ArrowRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,7 @@ const serviceIconMap: Record<string, React.ComponentType<{ className?: string }>
   "/services/app-marketing": Smartphone,
   "/services/influencer-management": Users,
   "/services/youtube-monetization": Video,
+  "/services/apis-and-products": Code2,
 };
 
 export function Navbar() {
@@ -115,11 +117,13 @@ export function Navbar() {
                         <Sparkles className="h-3.5 w-3.5 text-[#FF5E3A]" />
                         <span>GROWTH DISCIPLINES</span>
                       </div>
-                      <span className="text-[10px] text-[#5A6578] font-bold">6 Dedicated Solutions</span>
+                      <span className="text-[10px] text-[#5A6578] font-bold">
+                        {item.children.length} Dedicated Solutions
+                      </span>
                     </div>
 
-                    {/* 2-Column Grid of Service Items */}
-                    <div className="grid grid-cols-2 gap-2">
+                    {/* 2-Column Grid of Service Items with responsive scroll */}
+                    <div className="grid grid-cols-2 gap-2 max-h-[min(65vh,400px)] overflow-y-auto pr-1 overscroll-contain">
                       {item.children.map((child) => {
                         const Icon = serviceIconMap[child.href] || Sparkles;
                         const isChildActive = pathname === child.href;
